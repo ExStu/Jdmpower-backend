@@ -40,6 +40,9 @@ export class CarService {
 
 	async getAll() {
 		return this.prisma.car.findMany({
+			orderBy: {
+				name: "asc"
+			},
 			select: returnCarObject,
 		})
 	}

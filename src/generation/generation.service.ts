@@ -28,7 +28,7 @@ export class GenerationService {
 	}
 
 	async bySlug(slug: string) {
-		const generation = await this.prisma.generation.findUnique({
+		const generation = await this.prisma.generation.findFirst({
 			where: {
 				slug
 			},

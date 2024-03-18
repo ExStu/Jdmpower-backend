@@ -20,8 +20,57 @@ export declare class ProductService {
             updatedAt: Date;
             name: string;
             slug: string;
-            sku: string;
+            _count: {
+                orderItems: number;
+                reviews: number;
+                category: number;
+                manufacture: number;
+                generation: number;
+                user: number;
+            };
+            user: {
+                id: number;
+                createdAt: Date;
+                updatedAt: Date;
+                email: string;
+                phone: string;
+                password: string;
+                isAdmin: boolean;
+                name: string;
+                surname: string;
+                middleName: string;
+                avatarPath: string;
+            };
+            generation: {
+                id: number;
+                createdAt: Date;
+                updatedAt: Date;
+                name: string;
+                slug: string;
+                image: string;
+                chassis: string;
+                engine: string;
+                engineVolume: string;
+                yearFrom: string;
+                yearTo: string;
+                modelId: number;
+            };
+            category: {
+                id: number;
+                createdAt: Date;
+                updatedAt: Date;
+                name: string;
+                slug: string;
+            };
+            manufacture: {
+                id: number;
+                createdAt: Date;
+                updatedAt: Date;
+                name: string;
+                slug: string;
+            };
             description: string;
+            sku: string;
             price: number;
             images: string[];
             inStock: boolean;
@@ -47,55 +96,6 @@ export declare class ProductService {
                 userId: number;
                 productId: number;
             }[];
-            category: {
-                id: number;
-                createdAt: Date;
-                updatedAt: Date;
-                name: string;
-                slug: string;
-            };
-            manufacture: {
-                id: number;
-                createdAt: Date;
-                updatedAt: Date;
-                name: string;
-                slug: string;
-            };
-            generation: {
-                id: number;
-                createdAt: Date;
-                updatedAt: Date;
-                name: string;
-                slug: string;
-                image: string;
-                chassis: string;
-                engine: string;
-                engineVolume: string;
-                yearFrom: string;
-                yearTo: string;
-                modelId: number;
-            };
-            user: {
-                id: number;
-                createdAt: Date;
-                updatedAt: Date;
-                email: string;
-                phone: string;
-                password: string;
-                isAdmin: boolean;
-                name: string;
-                surname: string;
-                middleName: string;
-                avatarPath: string;
-            };
-            _count: {
-                orderItems: number;
-                reviews: number;
-                category: number;
-                manufacture: number;
-                generation: number;
-                user: number;
-            };
         }[];
         totalLength: number;
         orderBy: Prisma.ProductOrderByWithRelationInput;
@@ -115,8 +115,57 @@ export declare class ProductService {
         updatedAt: Date;
         name: string;
         slug: string;
-        sku: string;
+        _count: {
+            orderItems: number;
+            reviews: number;
+            category: number;
+            manufacture: number;
+            generation: number;
+            user: number;
+        };
+        user: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            email: string;
+            phone: string;
+            password: string;
+            isAdmin: boolean;
+            name: string;
+            surname: string;
+            middleName: string;
+            avatarPath: string;
+        };
+        generation: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+            image: string;
+            chassis: string;
+            engine: string;
+            engineVolume: string;
+            yearFrom: string;
+            yearTo: string;
+            modelId: number;
+        };
+        category: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+        };
+        manufacture: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+        };
         description: string;
+        sku: string;
         price: number;
         images: string[];
         inStock: boolean;
@@ -142,55 +191,6 @@ export declare class ProductService {
             userId: number;
             productId: number;
         }[];
-        category: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            name: string;
-            slug: string;
-        };
-        manufacture: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            name: string;
-            slug: string;
-        };
-        generation: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            name: string;
-            slug: string;
-            image: string;
-            chassis: string;
-            engine: string;
-            engineVolume: string;
-            yearFrom: string;
-            yearTo: string;
-            modelId: number;
-        };
-        user: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            email: string;
-            phone: string;
-            password: string;
-            isAdmin: boolean;
-            name: string;
-            surname: string;
-            middleName: string;
-            avatarPath: string;
-        };
-        _count: {
-            orderItems: number;
-            reviews: number;
-            category: number;
-            manufacture: number;
-            generation: number;
-            user: number;
-        };
     }>;
     bySku(sku: string): Promise<{
         id: number;
@@ -198,8 +198,57 @@ export declare class ProductService {
         updatedAt: Date;
         name: string;
         slug: string;
-        sku: string;
+        _count: {
+            orderItems: number;
+            reviews: number;
+            category: number;
+            manufacture: number;
+            generation: number;
+            user: number;
+        };
+        user: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            email: string;
+            phone: string;
+            password: string;
+            isAdmin: boolean;
+            name: string;
+            surname: string;
+            middleName: string;
+            avatarPath: string;
+        };
+        generation: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+            image: string;
+            chassis: string;
+            engine: string;
+            engineVolume: string;
+            yearFrom: string;
+            yearTo: string;
+            modelId: number;
+        };
+        category: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+        };
+        manufacture: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+        };
         description: string;
+        sku: string;
         price: number;
         images: string[];
         inStock: boolean;
@@ -225,55 +274,6 @@ export declare class ProductService {
             userId: number;
             productId: number;
         }[];
-        category: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            name: string;
-            slug: string;
-        };
-        manufacture: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            name: string;
-            slug: string;
-        };
-        generation: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            name: string;
-            slug: string;
-            image: string;
-            chassis: string;
-            engine: string;
-            engineVolume: string;
-            yearFrom: string;
-            yearTo: string;
-            modelId: number;
-        };
-        user: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            email: string;
-            phone: string;
-            password: string;
-            isAdmin: boolean;
-            name: string;
-            surname: string;
-            middleName: string;
-            avatarPath: string;
-        };
-        _count: {
-            orderItems: number;
-            reviews: number;
-            category: number;
-            manufacture: number;
-            generation: number;
-            user: number;
-        };
     }>;
     byCategory(categorySlug: string): Promise<{
         id: number;
@@ -281,8 +281,57 @@ export declare class ProductService {
         updatedAt: Date;
         name: string;
         slug: string;
-        sku: string;
+        _count: {
+            orderItems: number;
+            reviews: number;
+            category: number;
+            manufacture: number;
+            generation: number;
+            user: number;
+        };
+        user: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            email: string;
+            phone: string;
+            password: string;
+            isAdmin: boolean;
+            name: string;
+            surname: string;
+            middleName: string;
+            avatarPath: string;
+        };
+        generation: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+            image: string;
+            chassis: string;
+            engine: string;
+            engineVolume: string;
+            yearFrom: string;
+            yearTo: string;
+            modelId: number;
+        };
+        category: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+        };
+        manufacture: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+        };
         description: string;
+        sku: string;
         price: number;
         images: string[];
         inStock: boolean;
@@ -308,55 +357,6 @@ export declare class ProductService {
             userId: number;
             productId: number;
         }[];
-        category: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            name: string;
-            slug: string;
-        };
-        manufacture: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            name: string;
-            slug: string;
-        };
-        generation: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            name: string;
-            slug: string;
-            image: string;
-            chassis: string;
-            engine: string;
-            engineVolume: string;
-            yearFrom: string;
-            yearTo: string;
-            modelId: number;
-        };
-        user: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            email: string;
-            phone: string;
-            password: string;
-            isAdmin: boolean;
-            name: string;
-            surname: string;
-            middleName: string;
-            avatarPath: string;
-        };
-        _count: {
-            orderItems: number;
-            reviews: number;
-            category: number;
-            manufacture: number;
-            generation: number;
-            user: number;
-        };
     }[]>;
     byManufacture(manufactureSlug: string): Promise<{
         id: number;
@@ -364,8 +364,57 @@ export declare class ProductService {
         updatedAt: Date;
         name: string;
         slug: string;
-        sku: string;
+        _count: {
+            orderItems: number;
+            reviews: number;
+            category: number;
+            manufacture: number;
+            generation: number;
+            user: number;
+        };
+        user: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            email: string;
+            phone: string;
+            password: string;
+            isAdmin: boolean;
+            name: string;
+            surname: string;
+            middleName: string;
+            avatarPath: string;
+        };
+        generation: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+            image: string;
+            chassis: string;
+            engine: string;
+            engineVolume: string;
+            yearFrom: string;
+            yearTo: string;
+            modelId: number;
+        };
+        category: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+        };
+        manufacture: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+        };
         description: string;
+        sku: string;
         price: number;
         images: string[];
         inStock: boolean;
@@ -391,55 +440,6 @@ export declare class ProductService {
             userId: number;
             productId: number;
         }[];
-        category: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            name: string;
-            slug: string;
-        };
-        manufacture: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            name: string;
-            slug: string;
-        };
-        generation: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            name: string;
-            slug: string;
-            image: string;
-            chassis: string;
-            engine: string;
-            engineVolume: string;
-            yearFrom: string;
-            yearTo: string;
-            modelId: number;
-        };
-        user: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            email: string;
-            phone: string;
-            password: string;
-            isAdmin: boolean;
-            name: string;
-            surname: string;
-            middleName: string;
-            avatarPath: string;
-        };
-        _count: {
-            orderItems: number;
-            reviews: number;
-            category: number;
-            manufacture: number;
-            generation: number;
-            user: number;
-        };
     }[]>;
     byGeneration(generationSlug: string): Promise<{
         id: number;
@@ -447,8 +447,57 @@ export declare class ProductService {
         updatedAt: Date;
         name: string;
         slug: string;
-        sku: string;
+        _count: {
+            orderItems: number;
+            reviews: number;
+            category: number;
+            manufacture: number;
+            generation: number;
+            user: number;
+        };
+        user: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            email: string;
+            phone: string;
+            password: string;
+            isAdmin: boolean;
+            name: string;
+            surname: string;
+            middleName: string;
+            avatarPath: string;
+        };
+        generation: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+            image: string;
+            chassis: string;
+            engine: string;
+            engineVolume: string;
+            yearFrom: string;
+            yearTo: string;
+            modelId: number;
+        };
+        category: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+        };
+        manufacture: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+        };
         description: string;
+        sku: string;
         price: number;
         images: string[];
         inStock: boolean;
@@ -474,55 +523,6 @@ export declare class ProductService {
             userId: number;
             productId: number;
         }[];
-        category: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            name: string;
-            slug: string;
-        };
-        manufacture: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            name: string;
-            slug: string;
-        };
-        generation: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            name: string;
-            slug: string;
-            image: string;
-            chassis: string;
-            engine: string;
-            engineVolume: string;
-            yearFrom: string;
-            yearTo: string;
-            modelId: number;
-        };
-        user: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            email: string;
-            phone: string;
-            password: string;
-            isAdmin: boolean;
-            name: string;
-            surname: string;
-            middleName: string;
-            avatarPath: string;
-        };
-        _count: {
-            orderItems: number;
-            reviews: number;
-            category: number;
-            manufacture: number;
-            generation: number;
-            user: number;
-        };
     }[]>;
     getSimilar(id: number): Promise<{
         id: number;
@@ -530,8 +530,57 @@ export declare class ProductService {
         updatedAt: Date;
         name: string;
         slug: string;
-        sku: string;
+        _count: {
+            orderItems: number;
+            reviews: number;
+            category: number;
+            manufacture: number;
+            generation: number;
+            user: number;
+        };
+        user: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            email: string;
+            phone: string;
+            password: string;
+            isAdmin: boolean;
+            name: string;
+            surname: string;
+            middleName: string;
+            avatarPath: string;
+        };
+        generation: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+            image: string;
+            chassis: string;
+            engine: string;
+            engineVolume: string;
+            yearFrom: string;
+            yearTo: string;
+            modelId: number;
+        };
+        category: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+        };
+        manufacture: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+        };
         description: string;
+        sku: string;
         price: number;
         images: string[];
         inStock: boolean;
@@ -557,55 +606,6 @@ export declare class ProductService {
             userId: number;
             productId: number;
         }[];
-        category: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            name: string;
-            slug: string;
-        };
-        manufacture: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            name: string;
-            slug: string;
-        };
-        generation: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            name: string;
-            slug: string;
-            image: string;
-            chassis: string;
-            engine: string;
-            engineVolume: string;
-            yearFrom: string;
-            yearTo: string;
-            modelId: number;
-        };
-        user: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            email: string;
-            phone: string;
-            password: string;
-            isAdmin: boolean;
-            name: string;
-            surname: string;
-            middleName: string;
-            avatarPath: string;
-        };
-        _count: {
-            orderItems: number;
-            reviews: number;
-            category: number;
-            manufacture: number;
-            generation: number;
-            user: number;
-        };
     }[]>;
     create(dto: ProductDto): Promise<{
         id: number;

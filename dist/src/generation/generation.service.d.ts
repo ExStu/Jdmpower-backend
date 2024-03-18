@@ -11,16 +11,11 @@ export declare class GenerationService {
         updatedAt: Date;
         name: string;
         slug: string;
+        image: string;
         _count: {
             model: number;
             products: number;
         };
-        image: string;
-        chassis: string;
-        engine: string;
-        engineVolume: string;
-        yearFrom: string;
-        yearTo: string;
         model: {
             id: number;
             createdAt: Date;
@@ -30,6 +25,11 @@ export declare class GenerationService {
             image: string;
             carId: number;
         };
+        chassis: string;
+        engine: string;
+        engineVolume: string;
+        yearFrom: string;
+        yearTo: string;
         modelId: number;
         products: {
             id: number;
@@ -55,16 +55,11 @@ export declare class GenerationService {
         updatedAt: Date;
         name: string;
         slug: string;
+        image: string;
         _count: {
             model: number;
             products: number;
         };
-        image: string;
-        chassis: string;
-        engine: string;
-        engineVolume: string;
-        yearFrom: string;
-        yearTo: string;
         model: {
             id: number;
             createdAt: Date;
@@ -74,6 +69,11 @@ export declare class GenerationService {
             image: string;
             carId: number;
         };
+        chassis: string;
+        engine: string;
+        engineVolume: string;
+        yearFrom: string;
+        yearTo: string;
         modelId: number;
         products: {
             id: number;
@@ -99,16 +99,11 @@ export declare class GenerationService {
         updatedAt: Date;
         name: string;
         slug: string;
+        image: string;
         _count: {
             model: number;
             products: number;
         };
-        image: string;
-        chassis: string;
-        engine: string;
-        engineVolume: string;
-        yearFrom: string;
-        yearTo: string;
         model: {
             id: number;
             createdAt: Date;
@@ -118,6 +113,11 @@ export declare class GenerationService {
             image: string;
             carId: number;
         };
+        chassis: string;
+        engine: string;
+        engineVolume: string;
+        yearFrom: string;
+        yearTo: string;
         modelId: number;
         products: {
             id: number;
@@ -143,16 +143,11 @@ export declare class GenerationService {
         updatedAt: Date;
         name: string;
         slug: string;
+        image: string;
         _count: {
             model: number;
             products: number;
         };
-        image: string;
-        chassis: string;
-        engine: string;
-        engineVolume: string;
-        yearFrom: string;
-        yearTo: string;
         model: {
             id: number;
             createdAt: Date;
@@ -162,6 +157,11 @@ export declare class GenerationService {
             image: string;
             carId: number;
         };
+        chassis: string;
+        engine: string;
+        engineVolume: string;
+        yearFrom: string;
+        yearTo: string;
         modelId: number;
         products: {
             id: number;

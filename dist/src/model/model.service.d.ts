@@ -6,16 +6,6 @@ export declare class ModelService {
     private carService;
     constructor(prisma: PrismaService, carService: CarService);
     byId(id: number): Promise<{
-        id: number;
-        createdAt: Date;
-        updatedAt: Date;
-        name: string;
-        slug: string;
-        _count: {
-            car: number;
-            generations: number;
-        };
-        image: string;
         car: {
             id: number;
             createdAt: Date;
@@ -23,6 +13,16 @@ export declare class ModelService {
             name: string;
             slug: string;
             image: string;
+        };
+        id: number;
+        createdAt: Date;
+        updatedAt: Date;
+        name: string;
+        slug: string;
+        image: string;
+        _count: {
+            car: number;
+            generations: number;
         };
         carId: number;
         generations: {
@@ -41,16 +41,6 @@ export declare class ModelService {
         }[];
     }>;
     bySlug(slug: string): Promise<{
-        id: number;
-        createdAt: Date;
-        updatedAt: Date;
-        name: string;
-        slug: string;
-        _count: {
-            car: number;
-            generations: number;
-        };
-        image: string;
         car: {
             id: number;
             createdAt: Date;
@@ -58,6 +48,16 @@ export declare class ModelService {
             name: string;
             slug: string;
             image: string;
+        };
+        id: number;
+        createdAt: Date;
+        updatedAt: Date;
+        name: string;
+        slug: string;
+        image: string;
+        _count: {
+            car: number;
+            generations: number;
         };
         carId: number;
         generations: {
@@ -76,16 +76,6 @@ export declare class ModelService {
         }[];
     }>;
     getAll(): Promise<{
-        id: number;
-        createdAt: Date;
-        updatedAt: Date;
-        name: string;
-        slug: string;
-        _count: {
-            car: number;
-            generations: number;
-        };
-        image: string;
         car: {
             id: number;
             createdAt: Date;
@@ -93,6 +83,16 @@ export declare class ModelService {
             name: string;
             slug: string;
             image: string;
+        };
+        id: number;
+        createdAt: Date;
+        updatedAt: Date;
+        name: string;
+        slug: string;
+        image: string;
+        _count: {
+            car: number;
+            generations: number;
         };
         carId: number;
         generations: {
@@ -111,16 +111,6 @@ export declare class ModelService {
         }[];
     }[]>;
     byCar(carSlug: string): Promise<{
-        id: number;
-        createdAt: Date;
-        updatedAt: Date;
-        name: string;
-        slug: string;
-        _count: {
-            car: number;
-            generations: number;
-        };
-        image: string;
         car: {
             id: number;
             createdAt: Date;
@@ -128,6 +118,16 @@ export declare class ModelService {
             name: string;
             slug: string;
             image: string;
+        };
+        id: number;
+        createdAt: Date;
+        updatedAt: Date;
+        name: string;
+        slug: string;
+        image: string;
+        _count: {
+            car: number;
+            generations: number;
         };
         carId: number;
         generations: {

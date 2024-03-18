@@ -31,8 +31,8 @@ let ModelController = exports.ModelController = class ModelController {
     async getById(modelId) {
         return this.modelService.byId(+modelId);
     }
-    async getByCar(modelSlug) {
-        return this.modelService.byCar(modelSlug);
+    async getByCar(carSlug) {
+        return this.modelService.byCar(carSlug);
     }
     async create(modelDto) {
         return this.modelService.create(modelDto);
@@ -100,7 +100,7 @@ __decorate([
         description: 'Not Found',
     }),
     (0, swagger_1.ApiBadRequestResponse)({ description: 'Bad Request' }),
-    __param(0, (0, common_1.Param)('modelSlug')),
+    __param(0, (0, common_1.Param)('carSlug')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)

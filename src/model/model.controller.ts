@@ -59,8 +59,8 @@ export class ModelController {
 		description: 'Not Found',
 	})
 	@ApiBadRequestResponse({ description: 'Bad Request' })
-	async getByCar(@Param('modelSlug') modelSlug: string) {
-		return this.modelService.byCar(modelSlug)
+	async getByCar(@Param('carSlug') carSlug: string) {
+		return this.modelService.byCar(carSlug)
 	}
 
 	@HttpCode(200)

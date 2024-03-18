@@ -33,7 +33,7 @@ let GenerationService = exports.GenerationService = class GenerationService {
         return generation;
     }
     async bySlug(slug) {
-        const generation = await this.prisma.generation.findUnique({
+        const generation = await this.prisma.generation.findFirst({
             where: {
                 slug
             },

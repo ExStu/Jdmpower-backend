@@ -9,11 +9,8 @@ export declare class ModelController {
         updatedAt: Date;
         name: string;
         slug: string;
-        _count: {
-            car: number;
-            generations: number;
-        };
         image: string;
+        carId: number;
         car: {
             id: number;
             createdAt: Date;
@@ -22,7 +19,6 @@ export declare class ModelController {
             slug: string;
             image: string;
         };
-        carId: number;
         generations: {
             id: number;
             createdAt: Date;
@@ -37,6 +33,10 @@ export declare class ModelController {
             yearTo: string;
             modelId: number;
         }[];
+        _count: {
+            car: number;
+            generations: number;
+        };
     }[]>;
     getBySlug(modelSlug: string): Promise<{
         id: number;
@@ -44,11 +44,8 @@ export declare class ModelController {
         updatedAt: Date;
         name: string;
         slug: string;
-        _count: {
-            car: number;
-            generations: number;
-        };
         image: string;
+        carId: number;
         car: {
             id: number;
             createdAt: Date;
@@ -57,7 +54,6 @@ export declare class ModelController {
             slug: string;
             image: string;
         };
-        carId: number;
         generations: {
             id: number;
             createdAt: Date;
@@ -72,6 +68,10 @@ export declare class ModelController {
             yearTo: string;
             modelId: number;
         }[];
+        _count: {
+            car: number;
+            generations: number;
+        };
     }>;
     getById(modelId: string): Promise<{
         id: number;
@@ -79,11 +79,8 @@ export declare class ModelController {
         updatedAt: Date;
         name: string;
         slug: string;
-        _count: {
-            car: number;
-            generations: number;
-        };
         image: string;
+        carId: number;
         car: {
             id: number;
             createdAt: Date;
@@ -92,7 +89,6 @@ export declare class ModelController {
             slug: string;
             image: string;
         };
-        carId: number;
         generations: {
             id: number;
             createdAt: Date;
@@ -107,18 +103,19 @@ export declare class ModelController {
             yearTo: string;
             modelId: number;
         }[];
+        _count: {
+            car: number;
+            generations: number;
+        };
     }>;
-    getByCar(modelSlug: string): Promise<{
+    getByCar(carSlug: string): Promise<{
         id: number;
         createdAt: Date;
         updatedAt: Date;
         name: string;
         slug: string;
-        _count: {
-            car: number;
-            generations: number;
-        };
         image: string;
+        carId: number;
         car: {
             id: number;
             createdAt: Date;
@@ -127,7 +124,6 @@ export declare class ModelController {
             slug: string;
             image: string;
         };
-        carId: number;
         generations: {
             id: number;
             createdAt: Date;
@@ -142,6 +138,10 @@ export declare class ModelController {
             yearTo: string;
             modelId: number;
         }[];
+        _count: {
+            car: number;
+            generations: number;
+        };
     }[]>;
     create(modelDto: ModelDto): Promise<{
         id: number;

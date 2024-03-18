@@ -4,6 +4,22 @@ export declare class ReviewController {
     private readonly reviewService;
     constructor(reviewService: ReviewService);
     getAll(): Promise<{
+        id: number;
+        createdAt: Date;
+        updatedAt: Date;
+        user: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            email: string;
+            phone: string;
+            password: string;
+            isAdmin: boolean;
+            name: string;
+            surname: string;
+            middleName: string;
+            avatarPath: string;
+        };
         product: {
             id: number;
             createdAt: Date;
@@ -21,25 +37,9 @@ export declare class ReviewController {
             generationId: number;
             userId: number;
         };
-        id: number;
-        createdAt: Date;
-        updatedAt: Date;
         userId: number;
-        user: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            email: string;
-            phone: string;
-            password: string;
-            isAdmin: boolean;
-            name: string;
-            surname: string;
-            middleName: string;
-            avatarPath: string;
-        };
-        text: string;
         productId: number;
+        text: string;
     }[]>;
     leaveReview(id: number, dto: ReviewDto, productId: string): Promise<{
         id: number;

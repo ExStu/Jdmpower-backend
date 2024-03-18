@@ -44,6 +44,9 @@ let CarService = exports.CarService = class CarService {
     }
     async getAll() {
         return this.prisma.car.findMany({
+            orderBy: {
+                name: "asc"
+            },
             select: return_car_object_1.returnCarObject,
         });
     }
