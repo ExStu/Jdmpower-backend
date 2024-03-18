@@ -1,0 +1,224 @@
+import { GenerationDto } from "./generation.dto";
+import { GenerationService } from "./generation.service";
+export declare class GenerationController {
+    private readonly generationService;
+    constructor(generationService: GenerationService);
+    getAll(): Promise<{
+        id: number;
+        createdAt: Date;
+        updatedAt: Date;
+        name: string;
+        slug: string;
+        _count: {
+            model: number;
+            products: number;
+        };
+        image: string;
+        chassis: string;
+        engine: string;
+        engineVolume: string;
+        yearFrom: string;
+        yearTo: string;
+        model: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+            image: string;
+            carId: number;
+        };
+        modelId: number;
+        products: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+            sku: string;
+            description: string;
+            price: number;
+            images: string[];
+            inStock: boolean;
+            discount: number;
+            categoryId: number;
+            manufactureId: number;
+            generationId: number;
+            userId: number;
+        }[];
+    }[]>;
+    getBySlug(slug: string): Promise<{
+        id: number;
+        createdAt: Date;
+        updatedAt: Date;
+        name: string;
+        slug: string;
+        _count: {
+            model: number;
+            products: number;
+        };
+        image: string;
+        chassis: string;
+        engine: string;
+        engineVolume: string;
+        yearFrom: string;
+        yearTo: string;
+        model: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+            image: string;
+            carId: number;
+        };
+        modelId: number;
+        products: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+            sku: string;
+            description: string;
+            price: number;
+            images: string[];
+            inStock: boolean;
+            discount: number;
+            categoryId: number;
+            manufactureId: number;
+            generationId: number;
+            userId: number;
+        }[];
+    }>;
+    getByModel(modelSlug: string): Promise<{
+        id: number;
+        createdAt: Date;
+        updatedAt: Date;
+        name: string;
+        slug: string;
+        _count: {
+            model: number;
+            products: number;
+        };
+        image: string;
+        chassis: string;
+        engine: string;
+        engineVolume: string;
+        yearFrom: string;
+        yearTo: string;
+        model: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+            image: string;
+            carId: number;
+        };
+        modelId: number;
+        products: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+            sku: string;
+            description: string;
+            price: number;
+            images: string[];
+            inStock: boolean;
+            discount: number;
+            categoryId: number;
+            manufactureId: number;
+            generationId: number;
+            userId: number;
+        }[];
+    }[]>;
+    getById(id: string): Promise<{
+        id: number;
+        createdAt: Date;
+        updatedAt: Date;
+        name: string;
+        slug: string;
+        _count: {
+            model: number;
+            products: number;
+        };
+        image: string;
+        chassis: string;
+        engine: string;
+        engineVolume: string;
+        yearFrom: string;
+        yearTo: string;
+        model: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+            image: string;
+            carId: number;
+        };
+        modelId: number;
+        products: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+            sku: string;
+            description: string;
+            price: number;
+            images: string[];
+            inStock: boolean;
+            discount: number;
+            categoryId: number;
+            manufactureId: number;
+            generationId: number;
+            userId: number;
+        }[];
+    }>;
+    create(dto: GenerationDto): Promise<{
+        id: number;
+        createdAt: Date;
+        updatedAt: Date;
+        name: string;
+        slug: string;
+        image: string;
+        chassis: string;
+        engine: string;
+        engineVolume: string;
+        yearFrom: string;
+        yearTo: string;
+        modelId: number;
+    }>;
+    update(id: string, dto: GenerationDto): Promise<{
+        id: number;
+        createdAt: Date;
+        updatedAt: Date;
+        name: string;
+        slug: string;
+        image: string;
+        chassis: string;
+        engine: string;
+        engineVolume: string;
+        yearFrom: string;
+        yearTo: string;
+        modelId: number;
+    }>;
+    delete(id: string): Promise<{
+        id: number;
+        createdAt: Date;
+        updatedAt: Date;
+        name: string;
+        slug: string;
+        image: string;
+        chassis: string;
+        engine: string;
+        engineVolume: string;
+        yearFrom: string;
+        yearTo: string;
+        modelId: number;
+    }>;
+}
