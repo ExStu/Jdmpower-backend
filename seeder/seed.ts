@@ -67,53 +67,65 @@ const createProducts = async (quantity: number) => {
 					length: faker.datatype.number({ min: 2, max: 6 })
 				}).map(() => faker.image.imageUrl(500, 500, "cat", true)),
 				category: {
-					create: {
-						name: categoryName,
-						slug: faker.helpers.slugify(categoryName).toLowerCase()
-					}
+					connect: {
+						id: 10
+					},
+					// 4, 5, 6, 7, 8, 9, 10
+
+					// create: {
+					// 	name: categoryName,
+					// 	slug: faker.helpers.slugify(categoryName).toLowerCase()
+					// }
 				},
 				manufacture: {
-					create: {
-						name: manufactureName,
-						slug: faker.helpers.slugify(manufactureName).toLowerCase()
+					connect: {
+						id: 13
 					}
+					// 4, 5, 6, 8, 9, 12, 13
+					// create: {
+					// 	name: manufactureName,
+					// 	slug: faker.helpers.slugify(manufactureName).toLowerCase()
+					// }
 				},
 				generation: {
-					create: {
-						name: generationName,
-						slug: faker.helpers.slugify(generationName).toLowerCase(),
-						image: faker.image.imageUrl(500, 500, "car", true),
-						chassis: faker.vehicle.vin(),
-						engine: faker.vehicle.vrm(),
-						engineVolume: faker.number
-							.float({ min: 1, max: 5, precision: 0.1 })
-							.toString(),
-						yearFrom: faker.date
-							.between({
-								from: "2010-01-01T00:00:00.000Z",
-								to: "2020-01-01T00:00:00.000Z"
-							})
-							.getFullYear()
-							.toString(),
-						yearTo: faker.date
-							.between({ from: "2020-01-01T00:00:00.000Z", to: new Date() })
-							.getFullYear()
-							.toString(),
-						model: {
-							create: {
-								name: modelName,
-								slug: faker.helpers.slugify(modelName).toLowerCase(),
-								image: faker.image.imageUrl(500, 500, "car", true),
-								car: {
-									create: {
-										name: carName,
-										slug: faker.helpers.slugify(carName).toLowerCase(),
-										image: faker.image.imageUrl(500, 500, "car", true)
-									}
-								}
-							}
-						}
-					}
+					connect: {
+						id: 29
+					},
+					// create: {
+					// 	name: generationName,
+					// 	slug: faker.helpers.slugify(generationName).toLowerCase(),
+					// 	image: faker.image.imageUrl(500, 500, "car", true),
+					// 	chassis: faker.vehicle.vin(),
+					// 	engine: faker.vehicle.vrm(),
+					// 	engineVolume: faker.number
+					// 		.float({ min: 1, max: 5, precision: 0.1 })
+					// 		.toString(),
+					// 	yearFrom: faker.date
+					// 		.between({
+					// 			from: "2010-01-01T00:00:00.000Z",
+					// 			to: "2020-01-01T00:00:00.000Z"
+					// 		})
+					// 		.getFullYear()
+					// 		.toString(),
+					// 	yearTo: faker.date
+					// 		.between({ from: "2020-01-01T00:00:00.000Z", to: new Date() })
+					// 		.getFullYear()
+					// 		.toString(),
+					// 	model: {
+					// 		create: {
+					// 			name: modelName,
+					// 			slug: faker.helpers.slugify(modelName).toLowerCase(),
+					// 			image: faker.image.imageUrl(500, 500, "car", true),
+					// 			car: {
+					// 				create: {
+					// 					name: carName,
+					// 					slug: faker.helpers.slugify(carName).toLowerCase(),
+					// 					image: faker.image.imageUrl(500, 500, "car", true)
+					// 				}
+					// 			}
+					// 		}
+					// 	}
+					// }
 				},
 				reviews: {
 					create: [
@@ -148,7 +160,7 @@ const createProducts = async (quantity: number) => {
 
 async function main() {
 	console.log("Started seeding...");
-	await createProducts(50);
+	await createProducts(10);
 }
 
 main()

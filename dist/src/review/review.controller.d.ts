@@ -38,8 +38,8 @@ export declare class ReviewController {
             middleName: string;
             avatarPath: string;
         };
-        text: string;
         productId: number;
+        text: string;
     }[]>;
     leaveReview(id: number, dto: ReviewDto, productId: string): Promise<{
         id: number;

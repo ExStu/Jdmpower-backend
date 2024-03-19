@@ -4,22 +4,22 @@ import { ProductService } from "./product.service";
 export declare class ProductController {
     private readonly productService;
     constructor(productService: ProductService);
-    getAll(bodyDto: GetAllProductDto, queryDto: GetAllProductDto): Promise<{
+    getAll(queryDto: GetAllProductDto): Promise<{
         products: {
+            categoryId: number;
+            manufactureId: number;
+            generationId: number;
+            name: string;
+            description: string;
             id: number;
             createdAt: Date;
             updatedAt: Date;
-            name: string;
             slug: string;
             sku: string;
-            description: string;
             price: number;
             images: string[];
             inStock: boolean;
             discount: number;
-            categoryId: number;
-            manufactureId: number;
-            generationId: number;
             userId: number;
             orderItems: {
                 id: number;
@@ -94,20 +94,20 @@ export declare class ProductController {
         pageNumber: number;
     }>;
     getSimilar(id: string): Promise<{
+        categoryId: number;
+        manufactureId: number;
+        generationId: number;
+        name: string;
+        description: string;
         id: number;
         createdAt: Date;
         updatedAt: Date;
-        name: string;
         slug: string;
         sku: string;
-        description: string;
         price: number;
         images: string[];
         inStock: boolean;
         discount: number;
-        categoryId: number;
-        manufactureId: number;
-        generationId: number;
         userId: number;
         orderItems: {
             id: number;
@@ -177,20 +177,20 @@ export declare class ProductController {
         };
     }[]>;
     getProductsByCategory(categorySlug: string): Promise<{
+        categoryId: number;
+        manufactureId: number;
+        generationId: number;
+        name: string;
+        description: string;
         id: number;
         createdAt: Date;
         updatedAt: Date;
-        name: string;
         slug: string;
         sku: string;
-        description: string;
         price: number;
         images: string[];
         inStock: boolean;
         discount: number;
-        categoryId: number;
-        manufactureId: number;
-        generationId: number;
         userId: number;
         orderItems: {
             id: number;
@@ -260,20 +260,20 @@ export declare class ProductController {
         };
     }[]>;
     getProductsByManufacture(manufactureSlug: string): Promise<{
+        categoryId: number;
+        manufactureId: number;
+        generationId: number;
+        name: string;
+        description: string;
         id: number;
         createdAt: Date;
         updatedAt: Date;
-        name: string;
         slug: string;
         sku: string;
-        description: string;
         price: number;
         images: string[];
         inStock: boolean;
         discount: number;
-        categoryId: number;
-        manufactureId: number;
-        generationId: number;
         userId: number;
         orderItems: {
             id: number;
@@ -343,20 +343,20 @@ export declare class ProductController {
         };
     }[]>;
     getProductsByGeneration(generationSlug: string): Promise<{
+        categoryId: number;
+        manufactureId: number;
+        generationId: number;
+        name: string;
+        description: string;
         id: number;
         createdAt: Date;
         updatedAt: Date;
-        name: string;
         slug: string;
         sku: string;
-        description: string;
         price: number;
         images: string[];
         inStock: boolean;
         discount: number;
-        categoryId: number;
-        manufactureId: number;
-        generationId: number;
         userId: number;
         orderItems: {
             id: number;
@@ -477,20 +477,20 @@ export declare class ProductController {
         userId: number;
     }>;
     getProduct(id: string): Promise<{
+        categoryId: number;
+        manufactureId: number;
+        generationId: number;
+        name: string;
+        description: string;
         id: number;
         createdAt: Date;
         updatedAt: Date;
-        name: string;
         slug: string;
         sku: string;
-        description: string;
         price: number;
         images: string[];
         inStock: boolean;
         discount: number;
-        categoryId: number;
-        manufactureId: number;
-        generationId: number;
         userId: number;
         orderItems: {
             id: number;

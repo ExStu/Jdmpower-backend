@@ -28,7 +28,7 @@ let GenerationService = exports.GenerationService = class GenerationService {
             select: return_generation_object_1.returnGenerationObject
         });
         if (!generation) {
-            throw new Error('Generation not found');
+            throw new common_1.NotFoundException('Generation not found');
         }
         return generation;
     }

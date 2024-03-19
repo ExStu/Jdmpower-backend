@@ -37,53 +37,19 @@ const createProducts = async (quantity) => {
                     length: faker_1.faker.datatype.number({ min: 2, max: 6 })
                 }).map(() => faker_1.faker.image.imageUrl(500, 500, "cat", true)),
                 category: {
-                    create: {
-                        name: categoryName,
-                        slug: faker_1.faker.helpers.slugify(categoryName).toLowerCase()
-                    }
+                    connect: {
+                        id: 10
+                    },
                 },
                 manufacture: {
-                    create: {
-                        name: manufactureName,
-                        slug: faker_1.faker.helpers.slugify(manufactureName).toLowerCase()
+                    connect: {
+                        id: 13
                     }
                 },
                 generation: {
-                    create: {
-                        name: generationName,
-                        slug: faker_1.faker.helpers.slugify(generationName).toLowerCase(),
-                        image: faker_1.faker.image.imageUrl(500, 500, "car", true),
-                        chassis: faker_1.faker.vehicle.vin(),
-                        engine: faker_1.faker.vehicle.vrm(),
-                        engineVolume: faker_1.faker.number
-                            .float({ min: 1, max: 5, precision: 0.1 })
-                            .toString(),
-                        yearFrom: faker_1.faker.date
-                            .between({
-                            from: "2010-01-01T00:00:00.000Z",
-                            to: "2020-01-01T00:00:00.000Z"
-                        })
-                            .getFullYear()
-                            .toString(),
-                        yearTo: faker_1.faker.date
-                            .between({ from: "2020-01-01T00:00:00.000Z", to: new Date() })
-                            .getFullYear()
-                            .toString(),
-                        model: {
-                            create: {
-                                name: modelName,
-                                slug: faker_1.faker.helpers.slugify(modelName).toLowerCase(),
-                                image: faker_1.faker.image.imageUrl(500, 500, "car", true),
-                                car: {
-                                    create: {
-                                        name: carName,
-                                        slug: faker_1.faker.helpers.slugify(carName).toLowerCase(),
-                                        image: faker_1.faker.image.imageUrl(500, 500, "car", true)
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    connect: {
+                        id: 29
+                    },
                 },
                 reviews: {
                     create: [
@@ -113,7 +79,7 @@ const createProducts = async (quantity) => {
 };
 async function main() {
     console.log("Started seeding...");
-    await createProducts(50);
+    await createProducts(10);
 }
 main()
     .catch(e => console.error(e))

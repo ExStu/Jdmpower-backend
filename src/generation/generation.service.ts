@@ -21,7 +21,7 @@ export class GenerationService {
 		})
 
 		if (!generation) {
-			throw new Error('Generation not found')
+			throw new NotFoundException('Generation not found')
 		}
 
 		return generation

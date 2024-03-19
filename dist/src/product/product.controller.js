@@ -24,8 +24,8 @@ let ProductController = exports.ProductController = class ProductController {
     constructor(productService) {
         this.productService = productService;
     }
-    async getAll(bodyDto, queryDto) {
-        return this.productService.getAll(bodyDto, queryDto);
+    async getAll(queryDto) {
+        return this.productService.getAll(queryDto);
     }
     async getSimilar(id) {
         return this.productService.getSimilar(+id);
@@ -63,11 +63,9 @@ __decorate([
         description: "Not Found"
     }),
     (0, swagger_1.ApiBadRequestResponse)({ description: "Bad Request" }),
-    __param(0, (0, common_1.Body)()),
-    __param(1, (0, common_1.Query)()),
+    __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [get_all_product_dto_1.GetAllProductDto,
-        get_all_product_dto_1.GetAllProductDto]),
+    __metadata("design:paramtypes", [get_all_product_dto_1.GetAllProductDto]),
     __metadata("design:returntype", Promise)
 ], ProductController.prototype, "getAll", null);
 __decorate([

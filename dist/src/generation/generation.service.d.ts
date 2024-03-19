@@ -15,22 +15,6 @@ export declare class GenerationService {
             model: number;
             products: number;
         };
-        image: string;
-        chassis: string;
-        engine: string;
-        engineVolume: string;
-        yearFrom: string;
-        yearTo: string;
-        model: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            name: string;
-            slug: string;
-            image: string;
-            carId: number;
-        };
-        modelId: number;
         products: {
             id: number;
             createdAt: Date;
@@ -48,6 +32,22 @@ export declare class GenerationService {
             generationId: number;
             userId: number;
         }[];
+        image: string;
+        chassis: string;
+        engine: string;
+        engineVolume: string;
+        yearFrom: string;
+        yearTo: string;
+        modelId: number;
+        model: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+            image: string;
+            carId: number;
+        };
     }>;
     bySlug(slug: string): Promise<{
         id: number;
@@ -59,22 +59,6 @@ export declare class GenerationService {
             model: number;
             products: number;
         };
-        image: string;
-        chassis: string;
-        engine: string;
-        engineVolume: string;
-        yearFrom: string;
-        yearTo: string;
-        model: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            name: string;
-            slug: string;
-            image: string;
-            carId: number;
-        };
-        modelId: number;
         products: {
             id: number;
             createdAt: Date;
@@ -92,6 +76,22 @@ export declare class GenerationService {
             generationId: number;
             userId: number;
         }[];
+        image: string;
+        chassis: string;
+        engine: string;
+        engineVolume: string;
+        yearFrom: string;
+        yearTo: string;
+        modelId: number;
+        model: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+            image: string;
+            carId: number;
+        };
     }>;
     getAll(): Promise<{
         id: number;
@@ -103,22 +103,6 @@ export declare class GenerationService {
             model: number;
             products: number;
         };
-        image: string;
-        chassis: string;
-        engine: string;
-        engineVolume: string;
-        yearFrom: string;
-        yearTo: string;
-        model: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            name: string;
-            slug: string;
-            image: string;
-            carId: number;
-        };
-        modelId: number;
         products: {
             id: number;
             createdAt: Date;
@@ -136,6 +120,22 @@ export declare class GenerationService {
             generationId: number;
             userId: number;
         }[];
+        image: string;
+        chassis: string;
+        engine: string;
+        engineVolume: string;
+        yearFrom: string;
+        yearTo: string;
+        modelId: number;
+        model: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+            image: string;
+            carId: number;
+        };
     }[]>;
     byModel(modelSlug: string): Promise<{
         id: number;
@@ -147,22 +147,6 @@ export declare class GenerationService {
             model: number;
             products: number;
         };
-        image: string;
-        chassis: string;
-        engine: string;
-        engineVolume: string;
-        yearFrom: string;
-        yearTo: string;
-        model: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            name: string;
-            slug: string;
-            image: string;
-            carId: number;
-        };
-        modelId: number;
         products: {
             id: number;
             createdAt: Date;
@@ -180,6 +164,22 @@ export declare class GenerationService {
             generationId: number;
             userId: number;
         }[];
+        image: string;
+        chassis: string;
+        engine: string;
+        engineVolume: string;
+        yearFrom: string;
+        yearTo: string;
+        modelId: number;
+        model: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+            image: string;
+            carId: number;
+        };
     }[]>;
     create(dto: GenerationDto): Promise<{
         id: number;

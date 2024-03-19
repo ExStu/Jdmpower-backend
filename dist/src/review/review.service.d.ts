@@ -40,8 +40,8 @@ export declare class ReviewService {
             middleName: string;
             avatarPath: string;
         };
-        text: string;
         productId: number;
+        text: string;
     }[]>;
     create(userId: number, dto: ReviewDto, productId: number): Promise<{
         id: number;

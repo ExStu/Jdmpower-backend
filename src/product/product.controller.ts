@@ -45,10 +45,9 @@ export class ProductController {
 	})
 	@ApiBadRequestResponse({ description: "Bad Request" })
 	async getAll(
-		@Body() bodyDto: GetAllProductDto,
 		@Query() queryDto: GetAllProductDto
 	) {
-		return this.productService.getAll(bodyDto, queryDto);
+		return this.productService.getAll(queryDto);
 	}
 
 	@Get("similar/:id")

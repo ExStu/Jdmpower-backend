@@ -66,34 +66,34 @@ __decorate([
 ], GetAllProductDto.prototype, "maxPrice", void 0);
 __decorate([
     (0, swagger_1.ApiPropertyOptional)({
-        type: Number
+        type: String
     }),
     (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsString)(),
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
 ], GetAllProductDto.prototype, "categoryId", void 0);
 __decorate([
     (0, swagger_1.ApiPropertyOptional)({
-        type: Number
+        type: String
     }),
     (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsNumber)(),
-    __metadata("design:type", Number)
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
 ], GetAllProductDto.prototype, "manufactureId", void 0);
 __decorate([
     (0, swagger_1.ApiPropertyOptional)({
-        type: Number
+        type: String
     }),
     (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsNumber)(),
-    __metadata("design:type", Number)
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
 ], GetAllProductDto.prototype, "generationId", void 0);
 __decorate([
     (0, swagger_1.ApiPropertyOptional)({
         type: String
     }),
     (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsNumber)(),
+    (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], GetAllProductDto.prototype, "pageNumber", void 0);
 class GetAllProductResponseDto {

@@ -28,12 +28,12 @@ let ProductService = exports.ProductService = class ProductService {
         this.manufactureService = manufactureService;
         this.generationService = generationService;
     }
-    async getAll(bodyDto = {}, queryDto = {}) {
+    async getAll(queryDto = {}) {
         const { perPage, skip, page } = this.paginationService.getPagination({
-            page: bodyDto.pageNumber
+            page: queryDto.pageNumber
         });
-        const filters = this.createFilter(bodyDto);
-        const sortOption = this.getSortOption(bodyDto.sort);
+        const filters = this.createFilter(queryDto);
+        const sortOption = this.getSortOption(queryDto.sort);
         const products = await this.prisma.product.findMany({
             where: filters,
             orderBy: sortOption,
@@ -60,9 +60,9 @@ let ProductService = exports.ProductService = class ProductService {
         if (dto.categoryId)
             filters.push(this.getCategoryFilter(+dto.categoryId));
         if (dto.manufactureId)
-            filters.push(this.getManufactureFilter(dto.manufactureId));
+            filters.push(this.getManufactureFilter(+dto.manufactureId));
         if (dto.generationId)
-            filters.push(this.getGenerationFilter(dto.generationId));
+            filters.push(this.getGenerationFilter(+dto.generationId));
         return filters.length ? { AND: filters } : {};
     }
     getSortOption(sort) {

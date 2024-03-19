@@ -12,9 +12,9 @@ export declare class GetAllProductDto extends PaginationDto {
     ratings?: string;
     minPrice?: string;
     maxPrice?: string;
-    categoryId?: number;
-    manufactureId?: number;
-    generationId?: number;
+    categoryId?: string;
+    manufactureId?: string;
+    generationId?: string;
     pageNumber?: string;
 }
 export declare class GetAllProductResponseDto {

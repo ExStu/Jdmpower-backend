@@ -47,31 +47,31 @@ export class GetAllProductDto extends PaginationDto {
 	maxPrice?: string;
 
 	@ApiPropertyOptional({
-		type: Number
+		type: String
 	})
 	@IsOptional()
 	@IsString()
-	categoryId?: number;
-
-	@ApiPropertyOptional({
-		type: Number
-	})
-	@IsOptional()
-	@IsNumber()
-	manufactureId?: number;
-
-	@ApiPropertyOptional({
-		type: Number
-	})
-	@IsOptional()
-	@IsNumber()
-	generationId?: number;
+	categoryId?: string;
 
 	@ApiPropertyOptional({
 		type: String
 	})
 	@IsOptional()
-	@IsNumber()
+	@IsString()
+	manufactureId?: string;
+
+	@ApiPropertyOptional({
+		type: String
+	})
+	@IsOptional()
+	@IsString()
+	generationId?: string;
+
+	@ApiPropertyOptional({
+		type: String
+	})
+	@IsOptional()
+	@IsString()
 	pageNumber?: string;
 }
 
