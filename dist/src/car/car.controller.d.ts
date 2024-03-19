@@ -9,6 +9,9 @@ export declare class CarController {
         updatedAt: Date;
         name: string;
         slug: string;
+        _count: {
+            models: number;
+        };
         image: string;
         models: {
             id: number;
@@ -19,9 +22,6 @@ export declare class CarController {
             image: string;
             carId: number;
         }[];
-        _count: {
-            models: number;
-        };
     }[]>;
     getBySlug(slug: string): Promise<{
         id: number;
@@ -29,6 +29,9 @@ export declare class CarController {
         updatedAt: Date;
         name: string;
         slug: string;
+        _count: {
+            models: number;
+        };
         image: string;
         models: {
             id: number;
@@ -39,9 +42,6 @@ export declare class CarController {
             image: string;
             carId: number;
         }[];
-        _count: {
-            models: number;
-        };
     }>;
     getById(id: string): Promise<{
         id: number;
@@ -49,6 +49,9 @@ export declare class CarController {
         updatedAt: Date;
         name: string;
         slug: string;
+        _count: {
+            models: number;
+        };
         image: string;
         models: {
             id: number;
@@ -59,9 +62,6 @@ export declare class CarController {
             image: string;
             carId: number;
         }[];
-        _count: {
-            models: number;
-        };
     }>;
     create(): Promise<{
         id: number;

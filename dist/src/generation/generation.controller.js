@@ -92,7 +92,6 @@ __decorate([
 ], GenerationController.prototype, "getByModel", null);
 __decorate([
     (0, common_1.Get)(':id'),
-    (0, auth_decorator_1.Auth)(),
     (0, swagger_1.ApiOkResponse)({
         description: "OK",
         type: generation_dto_1.GenerationResponseDto

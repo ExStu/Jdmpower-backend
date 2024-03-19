@@ -10,10 +10,12 @@ export declare class GenerationController {
         name: string;
         slug: string;
         image: string;
-        _count: {
-            model: number;
-            products: number;
-        };
+        chassis: string;
+        engine: string;
+        engineVolume: string;
+        yearFrom: string;
+        yearTo: string;
+        modelId: number;
         model: {
             id: number;
             createdAt: Date;
@@ -23,12 +25,6 @@ export declare class GenerationController {
             image: string;
             carId: number;
         };
-        chassis: string;
-        engine: string;
-        engineVolume: string;
-        yearFrom: string;
-        yearTo: string;
-        modelId: number;
         products: {
             id: number;
             createdAt: Date;
@@ -46,6 +42,10 @@ export declare class GenerationController {
             generationId: number;
             userId: number;
         }[];
+        _count: {
+            model: number;
+            products: number;
+        };
     }[]>;
     getBySlug(slug: string): Promise<{
         id: number;
@@ -54,10 +54,12 @@ export declare class GenerationController {
         name: string;
         slug: string;
         image: string;
-        _count: {
-            model: number;
-            products: number;
-        };
+        chassis: string;
+        engine: string;
+        engineVolume: string;
+        yearFrom: string;
+        yearTo: string;
+        modelId: number;
         model: {
             id: number;
             createdAt: Date;
@@ -67,12 +69,6 @@ export declare class GenerationController {
             image: string;
             carId: number;
         };
-        chassis: string;
-        engine: string;
-        engineVolume: string;
-        yearFrom: string;
-        yearTo: string;
-        modelId: number;
         products: {
             id: number;
             createdAt: Date;
@@ -90,6 +86,10 @@ export declare class GenerationController {
             generationId: number;
             userId: number;
         }[];
+        _count: {
+            model: number;
+            products: number;
+        };
     }>;
     getByModel(modelSlug: string): Promise<{
         id: number;
@@ -98,10 +98,12 @@ export declare class GenerationController {
         name: string;
         slug: string;
         image: string;
-        _count: {
-            model: number;
-            products: number;
-        };
+        chassis: string;
+        engine: string;
+        engineVolume: string;
+        yearFrom: string;
+        yearTo: string;
+        modelId: number;
         model: {
             id: number;
             createdAt: Date;
@@ -111,12 +113,6 @@ export declare class GenerationController {
             image: string;
             carId: number;
         };
-        chassis: string;
-        engine: string;
-        engineVolume: string;
-        yearFrom: string;
-        yearTo: string;
-        modelId: number;
         products: {
             id: number;
             createdAt: Date;
@@ -134,6 +130,10 @@ export declare class GenerationController {
             generationId: number;
             userId: number;
         }[];
+        _count: {
+            model: number;
+            products: number;
+        };
     }[]>;
     getById(id: string): Promise<{
         id: number;
@@ -142,10 +142,12 @@ export declare class GenerationController {
         name: string;
         slug: string;
         image: string;
-        _count: {
-            model: number;
-            products: number;
-        };
+        chassis: string;
+        engine: string;
+        engineVolume: string;
+        yearFrom: string;
+        yearTo: string;
+        modelId: number;
         model: {
             id: number;
             createdAt: Date;
@@ -155,12 +157,6 @@ export declare class GenerationController {
             image: string;
             carId: number;
         };
-        chassis: string;
-        engine: string;
-        engineVolume: string;
-        yearFrom: string;
-        yearTo: string;
-        modelId: number;
         products: {
             id: number;
             createdAt: Date;
@@ -178,6 +174,10 @@ export declare class GenerationController {
             generationId: number;
             userId: number;
         }[];
+        _count: {
+            model: number;
+            products: number;
+        };
     }>;
     create(dto: GenerationDto): Promise<{
         id: number;

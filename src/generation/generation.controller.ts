@@ -51,7 +51,6 @@ export class GenerationController {
 	}
 
 	@Get(':id')
-	@Auth()
 	@ApiOkResponse({
 		description: "OK",
 		type: GenerationResponseDto

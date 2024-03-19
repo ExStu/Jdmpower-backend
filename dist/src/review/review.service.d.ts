@@ -6,22 +6,6 @@ export declare class ReviewService {
     private productService;
     constructor(prisma: PrismaService, productService: ProductService);
     getAll(): Promise<{
-        id: number;
-        createdAt: Date;
-        updatedAt: Date;
-        user: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            email: string;
-            phone: string;
-            password: string;
-            isAdmin: boolean;
-            name: string;
-            surname: string;
-            middleName: string;
-            avatarPath: string;
-        };
         product: {
             id: number;
             createdAt: Date;
@@ -39,9 +23,25 @@ export declare class ReviewService {
             generationId: number;
             userId: number;
         };
+        id: number;
+        createdAt: Date;
+        updatedAt: Date;
         userId: number;
-        productId: number;
+        user: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            email: string;
+            phone: string;
+            password: string;
+            isAdmin: boolean;
+            name: string;
+            surname: string;
+            middleName: string;
+            avatarPath: string;
+        };
         text: string;
+        productId: number;
     }[]>;
     create(userId: number, dto: ReviewDto, productId: number): Promise<{
         id: number;
