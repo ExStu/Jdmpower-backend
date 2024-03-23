@@ -16,7 +16,7 @@ export class GetAllProductDto extends PaginationDto {
 	})
 	@IsOptional()
 	@IsEnum(EnumProductSort)
-	sort?: EnumProductSort;
+	sortBy?: EnumProductSort;
 
 	@ApiPropertyOptional({
 		type: String

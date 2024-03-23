@@ -102,6 +102,89 @@ export declare class ProductService {
         pageSize: number;
         pageNumber: number;
     }>;
+    getProductsBySearch(searchTerm: string): Promise<{
+        categoryId: number;
+        manufactureId: number;
+        generationId: number;
+        name: string;
+        description: string;
+        id: number;
+        createdAt: Date;
+        updatedAt: Date;
+        slug: string;
+        sku: string;
+        price: number;
+        images: string[];
+        inStock: boolean;
+        discount: number;
+        userId: number;
+        orderItems: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            quantity: number;
+            price: number;
+            orderId: number;
+            productId: number;
+        }[];
+        reviews: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            text: string;
+            userId: number;
+            productId: number;
+        }[];
+        category: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+        };
+        manufacture: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+        };
+        generation: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+            image: string;
+            chassis: string;
+            engine: string;
+            engineVolume: string;
+            yearFrom: string;
+            yearTo: string;
+            modelId: number;
+        };
+        user: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            email: string;
+            phone: string;
+            password: string;
+            isAdmin: boolean;
+            name: string;
+            surname: string;
+            middleName: string;
+            avatarPath: string;
+        };
+        _count: {
+            orderItems: number;
+            reviews: number;
+            category: number;
+            manufacture: number;
+            generation: number;
+            user: number;
+        };
+    }[]>;
     private createFilter;
     private getSortOption;
     private getSearchTermFilter;

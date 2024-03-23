@@ -27,6 +27,9 @@ let ProductController = exports.ProductController = class ProductController {
     async getAll(queryDto) {
         return this.productService.getAll(queryDto);
     }
+    async getProductsBySearch(searchTerm) {
+        return this.productService.getProductsBySearch(searchTerm);
+    }
     async getSimilar(id) {
         return this.productService.getSimilar(+id);
     }
@@ -68,6 +71,19 @@ __decorate([
     __metadata("design:paramtypes", [get_all_product_dto_1.GetAllProductDto]),
     __metadata("design:returntype", Promise)
 ], ProductController.prototype, "getAll", null);
+__decorate([
+    (0, common_1.Get)("search"),
+    (0, swagger_1.ApiOkResponse)({
+        description: "OK",
+        type: responseProduct_dto_1.ProductResponseDto,
+        isArray: true
+    }),
+    (0, swagger_1.ApiBadRequestResponse)({ description: "Bad Request" }),
+    __param(0, (0, common_1.Query)("searchTerm")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], ProductController.prototype, "getProductsBySearch", null);
 __decorate([
     (0, common_1.Get)("similar/:id"),
     (0, swagger_1.ApiOkResponse)({

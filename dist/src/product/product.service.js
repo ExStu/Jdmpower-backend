@@ -33,7 +33,7 @@ let ProductService = exports.ProductService = class ProductService {
             page: queryDto.pageNumber
         });
         const filters = this.createFilter(queryDto);
-        const sortOption = this.getSortOption(queryDto.sort);
+        const sortOption = this.getSortOption(queryDto.sortBy);
         const products = await this.prisma.product.findMany({
             where: filters,
             orderBy: sortOption,
@@ -41,15 +41,41 @@ let ProductService = exports.ProductService = class ProductService {
             take: perPage,
             select: return_product_object_1.returnProductObject
         });
+        const totalLength = await this.prisma.product.count({
+            where: filters
+        });
         return {
             products,
-            totalLength: await this.prisma.product.count({
-                where: filters
-            }),
+            totalLength,
             orderBy: sortOption,
             pageSize: perPage,
             pageNumber: page
         };
+    }
+    async getProductsBySearch(searchTerm) {
+        const products = await this.prisma.product.findMany({
+            where: {
+                OR: [
+                    {
+                        name: {
+                            contains: searchTerm,
+                            mode: "insensitive"
+                        }
+                    },
+                    {
+                        sku: {
+                            contains: searchTerm,
+                            mode: "insensitive"
+                        }
+                    },
+                ]
+            },
+            select: return_product_object_1.returnProductObjectFullest
+        });
+        if (!products) {
+            throw new common_1.NotFoundException("Products not found");
+        }
+        return products;
     }
     createFilter(dto) {
         const filters = [];

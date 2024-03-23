@@ -50,6 +50,17 @@ export class ProductController {
 		return this.productService.getAll(queryDto);
 	}
 
+	@Get("search")
+	@ApiOkResponse({
+		description: "OK",
+		type: ProductResponseDto,
+		isArray: true
+	})
+	@ApiBadRequestResponse({ description: "Bad Request" })
+	async getProductsBySearch(@Query("searchTerm") searchTerm: string) {
+		return this.productService.getProductsBySearch(searchTerm)
+	}
+
 	@Get("similar/:id")
 	@ApiOkResponse({
 		description: "OK",

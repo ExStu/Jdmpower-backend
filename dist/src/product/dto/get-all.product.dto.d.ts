@@ -7,7 +7,7 @@ export declare enum EnumProductSort {
     OLDEST = "oldest"
 }
 export declare class GetAllProductDto extends PaginationDto {
-    sort?: EnumProductSort;
+    sortBy?: EnumProductSort;
     searchTerm?: string;
     ratings?: string;
     minPrice?: string;
