@@ -23,4 +23,6 @@ export declare class GetAllProductResponseDto {
     orderBy: EnumProductSort;
     pageSize: number;
     pageNumber: number;
+    minPrice: number;
+    maxPrice: number;
 }

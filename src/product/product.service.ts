@@ -44,12 +44,26 @@ export class ProductService {
 			where: filters
 		})
 
+		const minPrice = await this.prisma.product.findFirst({
+			orderBy: {
+				price: "asc",
+			},
+		})
+
+		const maxPrice = await this.prisma.product.findFirst({
+			orderBy: {
+				price: "desc"
+			}
+		})
+
 		return {
 			products,
 			totalLength,
 			orderBy: sortOption,
 			pageSize: perPage,
-			pageNumber: page
+			pageNumber: page,
+			minPrice: minPrice.price,
+			maxPrice: maxPrice.price
 		};
 	}
 

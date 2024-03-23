@@ -100,4 +100,14 @@ export class GetAllProductResponseDto {
 		type: Number
 	})
 	pageNumber: number;
+
+	@ApiProperty({
+		type: Number
+	})
+	minPrice: number;
+
+	@ApiProperty({
+		type: Number
+	})
+	maxPrice: number;
 }

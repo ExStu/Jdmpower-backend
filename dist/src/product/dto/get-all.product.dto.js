@@ -129,4 +129,16 @@ __decorate([
     }),
     __metadata("design:type", Number)
 ], GetAllProductResponseDto.prototype, "pageNumber", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({
+        type: Number
+    }),
+    __metadata("design:type", Number)
+], GetAllProductResponseDto.prototype, "minPrice", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({
+        type: Number
+    }),
+    __metadata("design:type", Number)
+], GetAllProductResponseDto.prototype, "maxPrice", void 0);
 //# sourceMappingURL=get-all.product.dto.js.map

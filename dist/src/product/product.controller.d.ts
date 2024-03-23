@@ -6,20 +6,20 @@ export declare class ProductController {
     constructor(productService: ProductService);
     getAll(queryDto: GetAllProductDto): Promise<{
         products: {
-            categoryId: number;
-            manufactureId: number;
-            generationId: number;
-            name: string;
-            description: string;
             id: number;
             createdAt: Date;
             updatedAt: Date;
+            name: string;
             slug: string;
             sku: string;
+            description: string;
             price: number;
             images: string[];
             inStock: boolean;
             discount: number;
+            categoryId: number;
+            manufactureId: number;
+            generationId: number;
             userId: number;
             orderItems: {
                 id: number;
@@ -92,22 +92,24 @@ export declare class ProductController {
         orderBy: import(".prisma/client").Prisma.ProductOrderByWithRelationInput;
         pageSize: number;
         pageNumber: number;
+        minPrice: number;
+        maxPrice: number;
     }>;
     getProductsBySearch(searchTerm: string): Promise<{
-        categoryId: number;
-        manufactureId: number;
-        generationId: number;
-        name: string;
-        description: string;
         id: number;
         createdAt: Date;
         updatedAt: Date;
+        name: string;
         slug: string;
         sku: string;
+        description: string;
         price: number;
         images: string[];
         inStock: boolean;
         discount: number;
+        categoryId: number;
+        manufactureId: number;
+        generationId: number;
         userId: number;
         orderItems: {
             id: number;
@@ -177,20 +179,20 @@ export declare class ProductController {
         };
     }[]>;
     getSimilar(id: string): Promise<{
-        categoryId: number;
-        manufactureId: number;
-        generationId: number;
-        name: string;
-        description: string;
         id: number;
         createdAt: Date;
         updatedAt: Date;
+        name: string;
         slug: string;
         sku: string;
+        description: string;
         price: number;
         images: string[];
         inStock: boolean;
         discount: number;
+        categoryId: number;
+        manufactureId: number;
+        generationId: number;
         userId: number;
         orderItems: {
             id: number;
@@ -260,20 +262,20 @@ export declare class ProductController {
         };
     }[]>;
     getProductsByCategory(categorySlug: string): Promise<{
-        categoryId: number;
-        manufactureId: number;
-        generationId: number;
-        name: string;
-        description: string;
         id: number;
         createdAt: Date;
         updatedAt: Date;
+        name: string;
         slug: string;
         sku: string;
+        description: string;
         price: number;
         images: string[];
         inStock: boolean;
         discount: number;
+        categoryId: number;
+        manufactureId: number;
+        generationId: number;
         userId: number;
         orderItems: {
             id: number;
@@ -343,20 +345,20 @@ export declare class ProductController {
         };
     }[]>;
     getProductsByManufacture(manufactureSlug: string): Promise<{
-        categoryId: number;
-        manufactureId: number;
-        generationId: number;
-        name: string;
-        description: string;
         id: number;
         createdAt: Date;
         updatedAt: Date;
+        name: string;
         slug: string;
         sku: string;
+        description: string;
         price: number;
         images: string[];
         inStock: boolean;
         discount: number;
+        categoryId: number;
+        manufactureId: number;
+        generationId: number;
         userId: number;
         orderItems: {
             id: number;
@@ -426,20 +428,20 @@ export declare class ProductController {
         };
     }[]>;
     getProductsByGeneration(generationSlug: string): Promise<{
-        categoryId: number;
-        manufactureId: number;
-        generationId: number;
-        name: string;
-        description: string;
         id: number;
         createdAt: Date;
         updatedAt: Date;
+        name: string;
         slug: string;
         sku: string;
+        description: string;
         price: number;
         images: string[];
         inStock: boolean;
         discount: number;
+        categoryId: number;
+        manufactureId: number;
+        generationId: number;
         userId: number;
         orderItems: {
             id: number;
@@ -560,20 +562,20 @@ export declare class ProductController {
         userId: number;
     }>;
     getProduct(id: string): Promise<{
-        categoryId: number;
-        manufactureId: number;
-        generationId: number;
-        name: string;
-        description: string;
         id: number;
         createdAt: Date;
         updatedAt: Date;
+        name: string;
         slug: string;
         sku: string;
+        description: string;
         price: number;
         images: string[];
         inStock: boolean;
         discount: number;
+        categoryId: number;
+        manufactureId: number;
+        generationId: number;
         userId: number;
         orderItems: {
             id: number;

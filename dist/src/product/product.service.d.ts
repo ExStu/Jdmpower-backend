@@ -15,20 +15,20 @@ export declare class ProductService {
     constructor(prisma: PrismaService, paginationService: PaginationService, categoryService: CategoryService, manufactureService: ManufactureService, generationService: GenerationService);
     getAll(queryDto?: GetAllProductDto): Promise<{
         products: {
-            categoryId: number;
-            manufactureId: number;
-            generationId: number;
-            name: string;
-            description: string;
             id: number;
             createdAt: Date;
             updatedAt: Date;
+            name: string;
             slug: string;
             sku: string;
+            description: string;
             price: number;
             images: string[];
             inStock: boolean;
             discount: number;
+            categoryId: number;
+            manufactureId: number;
+            generationId: number;
             userId: number;
             orderItems: {
                 id: number;
@@ -101,22 +101,24 @@ export declare class ProductService {
         orderBy: Prisma.ProductOrderByWithRelationInput;
         pageSize: number;
         pageNumber: number;
+        minPrice: number;
+        maxPrice: number;
     }>;
     getProductsBySearch(searchTerm: string): Promise<{
-        categoryId: number;
-        manufactureId: number;
-        generationId: number;
-        name: string;
-        description: string;
         id: number;
         createdAt: Date;
         updatedAt: Date;
+        name: string;
         slug: string;
         sku: string;
+        description: string;
         price: number;
         images: string[];
         inStock: boolean;
         discount: number;
+        categoryId: number;
+        manufactureId: number;
+        generationId: number;
         userId: number;
         orderItems: {
             id: number;
@@ -193,20 +195,20 @@ export declare class ProductService {
     private getManufactureFilter;
     private getGenerationFilter;
     byId(id: number): Promise<{
-        categoryId: number;
-        manufactureId: number;
-        generationId: number;
-        name: string;
-        description: string;
         id: number;
         createdAt: Date;
         updatedAt: Date;
+        name: string;
         slug: string;
         sku: string;
+        description: string;
         price: number;
         images: string[];
         inStock: boolean;
         discount: number;
+        categoryId: number;
+        manufactureId: number;
+        generationId: number;
         userId: number;
         orderItems: {
             id: number;
@@ -276,20 +278,20 @@ export declare class ProductService {
         };
     }>;
     bySku(sku: string): Promise<{
-        categoryId: number;
-        manufactureId: number;
-        generationId: number;
-        name: string;
-        description: string;
         id: number;
         createdAt: Date;
         updatedAt: Date;
+        name: string;
         slug: string;
         sku: string;
+        description: string;
         price: number;
         images: string[];
         inStock: boolean;
         discount: number;
+        categoryId: number;
+        manufactureId: number;
+        generationId: number;
         userId: number;
         orderItems: {
             id: number;
@@ -359,20 +361,20 @@ export declare class ProductService {
         };
     }>;
     byCategory(categorySlug: string): Promise<{
-        categoryId: number;
-        manufactureId: number;
-        generationId: number;
-        name: string;
-        description: string;
         id: number;
         createdAt: Date;
         updatedAt: Date;
+        name: string;
         slug: string;
         sku: string;
+        description: string;
         price: number;
         images: string[];
         inStock: boolean;
         discount: number;
+        categoryId: number;
+        manufactureId: number;
+        generationId: number;
         userId: number;
         orderItems: {
             id: number;
@@ -442,20 +444,20 @@ export declare class ProductService {
         };
     }[]>;
     byManufacture(manufactureSlug: string): Promise<{
-        categoryId: number;
-        manufactureId: number;
-        generationId: number;
-        name: string;
-        description: string;
         id: number;
         createdAt: Date;
         updatedAt: Date;
+        name: string;
         slug: string;
         sku: string;
+        description: string;
         price: number;
         images: string[];
         inStock: boolean;
         discount: number;
+        categoryId: number;
+        manufactureId: number;
+        generationId: number;
         userId: number;
         orderItems: {
             id: number;
@@ -525,20 +527,20 @@ export declare class ProductService {
         };
     }[]>;
     byGeneration(generationSlug: string): Promise<{
-        categoryId: number;
-        manufactureId: number;
-        generationId: number;
-        name: string;
-        description: string;
         id: number;
         createdAt: Date;
         updatedAt: Date;
+        name: string;
         slug: string;
         sku: string;
+        description: string;
         price: number;
         images: string[];
         inStock: boolean;
         discount: number;
+        categoryId: number;
+        manufactureId: number;
+        generationId: number;
         userId: number;
         orderItems: {
             id: number;
@@ -608,20 +610,20 @@ export declare class ProductService {
         };
     }[]>;
     getSimilar(id: number): Promise<{
-        categoryId: number;
-        manufactureId: number;
-        generationId: number;
-        name: string;
-        description: string;
         id: number;
         createdAt: Date;
         updatedAt: Date;
+        name: string;
         slug: string;
         sku: string;
+        description: string;
         price: number;
         images: string[];
         inStock: boolean;
         discount: number;
+        categoryId: number;
+        manufactureId: number;
+        generationId: number;
         userId: number;
         orderItems: {
             id: number;
