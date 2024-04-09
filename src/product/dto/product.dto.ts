@@ -13,6 +13,12 @@ export class ProductDto implements Prisma.ProductUpdateInput {
 		type: String,
 	})
 	@IsString()
+	slug: string
+
+	@ApiProperty({
+		type: String,
+	})
+	@IsString()
 	sku: string
 
 	@ApiProperty({

@@ -33,6 +33,9 @@ let ProductController = exports.ProductController = class ProductController {
     async getSimilar(id) {
         return this.productService.getSimilar(+id);
     }
+    async getProduct(id) {
+        return this.productService.byId(+id);
+    }
     async getProductsByCategory(categorySlug) {
         return this.productService.byCategory(categorySlug);
     }
@@ -50,9 +53,6 @@ let ProductController = exports.ProductController = class ProductController {
     }
     async deleteProduct(id) {
         return this.productService.delete(+id);
-    }
-    async getProduct(id) {
-        return this.productService.byId(+id);
     }
 };
 __decorate([
@@ -101,10 +101,26 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ProductController.prototype, "getSimilar", null);
 __decorate([
+    (0, common_1.Get)("by-id/:id"),
+    (0, swagger_1.ApiOkResponse)({
+        description: "OK",
+        type: responseProduct_dto_1.ProductResponseDto,
+    }),
+    (0, swagger_1.ApiNotFoundResponse)({
+        description: 'Not Found',
+    }),
+    (0, swagger_1.ApiBadRequestResponse)({ description: 'Bad Request' }),
+    __param(0, (0, common_1.Param)("id")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], ProductController.prototype, "getProduct", null);
+__decorate([
     (0, common_1.Get)("by-category/:categorySlug"),
     (0, swagger_1.ApiOkResponse)({
         description: "OK",
-        type: responseProduct_dto_1.ProductResponseDto
+        type: responseProduct_dto_1.ProductResponseDto,
+        isArray: true
     }),
     (0, swagger_1.ApiNotFoundResponse)({
         description: "Not Found"
@@ -119,7 +135,8 @@ __decorate([
     (0, common_1.Get)("by-manufacture/:manufactureSlug"),
     (0, swagger_1.ApiOkResponse)({
         description: "OK",
-        type: responseProduct_dto_1.ProductResponseDto
+        type: responseProduct_dto_1.ProductResponseDto,
+        isArray: true
     }),
     (0, swagger_1.ApiNotFoundResponse)({
         description: "Not Found"
@@ -134,7 +151,8 @@ __decorate([
     (0, common_1.Get)("by-generation/:generationSlug"),
     (0, swagger_1.ApiOkResponse)({
         description: "OK",
-        type: responseProduct_dto_1.ProductResponseDto
+        type: responseProduct_dto_1.ProductResponseDto,
+        isArray: true
     }),
     (0, swagger_1.ApiNotFoundResponse)({
         description: "Not Found"
@@ -199,14 +217,6 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], ProductController.prototype, "deleteProduct", null);
-__decorate([
-    (0, common_1.Get)(":id"),
-    (0, auth_decorator_1.Auth)("admin"),
-    __param(0, (0, common_1.Param)("id")),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", Promise)
-], ProductController.prototype, "getProduct", null);
 exports.ProductController = ProductController = __decorate([
     (0, swagger_1.ApiTags)("Products"),
     (0, common_1.Controller)("products"),

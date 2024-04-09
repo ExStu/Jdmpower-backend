@@ -1,6 +1,7 @@
 import { Prisma } from '@prisma/client';
 export declare class ProductDto implements Prisma.ProductUpdateInput {
     name: string;
+    slug: string;
     sku: string;
     price: number;
     inStock: boolean;

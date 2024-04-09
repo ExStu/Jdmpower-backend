@@ -246,21 +246,6 @@ export class ProductService {
 		return product;
 	}
 
-	// async bySlug(slug: string) {
-	//   const product = await this.prisma.product.findUnique({
-	//     where: {
-	//       slug
-	//     },
-	//     select: returnProductObjectFullest
-	//   })
-	//
-	//   if (!product) {
-	// 		throw new NotFoundException('Product not found')
-	// 	}
-	//
-	// 	return product
-	// }
-
 	async bySku(sku: string) {
 		const product = await this.prisma.product.findUnique({
 			where: {
@@ -324,13 +309,13 @@ export class ProductService {
 		if (!currentProduct)
 			throw new NotFoundException("Current product not found!");
 
-		return this.prisma.product.findMany({
+		const products = await this.prisma.product.findMany({
 			where: {
 				category: {
 					name: currentProduct.category.name
 				},
 				NOT: {
-					id: currentProduct.id
+					id
 				}
 			},
 			orderBy: {
@@ -338,6 +323,12 @@ export class ProductService {
 			},
 			select: returnProductObject
 		});
+
+		if (!products) {
+			throw new NotFoundException("Similar products not found")
+		}
+
+		return products
 	}
 
 	async create(dto: ProductDto) {

@@ -75,23 +75,24 @@ export class ProductController {
 		return this.productService.getSimilar(+id);
 	}
 
-	// @Get('by-slug/:slug')
-	// @ApiOkResponse({
-	// 	description: "OK",
-	// 	type: ProductResponseDto,
-	// })
-	// @ApiNotFoundResponse({
-	// 	description: 'Not Found',
-	// })
-	// @ApiBadRequestResponse({ description: 'Bad Request' })
-	// async getProductBySlug(@Param('slug') slug: string) {
-	// 	return this.productService.bySlug(slug)
-	// }
+	@Get("by-id/:id")
+	@ApiOkResponse({
+		description: "OK",
+		type: ProductResponseDto,
+	})
+	@ApiNotFoundResponse({
+		description: 'Not Found',
+	})
+	@ApiBadRequestResponse({ description: 'Bad Request' })
+	async getProduct(@Param("id") id: string) {
+		return this.productService.byId(+id);
+	}
 
 	@Get("by-category/:categorySlug")
 	@ApiOkResponse({
 		description: "OK",
-		type: ProductResponseDto
+		type: ProductResponseDto,
+		isArray: true
 	})
 	@ApiNotFoundResponse({
 		description: "Not Found"
@@ -104,7 +105,8 @@ export class ProductController {
 	@Get("by-manufacture/:manufactureSlug")
 	@ApiOkResponse({
 		description: "OK",
-		type: ProductResponseDto
+		type: ProductResponseDto,
+		isArray: true
 	})
 	@ApiNotFoundResponse({
 		description: "Not Found"
@@ -118,7 +120,8 @@ export class ProductController {
 	@Get("by-generation/:generationSlug")
 	@ApiOkResponse({
 		description: "OK",
-		type: ProductResponseDto
+		type: ProductResponseDto,
+		isArray: true
 	})
 	@ApiNotFoundResponse({
 		description: "Not Found"
@@ -175,11 +178,5 @@ export class ProductController {
 	@ApiBadRequestResponse({ description: "Bad Request" })
 	async deleteProduct(@Param("id") id: string) {
 		return this.productService.delete(+id);
-	}
-
-	@Get(":id")
-	@Auth("admin")
-	async getProduct(@Param("id") id: string) {
-		return this.productService.byId(+id);
 	}
 }

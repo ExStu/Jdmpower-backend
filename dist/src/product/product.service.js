@@ -239,13 +239,13 @@ let ProductService = exports.ProductService = class ProductService {
         const currentProduct = await this.byId(id);
         if (!currentProduct)
             throw new common_1.NotFoundException("Current product not found!");
-        return this.prisma.product.findMany({
+        const products = await this.prisma.product.findMany({
             where: {
                 category: {
                     name: currentProduct.category.name
                 },
                 NOT: {
-                    id: currentProduct.id
+                    id
                 }
             },
             orderBy: {
@@ -253,6 +253,10 @@ let ProductService = exports.ProductService = class ProductService {
             },
             select: return_product_object_1.returnProductObject
         });
+        if (!products) {
+            throw new common_1.NotFoundException("Similar products not found");
+        }
+        return products;
     }
     async create(dto) {
         return this.prisma.product.create({
