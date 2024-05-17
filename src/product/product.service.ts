@@ -40,12 +40,11 @@ export class ProductService {
 		});
 
 		const prices = await this.prisma.product.aggregate({
-			where: filters,
 			_min: {
-				price: true
+				discountedPrice: true
 			},
 			_max: {
-				price: true
+				discountedPrice: true
 			}
 		});
 
@@ -55,8 +54,8 @@ export class ProductService {
 			orderBy: sortOption,
 			pageSize: perPage,
 			pageNumber: page,
-			minPrice: prices._min.price,
-			maxPrice: prices._max.price
+			minPrice: prices._min.discountedPrice,
+			maxPrice: prices._max.discountedPrice
 		};
 	}
 

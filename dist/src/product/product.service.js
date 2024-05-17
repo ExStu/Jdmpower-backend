@@ -39,12 +39,11 @@ let ProductService = class ProductService {
             where: filters
         });
         const prices = await this.prisma.product.aggregate({
-            where: filters,
             _min: {
-                price: true
+                discountedPrice: true
             },
             _max: {
-                price: true
+                discountedPrice: true
             }
         });
         return {
@@ -53,8 +52,8 @@ let ProductService = class ProductService {
             orderBy: sortOption,
             pageSize: perPage,
             pageNumber: page,
-            minPrice: prices._min.price,
-            maxPrice: prices._max.price
+            minPrice: prices._min.discountedPrice,
+            maxPrice: prices._max.discountedPrice
         };
     }
     async getProductsBySearch(searchTerm) {
