@@ -18,10 +18,13 @@ import { CarDto } from "./car/car.dto";
 import { ModelModule } from "./model/model.module";
 import { CurrencyModule } from "./currency/currency.module";
 import { EmailModule } from "./email/email.module";
+import configuration from "./config/configuration";
 
 @Module({
 	imports: [
-		ConfigModule.forRoot(),
+		ConfigModule.forRoot({
+			load: [configuration]
+		}),
 		AuthModule,
 		UserModule,
 		ProductModule,

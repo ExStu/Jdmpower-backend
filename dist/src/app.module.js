@@ -27,13 +27,16 @@ const car_dto_1 = require("./car/car.dto");
 const model_module_1 = require("./model/model.module");
 const currency_module_1 = require("./currency/currency.module");
 const email_module_1 = require("./email/email.module");
+const configuration_1 = require("./config/configuration");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            config_1.ConfigModule.forRoot(),
+            config_1.ConfigModule.forRoot({
+                load: [configuration_1.default]
+            }),
             auth_module_1.AuthModule,
             user_module_1.UserModule,
             product_module_1.ProductModule,
