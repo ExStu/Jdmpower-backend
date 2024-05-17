@@ -14,7 +14,7 @@ const common_1 = require("@nestjs/common");
 const auth_decorator_1 = require("../auth/decorators/auth.decorator");
 const statistics_service_1 = require("./statistics.service");
 const swagger_1 = require("@nestjs/swagger");
-let StatisticsController = exports.StatisticsController = class StatisticsController {
+let StatisticsController = class StatisticsController {
     constructor(statisticsService) {
         this.statisticsService = statisticsService;
     }
@@ -22,6 +22,7 @@ let StatisticsController = exports.StatisticsController = class StatisticsContro
         return this.statisticsService.getMain();
     }
 };
+exports.StatisticsController = StatisticsController;
 __decorate([
     (0, common_1.Get)('main'),
     (0, auth_decorator_1.Auth)('admin'),

@@ -12,8 +12,9 @@ const prisma_service_1 = require("../prisma.service");
 const order_controller_1 = require("./order.controller");
 const order_service_1 = require("./order.service");
 const email_service_1 = require("../email/email.service");
-let OrderModule = exports.OrderModule = class OrderModule {
+let OrderModule = class OrderModule {
 };
+exports.OrderModule = OrderModule;
 exports.OrderModule = OrderModule = __decorate([
     (0, common_1.Module)({
         controllers: [order_controller_1.OrderController],

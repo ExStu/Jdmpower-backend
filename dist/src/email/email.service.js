@@ -13,7 +13,7 @@ exports.EmailService = void 0;
 const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../prisma.service");
 const mailer_1 = require("@nestjs-modules/mailer");
-let EmailService = exports.EmailService = class EmailService {
+let EmailService = class EmailService {
     constructor(prisma, mailerService) {
         this.prisma = prisma;
         this.mailerService = mailerService;
@@ -43,6 +43,7 @@ let EmailService = exports.EmailService = class EmailService {
         });
     }
 };
+exports.EmailService = EmailService;
 exports.EmailService = EmailService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [prisma_service_1.PrismaService,

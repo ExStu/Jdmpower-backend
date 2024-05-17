@@ -19,7 +19,7 @@ const user_decorator_1 = require("../auth/decorators/user.decorator");
 const review_dto_1 = require("./review.dto");
 const review_service_1 = require("./review.service");
 const swagger_1 = require("@nestjs/swagger");
-let ReviewController = exports.ReviewController = class ReviewController {
+let ReviewController = class ReviewController {
     constructor(reviewService) {
         this.reviewService = reviewService;
     }
@@ -30,6 +30,7 @@ let ReviewController = exports.ReviewController = class ReviewController {
         return this.reviewService.create(id, dto, +productId);
     }
 };
+exports.ReviewController = ReviewController;
 __decorate([
     (0, common_1.UsePipes)(new common_1.ValidationPipe()),
     (0, common_1.Get)(),

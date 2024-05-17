@@ -19,7 +19,7 @@ const generation_dto_1 = require("./generation.dto");
 const generation_service_1 = require("./generation.service");
 const swagger_1 = require("@nestjs/swagger");
 const category_dto_1 = require("../category/category.dto");
-let GenerationController = exports.GenerationController = class GenerationController {
+let GenerationController = class GenerationController {
     constructor(generationService) {
         this.generationService = generationService;
     }
@@ -45,6 +45,7 @@ let GenerationController = exports.GenerationController = class GenerationContro
         return this.generationService.delete(+id);
     }
 };
+exports.GenerationController = GenerationController;
 __decorate([
     (0, common_1.Get)(),
     (0, swagger_1.ApiOkResponse)({

@@ -12,8 +12,9 @@ const generation_service_1 = require("./generation.service");
 const generation_controller_1 = require("./generation.controller");
 const prisma_service_1 = require("../prisma.service");
 const model_module_1 = require("../model/model.module");
-let GenerationModule = exports.GenerationModule = class GenerationModule {
+let GenerationModule = class GenerationModule {
 };
+exports.GenerationModule = GenerationModule;
 exports.GenerationModule = GenerationModule = __decorate([
     (0, common_1.Module)({
         controllers: [generation_controller_1.GenerationController],

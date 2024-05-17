@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.StatisticsService = void 0;
 const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../prisma.service");
-let StatisticsService = exports.StatisticsService = class StatisticsService {
+let StatisticsService = class StatisticsService {
     constructor(prisma) {
         this.prisma = prisma;
     }
@@ -36,6 +36,7 @@ let StatisticsService = exports.StatisticsService = class StatisticsService {
         ];
     }
 };
+exports.StatisticsService = StatisticsService;
 exports.StatisticsService = StatisticsService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [prisma_service_1.PrismaService])

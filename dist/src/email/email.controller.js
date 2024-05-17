@@ -17,7 +17,7 @@ const common_1 = require("@nestjs/common");
 const email_service_1 = require("./email.service");
 const swagger_1 = require("@nestjs/swagger");
 const email_dto_1 = require("./email.dto");
-let EmailController = exports.EmailController = class EmailController {
+let EmailController = class EmailController {
     constructor(emailService) {
         this.emailService = emailService;
     }
@@ -31,6 +31,7 @@ let EmailController = exports.EmailController = class EmailController {
         return this.emailService.sendContactRequest(emailDto);
     }
 };
+exports.EmailController = EmailController;
 __decorate([
     (0, common_1.HttpCode)(200),
     (0, common_1.Post)("send-order-success"),

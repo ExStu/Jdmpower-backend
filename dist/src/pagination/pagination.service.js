@@ -8,7 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PaginationService = void 0;
 const common_1 = require("@nestjs/common");
-let PaginationService = exports.PaginationService = class PaginationService {
+let PaginationService = class PaginationService {
     getPagination(dto, defaultPerPage = 12) {
         const page = dto.page ? +dto.page : 1;
         const perPage = dto.perPage ? +dto.perPage : defaultPerPage;
@@ -16,6 +16,7 @@ let PaginationService = exports.PaginationService = class PaginationService {
         return { perPage, skip, page };
     }
 };
+exports.PaginationService = PaginationService;
 exports.PaginationService = PaginationService = __decorate([
     (0, common_1.Injectable)()
 ], PaginationService);

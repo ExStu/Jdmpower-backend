@@ -27,8 +27,9 @@ const car_dto_1 = require("./car/car.dto");
 const model_module_1 = require("./model/model.module");
 const currency_module_1 = require("./currency/currency.module");
 const email_module_1 = require("./email/email.module");
-let AppModule = exports.AppModule = class AppModule {
+let AppModule = class AppModule {
 };
+exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [

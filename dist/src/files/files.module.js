@@ -12,8 +12,9 @@ const serve_static_1 = require("@nestjs/serve-static");
 const app_root_path_1 = require("app-root-path");
 const files_controller_1 = require("./files.controller");
 const files_service_1 = require("./files.service");
-let FilesModule = exports.FilesModule = class FilesModule {
+let FilesModule = class FilesModule {
 };
+exports.FilesModule = FilesModule;
 exports.FilesModule = FilesModule = __decorate([
     (0, common_1.Module)({
         imports: [

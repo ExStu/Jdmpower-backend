@@ -15,7 +15,7 @@ const prisma_service_1 = require("../prisma.service");
 const generate_slug_1 = require("../utils/generate-slug");
 const return_model_object_1 = require("./return-model.object");
 const car_service_1 = require("../car/car.service");
-let ModelService = exports.ModelService = class ModelService {
+let ModelService = class ModelService {
     constructor(prisma, carService) {
         this.prisma = prisma;
         this.carService = carService;
@@ -103,6 +103,7 @@ let ModelService = exports.ModelService = class ModelService {
         });
     }
 };
+exports.ModelService = ModelService;
 exports.ModelService = ModelService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [prisma_service_1.PrismaService, car_service_1.CarService])

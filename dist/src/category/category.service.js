@@ -14,7 +14,7 @@ const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../prisma.service");
 const generate_slug_1 = require("../utils/generate-slug");
 const return_category_object_1 = require("./return-category.object");
-let CategoryService = exports.CategoryService = class CategoryService {
+let CategoryService = class CategoryService {
     constructor(prisma) {
         this.prisma = prisma;
     }
@@ -79,6 +79,7 @@ let CategoryService = exports.CategoryService = class CategoryService {
         });
     }
 };
+exports.CategoryService = CategoryService;
 exports.CategoryService = CategoryService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [prisma_service_1.PrismaService])

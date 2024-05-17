@@ -14,7 +14,7 @@ const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../prisma.service");
 const generate_slug_1 = require("../utils/generate-slug");
 const return_car_object_1 = require("./return-car.object");
-let CarService = exports.CarService = class CarService {
+let CarService = class CarService {
     constructor(prisma) {
         this.prisma = prisma;
     }
@@ -79,6 +79,7 @@ let CarService = exports.CarService = class CarService {
         });
     }
 };
+exports.CarService = CarService;
 exports.CarService = CarService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [prisma_service_1.PrismaService])

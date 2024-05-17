@@ -18,7 +18,7 @@ const auth_decorator_1 = require("../auth/decorators/auth.decorator");
 const currency_dto_1 = require("./currency.dto");
 const currency_service_1 = require("./currency.service");
 const swagger_1 = require("@nestjs/swagger");
-let CurrencyController = exports.CurrencyController = class CurrencyController {
+let CurrencyController = class CurrencyController {
     constructor(currencyService) {
         this.currencyService = currencyService;
     }
@@ -35,6 +35,7 @@ let CurrencyController = exports.CurrencyController = class CurrencyController {
         return this.currencyService.delete(+currencyId);
     }
 };
+exports.CurrencyController = CurrencyController;
 __decorate([
     (0, common_1.Get)(),
     (0, swagger_1.ApiOkResponse)({

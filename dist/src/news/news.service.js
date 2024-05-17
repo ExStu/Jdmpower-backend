@@ -15,7 +15,7 @@ const prisma_service_1 = require("../prisma.service");
 const generate_slug_1 = require("../utils/generate-slug");
 const return_news_object_1 = require("./return-news.object");
 const pagination_service_1 = require("../pagination/pagination.service");
-let NewsService = exports.NewsService = class NewsService {
+let NewsService = class NewsService {
     constructor(prisma, paginationService) {
         this.prisma = prisma;
         this.paginationService = paginationService;
@@ -84,6 +84,7 @@ let NewsService = exports.NewsService = class NewsService {
         });
     }
 };
+exports.NewsService = NewsService;
 exports.NewsService = NewsService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [prisma_service_1.PrismaService,

@@ -36,7 +36,7 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Number)
 ], GetSimilarArgDto.prototype, "chosenGenId", void 0);
-let ProductController = exports.ProductController = class ProductController {
+let ProductController = class ProductController {
     constructor(productService) {
         this.productService = productService;
     }
@@ -74,6 +74,7 @@ let ProductController = exports.ProductController = class ProductController {
         return this.productService.delete(+id);
     }
 };
+exports.ProductController = ProductController;
 __decorate([
     (0, common_1.UsePipes)(new common_1.ValidationPipe()),
     (0, common_1.Get)(),

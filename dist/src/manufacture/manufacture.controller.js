@@ -18,7 +18,7 @@ const auth_decorator_1 = require("../auth/decorators/auth.decorator");
 const manufacture_service_1 = require("./manufacture.service");
 const manufacture_dto_1 = require("./manufacture.dto");
 const swagger_1 = require("@nestjs/swagger");
-let ManufactureController = exports.ManufactureController = class ManufactureController {
+let ManufactureController = class ManufactureController {
     constructor(manufactureService) {
         this.manufactureService = manufactureService;
     }
@@ -41,6 +41,7 @@ let ManufactureController = exports.ManufactureController = class ManufactureCon
         return this.manufactureService.delete(+id);
     }
 };
+exports.ManufactureController = ManufactureController;
 __decorate([
     (0, common_1.Get)(),
     (0, swagger_1.ApiOkResponse)({

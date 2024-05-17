@@ -16,8 +16,9 @@ const pagination_module_1 = require("../pagination/pagination.module");
 const category_module_1 = require("../category/category.module");
 const manufacture_module_1 = require("../manufacture/manufacture.module");
 const generation_module_1 = require("../generation/generation.module");
-let ProductModule = exports.ProductModule = class ProductModule {
+let ProductModule = class ProductModule {
 };
+exports.ProductModule = ProductModule;
 exports.ProductModule = ProductModule = __decorate([
     (0, common_1.Module)({
         controllers: [product_controller_1.ProductController],

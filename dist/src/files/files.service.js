@@ -10,7 +10,7 @@ exports.FilesService = void 0;
 const common_1 = require("@nestjs/common");
 const app_root_path_1 = require("app-root-path");
 const fs_extra_1 = require("fs-extra");
-let FilesService = exports.FilesService = class FilesService {
+let FilesService = class FilesService {
     async saveFiles(files, folder, itemId) {
         const uploadFolder = `${app_root_path_1.path}/uploads/${folder}/${itemId}`;
         await (0, fs_extra_1.ensureDir)(uploadFolder);
@@ -26,6 +26,7 @@ let FilesService = exports.FilesService = class FilesService {
         return res;
     }
 };
+exports.FilesService = FilesService;
 exports.FilesService = FilesService = __decorate([
     (0, common_1.Injectable)()
 ], FilesService);

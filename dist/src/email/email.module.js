@@ -12,8 +12,9 @@ const prisma_service_1 = require("../prisma.service");
 const email_controller_1 = require("./email.controller");
 const email_service_1 = require("./email.service");
 const mailer_1 = require("@nestjs-modules/mailer");
-let EmailModule = exports.EmailModule = class EmailModule {
+let EmailModule = class EmailModule {
 };
+exports.EmailModule = EmailModule;
 exports.EmailModule = EmailModule = __decorate([
     (0, common_1.Module)({
         imports: [

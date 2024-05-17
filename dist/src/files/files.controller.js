@@ -18,7 +18,7 @@ const platform_express_1 = require("@nestjs/platform-express");
 const auth_decorator_1 = require("../auth/decorators/auth.decorator");
 const files_service_1 = require("./files.service");
 const swagger_1 = require("@nestjs/swagger");
-let FilesController = exports.FilesController = class FilesController {
+let FilesController = class FilesController {
     constructor(filesService) {
         this.filesService = filesService;
     }
@@ -26,6 +26,7 @@ let FilesController = exports.FilesController = class FilesController {
         return this.filesService.saveFiles([file], folder, itemId);
     }
 };
+exports.FilesController = FilesController;
 __decorate([
     (0, common_1.Post)(),
     (0, common_1.HttpCode)(200),

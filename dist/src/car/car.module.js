@@ -11,8 +11,9 @@ const common_1 = require("@nestjs/common");
 const car_service_1 = require("./car.service");
 const car_controller_1 = require("./car.controller");
 const prisma_service_1 = require("../prisma.service");
-let CarModule = exports.CarModule = class CarModule {
+let CarModule = class CarModule {
 };
+exports.CarModule = CarModule;
 exports.CarModule = CarModule = __decorate([
     (0, common_1.Module)({
         controllers: [car_controller_1.CarController],

@@ -9,8 +9,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.PaginationModule = void 0;
 const common_1 = require("@nestjs/common");
 const pagination_service_1 = require("./pagination.service");
-let PaginationModule = exports.PaginationModule = class PaginationModule {
+let PaginationModule = class PaginationModule {
 };
+exports.PaginationModule = PaginationModule;
 exports.PaginationModule = PaginationModule = __decorate([
     (0, common_1.Module)({
         providers: [pagination_service_1.PaginationService],

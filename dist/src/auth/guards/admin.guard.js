@@ -8,7 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OnlyAdminGuard = void 0;
 const common_1 = require("@nestjs/common");
-let OnlyAdminGuard = exports.OnlyAdminGuard = class OnlyAdminGuard {
+let OnlyAdminGuard = class OnlyAdminGuard {
     canActivate(context) {
         const request = context.switchToHttp().getRequest();
         const user = request.user;
@@ -17,6 +17,7 @@ let OnlyAdminGuard = exports.OnlyAdminGuard = class OnlyAdminGuard {
         return user.isAdmin;
     }
 };
+exports.OnlyAdminGuard = OnlyAdminGuard;
 exports.OnlyAdminGuard = OnlyAdminGuard = __decorate([
     (0, common_1.Injectable)()
 ], OnlyAdminGuard);

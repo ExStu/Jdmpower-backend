@@ -12,8 +12,9 @@ const news_service_1 = require("./news.service");
 const news_controller_1 = require("./news.controller");
 const prisma_service_1 = require("../prisma.service");
 const pagination_service_1 = require("../pagination/pagination.service");
-let NewsModule = exports.NewsModule = class NewsModule {
+let NewsModule = class NewsModule {
 };
+exports.NewsModule = NewsModule;
 exports.NewsModule = NewsModule = __decorate([
     (0, common_1.Module)({
         controllers: [news_controller_1.NewsController],

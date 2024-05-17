@@ -14,7 +14,7 @@ const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../prisma.service");
 const generate_slug_1 = require("../utils/generate-slug");
 const return_manufacture_object_1 = require("./return-manufacture.object");
-let ManufactureService = exports.ManufactureService = class ManufactureService {
+let ManufactureService = class ManufactureService {
     constructor(prisma) {
         this.prisma = prisma;
     }
@@ -80,6 +80,7 @@ let ManufactureService = exports.ManufactureService = class ManufactureService {
         });
     }
 };
+exports.ManufactureService = ManufactureService;
 exports.ManufactureService = ManufactureService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [prisma_service_1.PrismaService])

@@ -12,8 +12,9 @@ const model_service_1 = require("./model.service");
 const model_controller_1 = require("./model.controller");
 const prisma_service_1 = require("../prisma.service");
 const car_module_1 = require("../car/car.module");
-let ModelModule = exports.ModelModule = class ModelModule {
+let ModelModule = class ModelModule {
 };
+exports.ModelModule = ModelModule;
 exports.ModelModule = ModelModule = __decorate([
     (0, common_1.Module)({
         controllers: [model_controller_1.ModelController],

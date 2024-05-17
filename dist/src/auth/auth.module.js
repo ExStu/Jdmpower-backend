@@ -16,8 +16,9 @@ const user_service_1 = require("../user/user.service");
 const auth_controller_1 = require("./auth.controller");
 const auth_service_1 = require("./auth.service");
 const jwt_stategy_1 = require("./jwt.stategy");
-let AuthModule = exports.AuthModule = class AuthModule {
+let AuthModule = class AuthModule {
 };
+exports.AuthModule = AuthModule;
 exports.AuthModule = AuthModule = __decorate([
     (0, common_1.Module)({
         controllers: [auth_controller_1.AuthController],

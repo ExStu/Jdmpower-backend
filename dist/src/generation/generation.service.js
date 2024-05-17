@@ -15,7 +15,7 @@ const prisma_service_1 = require("../prisma.service");
 const generate_slug_1 = require("../utils/generate-slug");
 const return_generation_object_1 = require("./return-generation.object");
 const model_service_1 = require("../model/model.service");
-let GenerationService = exports.GenerationService = class GenerationService {
+let GenerationService = class GenerationService {
     constructor(prisma, modelService) {
         this.prisma = prisma;
         this.modelService = modelService;
@@ -119,6 +119,7 @@ let GenerationService = exports.GenerationService = class GenerationService {
         });
     }
 };
+exports.GenerationService = GenerationService;
 exports.GenerationService = GenerationService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [prisma_service_1.PrismaService,

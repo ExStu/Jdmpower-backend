@@ -14,7 +14,7 @@ const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../prisma.service");
 const return_review_object_1 = require("./return-review.object");
 const product_service_1 = require("../product/product.service");
-let ReviewService = exports.ReviewService = class ReviewService {
+let ReviewService = class ReviewService {
     constructor(prisma, productService) {
         this.prisma = prisma;
         this.productService = productService;
@@ -46,6 +46,7 @@ let ReviewService = exports.ReviewService = class ReviewService {
         });
     }
 };
+exports.ReviewService = ReviewService;
 exports.ReviewService = ReviewService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [prisma_service_1.PrismaService,

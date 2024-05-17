@@ -18,7 +18,7 @@ const auth_decorator_1 = require("../auth/decorators/auth.decorator");
 const news_service_1 = require("./news.service");
 const news_dto_1 = require("./news.dto");
 const swagger_1 = require("@nestjs/swagger");
-let NewsController = exports.NewsController = class NewsController {
+let NewsController = class NewsController {
     constructor(newsService) {
         this.newsService = newsService;
     }
@@ -38,6 +38,7 @@ let NewsController = exports.NewsController = class NewsController {
         return this.newsService.delete(+newsId);
     }
 };
+exports.NewsController = NewsController;
 __decorate([
     (0, common_1.Get)(),
     (0, swagger_1.ApiOkResponse)({

@@ -11,8 +11,9 @@ const common_1 = require("@nestjs/common");
 const currency_service_1 = require("./currency.service");
 const currency_controller_1 = require("./currency.controller");
 const prisma_service_1 = require("../prisma.service");
-let CurrencyModule = exports.CurrencyModule = class CurrencyModule {
+let CurrencyModule = class CurrencyModule {
 };
+exports.CurrencyModule = CurrencyModule;
 exports.CurrencyModule = CurrencyModule = __decorate([
     (0, common_1.Module)({
         controllers: [currency_controller_1.CurrencyController],

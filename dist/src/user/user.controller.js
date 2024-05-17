@@ -19,7 +19,7 @@ const user_decorator_1 = require("../auth/decorators/user.decorator");
 const user_service_1 = require("./user.service");
 const user_dto_1 = require("./user.dto");
 const swagger_1 = require("@nestjs/swagger");
-let UserController = exports.UserController = class UserController {
+let UserController = class UserController {
     constructor(userService) {
         this.userService = userService;
     }
@@ -36,6 +36,7 @@ let UserController = exports.UserController = class UserController {
         return this.userService.toggleFavorite(id, +productId);
     }
 };
+exports.UserController = UserController;
 __decorate([
     (0, common_1.Get)("profile"),
     (0, auth_decorator_1.Auth)(),

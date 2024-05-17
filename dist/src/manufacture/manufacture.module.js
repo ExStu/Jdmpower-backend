@@ -11,8 +11,9 @@ const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../prisma.service");
 const manufacture_controller_1 = require("./manufacture.controller");
 const manufacture_service_1 = require("./manufacture.service");
-let ManufactureModule = exports.ManufactureModule = class ManufactureModule {
+let ManufactureModule = class ManufactureModule {
 };
+exports.ManufactureModule = ManufactureModule;
 exports.ManufactureModule = ManufactureModule = __decorate([
     (0, common_1.Module)({
         controllers: [manufacture_controller_1.ManufactureController],

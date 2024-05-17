@@ -13,7 +13,7 @@ exports.CurrencyService = void 0;
 const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../prisma.service");
 const return_currency_object_1 = require("./return-currency.object");
-let CurrencyService = exports.CurrencyService = class CurrencyService {
+let CurrencyService = class CurrencyService {
     constructor(prisma) {
         this.prisma = prisma;
     }
@@ -51,6 +51,7 @@ let CurrencyService = exports.CurrencyService = class CurrencyService {
         });
     }
 };
+exports.CurrencyService = CurrencyService;
 exports.CurrencyService = CurrencyService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [prisma_service_1.PrismaService])

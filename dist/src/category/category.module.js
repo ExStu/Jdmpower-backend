@@ -11,8 +11,9 @@ const common_1 = require("@nestjs/common");
 const category_service_1 = require("./category.service");
 const category_controller_1 = require("./category.controller");
 const prisma_service_1 = require("../prisma.service");
-let CategoryModule = exports.CategoryModule = class CategoryModule {
+let CategoryModule = class CategoryModule {
 };
+exports.CategoryModule = CategoryModule;
 exports.CategoryModule = CategoryModule = __decorate([
     (0, common_1.Module)({
         controllers: [category_controller_1.CategoryController],

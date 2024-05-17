@@ -17,8 +17,9 @@ const review_controller_1 = require("./review.controller");
 const review_service_1 = require("./review.service");
 const manufacture_module_1 = require("../manufacture/manufacture.module");
 const generation_module_1 = require("../generation/generation.module");
-let ReviewModule = exports.ReviewModule = class ReviewModule {
+let ReviewModule = class ReviewModule {
 };
+exports.ReviewModule = ReviewModule;
 exports.ReviewModule = ReviewModule = __decorate([
     (0, common_1.Module)({
         controllers: [review_controller_1.ReviewController],

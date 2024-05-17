@@ -19,7 +19,7 @@ const user_decorator_1 = require("../auth/decorators/user.decorator");
 const order_service_1 = require("./order.service");
 const swagger_1 = require("@nestjs/swagger");
 const order_dto_1 = require("./order.dto");
-let OrderController = exports.OrderController = class OrderController {
+let OrderController = class OrderController {
     constructor(orderService) {
         this.orderService = orderService;
     }
@@ -33,6 +33,7 @@ let OrderController = exports.OrderController = class OrderController {
         return this.orderService.createOrder(dto);
     }
 };
+exports.OrderController = OrderController;
 __decorate([
     (0, common_1.Get)(),
     (0, auth_decorator_1.Auth)("admin"),

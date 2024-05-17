@@ -18,7 +18,7 @@ const auth_decorator_1 = require("../auth/decorators/auth.decorator");
 const car_dto_1 = require("./car.dto");
 const car_service_1 = require("./car.service");
 const swagger_1 = require("@nestjs/swagger");
-let CarController = exports.CarController = class CarController {
+let CarController = class CarController {
     constructor(carService) {
         this.carService = carService;
     }
@@ -41,6 +41,7 @@ let CarController = exports.CarController = class CarController {
         return this.carService.delete(+id);
     }
 };
+exports.CarController = CarController;
 __decorate([
     (0, common_1.Get)(),
     (0, swagger_1.ApiOkResponse)({

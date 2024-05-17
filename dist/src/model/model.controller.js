@@ -18,7 +18,7 @@ const auth_decorator_1 = require("../auth/decorators/auth.decorator");
 const model_dto_1 = require("./model.dto");
 const model_service_1 = require("./model.service");
 const swagger_1 = require("@nestjs/swagger");
-let ModelController = exports.ModelController = class ModelController {
+let ModelController = class ModelController {
     constructor(modelService) {
         this.modelService = modelService;
     }
@@ -44,6 +44,7 @@ let ModelController = exports.ModelController = class ModelController {
         return this.modelService.delete(+id);
     }
 };
+exports.ModelController = ModelController;
 __decorate([
     (0, common_1.Get)(),
     (0, swagger_1.ApiOkResponse)({

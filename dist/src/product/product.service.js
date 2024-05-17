@@ -17,7 +17,7 @@ const convert_to_number_1 = require("../utils/convert-to-number");
 const generate_slug_1 = require("../utils/generate-slug");
 const get_all_product_dto_1 = require("./dto/get-all.product.dto");
 const return_product_object_1 = require("./return-product.object");
-let ProductService = exports.ProductService = class ProductService {
+let ProductService = class ProductService {
     constructor(prisma, paginationService) {
         this.prisma = prisma;
         this.paginationService = paginationService;
@@ -352,6 +352,7 @@ let ProductService = exports.ProductService = class ProductService {
         return this.prisma.product.delete({ where: { id } });
     }
 };
+exports.ProductService = ProductService;
 exports.ProductService = ProductService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [prisma_service_1.PrismaService,
