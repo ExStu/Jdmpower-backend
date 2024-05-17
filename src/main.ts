@@ -6,7 +6,7 @@ import { ConfigService } from "@nestjs/config";
 async function bootstrap() {
 	const app = await NestFactory.create(AppModule);
 	const configService = app.get(ConfigService);
-	const port = configService.get("PORT");
+	const port = configService.get("port");
 
 	const config = new DocumentBuilder()
 		.setTitle("JdmPower API")
@@ -18,6 +18,8 @@ async function bootstrap() {
 
 	app.setGlobalPrefix("api");
 	app.enableCors();
-	await app.listen(port);
+	await app.listen(port, () => {
+		console.log(port);
+	});
 }
 bootstrap();

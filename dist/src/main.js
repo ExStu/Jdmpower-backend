@@ -7,7 +7,7 @@ const config_1 = require("@nestjs/config");
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     const configService = app.get(config_1.ConfigService);
-    const port = configService.get("PORT");
+    const port = configService.get("port");
     const config = new swagger_1.DocumentBuilder()
         .setTitle("JdmPower API")
         .setDescription("Description of all endpoints for JdmPower")
@@ -17,7 +17,9 @@ async function bootstrap() {
     swagger_1.SwaggerModule.setup("api", app, document);
     app.setGlobalPrefix("api");
     app.enableCors();
-    await app.listen(port, "0.0.0.0");
+    await app.listen(port, () => {
+        console.log(port);
+    });
 }
 bootstrap();
 //# sourceMappingURL=main.js.map
