@@ -25,9 +25,10 @@ export declare class GenerationController {
             images: string[];
             inStock: boolean;
             discount: number;
+            discountedPrice: number;
+            universal: boolean;
             categoryId: number;
             manufactureId: number;
-            generationId: number;
             userId: number;
         }[];
         image: string;
@@ -36,7 +37,6 @@ export declare class GenerationController {
         engineVolume: string;
         yearFrom: string;
         yearTo: string;
-        modelId: number;
         model: {
             id: number;
             createdAt: Date;
@@ -46,6 +46,7 @@ export declare class GenerationController {
             image: string;
             carId: number;
         };
+        modelId: number;
     }[]>;
     getBySlug(slug: string): Promise<{
         id: number;
@@ -69,9 +70,10 @@ export declare class GenerationController {
             images: string[];
             inStock: boolean;
             discount: number;
+            discountedPrice: number;
+            universal: boolean;
             categoryId: number;
             manufactureId: number;
-            generationId: number;
             userId: number;
         }[];
         image: string;
@@ -80,7 +82,6 @@ export declare class GenerationController {
         engineVolume: string;
         yearFrom: string;
         yearTo: string;
-        modelId: number;
         model: {
             id: number;
             createdAt: Date;
@@ -90,6 +91,7 @@ export declare class GenerationController {
             image: string;
             carId: number;
         };
+        modelId: number;
     }>;
     getByModel(modelSlug: string): Promise<{
         id: number;
@@ -113,9 +115,10 @@ export declare class GenerationController {
             images: string[];
             inStock: boolean;
             discount: number;
+            discountedPrice: number;
+            universal: boolean;
             categoryId: number;
             manufactureId: number;
-            generationId: number;
             userId: number;
         }[];
         image: string;
@@ -124,7 +127,6 @@ export declare class GenerationController {
         engineVolume: string;
         yearFrom: string;
         yearTo: string;
-        modelId: number;
         model: {
             id: number;
             createdAt: Date;
@@ -134,6 +136,7 @@ export declare class GenerationController {
             image: string;
             carId: number;
         };
+        modelId: number;
     }[]>;
     getById(id: string): Promise<{
         id: number;
@@ -157,9 +160,10 @@ export declare class GenerationController {
             images: string[];
             inStock: boolean;
             discount: number;
+            discountedPrice: number;
+            universal: boolean;
             categoryId: number;
             manufactureId: number;
-            generationId: number;
             userId: number;
         }[];
         image: string;
@@ -168,7 +172,6 @@ export declare class GenerationController {
         engineVolume: string;
         yearFrom: string;
         yearTo: string;
-        modelId: number;
         model: {
             id: number;
             createdAt: Date;
@@ -178,6 +181,7 @@ export declare class GenerationController {
             image: string;
             carId: number;
         };
+        modelId: number;
     }>;
     create(dto: GenerationDto): Promise<{
         id: number;

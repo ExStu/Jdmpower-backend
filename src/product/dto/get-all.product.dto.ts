@@ -1,4 +1,10 @@
-import { IsEnum, IsNumber, IsOptional, IsString } from "class-validator";
+import {
+	IsArray,
+	IsEnum,
+	IsNumber,
+	IsOptional,
+	IsString
+} from "class-validator";
 import { PaginationDto } from "src/pagination/pagination.dto";
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 import { ProductResponseDto } from "./responseProduct.dto";

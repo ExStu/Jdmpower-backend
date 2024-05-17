@@ -28,7 +28,7 @@ let ModelService = exports.ModelService = class ModelService {
             select: return_model_object_1.returnModelObject
         });
         if (!model) {
-            throw new Error('Model not found');
+            throw new Error("Model not found");
         }
         return model;
     }
@@ -40,7 +40,7 @@ let ModelService = exports.ModelService = class ModelService {
             select: return_model_object_1.returnModelObject
         });
         if (!model) {
-            throw new common_1.NotFoundException('Model not found');
+            throw new common_1.NotFoundException("Model not found");
         }
         return model;
     }
@@ -59,7 +59,7 @@ let ModelService = exports.ModelService = class ModelService {
             select: return_model_object_1.returnModelObject
         });
         if (!models)
-            throw new common_1.NotFoundException('Models not found!');
+            throw new common_1.NotFoundException("Models not found!");
         return models;
     }
     async create(dto) {
@@ -67,7 +67,12 @@ let ModelService = exports.ModelService = class ModelService {
             data: {
                 name: dto.name,
                 slug: (0, generate_slug_1.generateSlug)(dto.name),
-                image: dto.image
+                image: dto.image,
+                car: {
+                    connect: {
+                        id: dto.carId
+                    }
+                }
             }
         });
     }
@@ -94,13 +99,12 @@ let ModelService = exports.ModelService = class ModelService {
         return this.prisma.model.delete({
             where: {
                 id
-            },
+            }
         });
     }
 };
 exports.ModelService = ModelService = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [prisma_service_1.PrismaService,
-        car_service_1.CarService])
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService, car_service_1.CarService])
 ], ModelService);
 //# sourceMappingURL=model.service.js.map

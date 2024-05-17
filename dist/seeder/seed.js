@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const faker_1 = require("@faker-js/faker");
 const client_1 = require("@prisma/client");
 const dotenv = require("dotenv");
+const generate_slug_1 = require("../src/utils/generate-slug");
 dotenv.config();
 const getRandomInteger = (a = 0, b = 1) => {
     const lower = Math.ceil(Math.min(a, b));
@@ -14,9 +15,46 @@ const generateDiscount = () => {
     const randomIndex = getRandomInteger(0, discounts.length - 1);
     return discounts[randomIndex];
 };
+const categoryMap = [
+    "Тормоза",
+    "Трансмиссия",
+    "Электроника",
+    "Моторные комплектующие",
+    "Выпускные системы",
+    "Экстерьер и подкапотное",
+    "Подвесочные компоненты",
+    "Охлаждение",
+    "Интерьер и другое"
+];
+const manufactureMap = [
+    "Aem",
+    "Blitz",
+    "Blox",
+    "Garrett",
+    "Invidia",
+    "Tanabe",
+    "Tein",
+    "Defi",
+    "Cusco"
+];
+const carMap = [
+    "Lexus",
+    "Honda",
+    "Mitsubishi",
+    "Subaru",
+    "Toyota",
+    "Nissan",
+    "Mazda",
+    "Infinity"
+];
+const models = ["Lancer", "Lancer Evolution", "Eclipse"];
 const prisma = new client_1.PrismaClient();
-const createProducts = async (quantity) => {
-    const products = [];
+const seed = async (quantity) => {
+    let first = 1;
+    let second = 2;
+    let third = 3;
+    let catId = 1;
+    let manId = 1;
     for (let i = 0; i < quantity; i++) {
         const productName = faker_1.faker.commerce.productName() + i;
         const categoryName = faker_1.faker.commerce.department();
@@ -24,62 +62,59 @@ const createProducts = async (quantity) => {
         const carName = faker_1.faker.vehicle.vehicle();
         const modelName = faker_1.faker.vehicle.model();
         const generationName = faker_1.faker.vehicle.type();
+        const newsName = faker_1.faker.commerce.productName();
+        const generatedPrice = +faker_1.faker.commerce.price(10, 999, 0);
+        const generatedDiscount = generateDiscount();
+        if (catId === 9) {
+            catId = 1;
+            manId = 1;
+        }
+        if (third === 99) {
+            first = 1;
+            second = 2;
+            third = 3;
+        }
+        if (i % 29 === 0) {
+            first += 3;
+            second += 3;
+            third += 3;
+            catId += 1;
+            manId += 1;
+        }
         const product = await prisma.product.create({
             data: {
                 name: productName,
-                slug: faker_1.faker.helpers.slugify(productName).toLowerCase(),
+                slug: (0, generate_slug_1.generateSlug)(productName.toLowerCase()),
                 sku: faker_1.faker.vehicle.vrm(),
                 description: faker_1.faker.commerce.productDescription(),
-                price: +faker_1.faker.commerce.price(10, 999, 0),
+                price: generatedPrice,
                 inStock: faker_1.faker.datatype.boolean(0.5),
-                discount: generateDiscount(),
+                universal: false,
+                discount: generatedDiscount,
+                discountedPrice: generatedPrice * (1 - generatedDiscount / 100),
                 images: Array.from({
                     length: faker_1.faker.datatype.number({ min: 2, max: 6 })
                 }).map(() => faker_1.faker.image.imageUrl(500, 500, "cat", true)),
                 category: {
                     connect: {
-                        id: 10
-                    },
+                        id: catId
+                    }
                 },
                 manufacture: {
                     connect: {
-                        id: 13
+                        id: manId
                     }
                 },
                 generation: {
-                    connect: {
-                        id: 29
-                    },
-                },
-                reviews: {
-                    create: [
-                        {
-                            text: faker_1.faker.lorem.paragraph(),
-                            user: {
-                                connect: {
-                                    id: 1
-                                }
-                            }
-                        },
-                        {
-                            text: faker_1.faker.lorem.paragraph(),
-                            user: {
-                                connect: {
-                                    id: 1
-                                }
-                            }
-                        }
-                    ]
+                    connect: [{ id: first }, { id: second }, { id: third }]
                 }
             }
         });
-        products.push(product);
     }
-    console.log(`Created ${products.length} products`);
 };
 async function main() {
     console.log("Started seeding...");
-    await createProducts(10);
+    await seed(6600);
 }
 main()
     .catch(e => console.error(e))

@@ -1,4 +1,5 @@
-import { OrderService } from './order.service';
+import { OrderService } from "./order.service";
+import { OrderDto } from "./order.dto";
 export declare class OrderController {
     private readonly orderService;
     constructor(orderService: OrderService);
@@ -16,16 +17,16 @@ export declare class OrderController {
                 images: string[];
                 inStock: boolean;
                 discount: number;
+                discountedPrice: number;
+                universal: boolean;
                 categoryId: number;
                 manufactureId: number;
-                generationId: number;
                 userId: number;
                 orderItems: {
                     id: number;
                     createdAt: Date;
                     updatedAt: Date;
                     quantity: number;
-                    price: number;
                     orderId: number;
                     productId: number;
                 }[];
@@ -33,9 +34,24 @@ export declare class OrderController {
                     id: number;
                     createdAt: Date;
                     updatedAt: Date;
+                    rating: number;
                     text: string;
                     userId: number;
                     productId: number;
+                }[];
+                generation: {
+                    id: number;
+                    createdAt: Date;
+                    updatedAt: Date;
+                    name: string;
+                    slug: string;
+                    image: string;
+                    chassis: string;
+                    engine: string;
+                    engineVolume: string;
+                    yearFrom: string;
+                    yearTo: string;
+                    modelId: number;
                 }[];
                 category: {
                     id: number;
@@ -50,20 +66,7 @@ export declare class OrderController {
                     updatedAt: Date;
                     name: string;
                     slug: string;
-                };
-                generation: {
-                    id: number;
-                    createdAt: Date;
-                    updatedAt: Date;
-                    name: string;
-                    slug: string;
                     image: string;
-                    chassis: string;
-                    engine: string;
-                    engineVolume: string;
-                    yearFrom: string;
-                    yearTo: string;
-                    modelId: number;
                 };
                 user: {
                     id: number;
@@ -81,9 +84,9 @@ export declare class OrderController {
                 _count: {
                     orderItems: number;
                     reviews: number;
+                    generation: number;
                     category: number;
                     manufacture: number;
-                    generation: number;
                     user: number;
                 };
             };
@@ -92,7 +95,6 @@ export declare class OrderController {
             createdAt: Date;
             updatedAt: Date;
             quantity: number;
-            price: number;
             orderId: number;
             productId: number;
         })[];
@@ -101,99 +103,31 @@ export declare class OrderController {
         createdAt: Date;
         updatedAt: Date;
         status: import(".prisma/client").$Enums.EnumOrderStatus;
+        total: number;
+        totalWithDiscount: number;
+        email: string;
+        phone: string;
+        firstName: string;
+        lastName: string;
+        middleName: string;
+        deliveryTc: boolean;
+        desiredTc: string;
+        city: string;
+        tcAddress: string;
+        passportSeries: string;
+        passportNumber: string;
+        deliveryToDoor: boolean;
+        address: string;
+        hardWrapRequired: boolean;
+        message: string;
         userId: number;
     })[]>;
     getByUserId(userId: number): Promise<({
-        items: ({
-            product: {
-                id: number;
-                createdAt: Date;
-                updatedAt: Date;
-                name: string;
-                slug: string;
-                sku: string;
-                description: string;
-                price: number;
-                images: string[];
-                inStock: boolean;
-                discount: number;
-                categoryId: number;
-                manufactureId: number;
-                generationId: number;
-                userId: number;
-                orderItems: {
-                    id: number;
-                    createdAt: Date;
-                    updatedAt: Date;
-                    quantity: number;
-                    price: number;
-                    orderId: number;
-                    productId: number;
-                }[];
-                reviews: {
-                    id: number;
-                    createdAt: Date;
-                    updatedAt: Date;
-                    text: string;
-                    userId: number;
-                    productId: number;
-                }[];
-                category: {
-                    id: number;
-                    createdAt: Date;
-                    updatedAt: Date;
-                    name: string;
-                    slug: string;
-                };
-                manufacture: {
-                    id: number;
-                    createdAt: Date;
-                    updatedAt: Date;
-                    name: string;
-                    slug: string;
-                };
-                generation: {
-                    id: number;
-                    createdAt: Date;
-                    updatedAt: Date;
-                    name: string;
-                    slug: string;
-                    image: string;
-                    chassis: string;
-                    engine: string;
-                    engineVolume: string;
-                    yearFrom: string;
-                    yearTo: string;
-                    modelId: number;
-                };
-                user: {
-                    id: number;
-                    createdAt: Date;
-                    updatedAt: Date;
-                    email: string;
-                    phone: string;
-                    password: string;
-                    isAdmin: boolean;
-                    name: string;
-                    surname: string;
-                    middleName: string;
-                    avatarPath: string;
-                };
-                _count: {
-                    orderItems: number;
-                    reviews: number;
-                    category: number;
-                    manufacture: number;
-                    generation: number;
-                    user: number;
-                };
-            };
-        } & {
+        items: ({} & {
             id: number;
             createdAt: Date;
             updatedAt: Date;
             quantity: number;
-            price: number;
             orderId: number;
             productId: number;
         })[];
@@ -202,6 +136,47 @@ export declare class OrderController {
         createdAt: Date;
         updatedAt: Date;
         status: import(".prisma/client").$Enums.EnumOrderStatus;
+        total: number;
+        totalWithDiscount: number;
+        email: string;
+        phone: string;
+        firstName: string;
+        lastName: string;
+        middleName: string;
+        deliveryTc: boolean;
+        desiredTc: string;
+        city: string;
+        tcAddress: string;
+        passportSeries: string;
+        passportNumber: string;
+        deliveryToDoor: boolean;
+        address: string;
+        hardWrapRequired: boolean;
+        message: string;
         userId: number;
     })[]>;
+    createOrder(dto: OrderDto): Promise<{
+        id: number;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.EnumOrderStatus;
+        total: number;
+        totalWithDiscount: number;
+        email: string;
+        phone: string;
+        firstName: string;
+        lastName: string;
+        middleName: string;
+        deliveryTc: boolean;
+        desiredTc: string;
+        city: string;
+        tcAddress: string;
+        passportSeries: string;
+        passportNumber: string;
+        deliveryToDoor: boolean;
+        address: string;
+        hardWrapRequired: boolean;
+        message: string;
+        userId: number;
+    }>;
 }

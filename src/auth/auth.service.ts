@@ -9,7 +9,7 @@ import { JwtService } from "@nestjs/jwt";
 import { User } from "@prisma/client";
 import { hash, verify } from "argon2";
 import { PrismaService } from "src/prisma.service";
-import { AuthDto } from "./dto/auth.dto";
+import { AuthDto, RegisterDto } from "./dto/auth.dto";
 import { UserService } from "src/user/user.service";
 
 @Injectable()
@@ -25,7 +25,7 @@ export class AuthService {
 		const tokens = await this.issueTokens(user.id);
 
 		return {
-			user: this.returnUserFields(user),
+			// user: this.returnUserFields(user),
 			...tokens
 		};
 	}
@@ -41,12 +41,12 @@ export class AuthService {
 		const tokens = await this.issueTokens(user.id);
 
 		return {
-			user: this.returnUserFields(user),
+			// user: this.returnUserFields(user),
 			...tokens
 		};
 	}
 
-	async register(dto: AuthDto) {
+	async register(dto: RegisterDto) {
 		const oldUser = await this.prisma.user.findUnique({
 			where: {
 				email: dto.email
@@ -58,9 +58,11 @@ export class AuthService {
 		const user = await this.prisma.user.create({
 			data: {
 				email: dto.email,
-				name: faker.person.firstName(),
+				name: dto.name,
+				surname: dto.surname,
+				middleName: dto.middleName,
 				avatarPath: faker.image.avatar(),
-				phone: faker.phone.number("+7 (###) ###-##-##"),
+				phone: null,
 				password: await hash(dto.password),
 				isAdmin: false
 			}
@@ -69,7 +71,7 @@ export class AuthService {
 		const tokens = await this.issueTokens(user.id);
 
 		return {
-			user: this.returnUserFields(user),
+			// user: this.returnUserFields(user),
 			...tokens
 		};
 	}

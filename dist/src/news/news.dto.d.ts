@@ -1,3 +1,6 @@
+export declare class GetNewsDto {
+    pageNumber?: string;
+}
 export declare class NewsDto {
     image: string;
     title: string;

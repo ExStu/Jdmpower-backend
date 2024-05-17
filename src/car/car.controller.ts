@@ -80,8 +80,8 @@ export class CarController {
 		description: "Not Found"
 	})
 	@ApiBadRequestResponse({ description: "Bad Request" })
-	async create() {
-		return this.carService.create();
+	async create(@Body() dto: CarDto) {
+		return this.carService.create(dto);
 	}
 
 	@UsePipes(new ValidationPipe())

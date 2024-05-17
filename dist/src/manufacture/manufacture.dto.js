@@ -17,38 +17,54 @@ class ManufactureDto {
 exports.ManufactureDto = ManufactureDto;
 __decorate([
     (0, swagger_1.ApiProperty)({
-        type: String,
+        type: String
     }),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], ManufactureDto.prototype, "name", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({
+        type: String
+    }),
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], ManufactureDto.prototype, "image", void 0);
 class ManufactureResponseDto {
 }
 exports.ManufactureResponseDto = ManufactureResponseDto;
 __decorate([
     (0, swagger_1.ApiProperty)({
-        type: Number,
+        type: Number
     }),
     __metadata("design:type", Number)
 ], ManufactureResponseDto.prototype, "id", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        type: String,
+        type: String
     }),
     __metadata("design:type", String)
 ], ManufactureResponseDto.prototype, "name", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        type: String,
+        type: String
     }),
     __metadata("design:type", String)
 ], ManufactureResponseDto.prototype, "slug", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({
+        type: String
+    }),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], ManufactureResponseDto.prototype, "image", void 0);
 class MutationManufactureResponseDto {
 }
 exports.MutationManufactureResponseDto = MutationManufactureResponseDto;
 __decorate([
     (0, swagger_1.ApiProperty)({
-        type: Number,
+        type: Number
     }),
     __metadata("design:type", Number)
 ], MutationManufactureResponseDto.prototype, "id", void 0);
@@ -66,13 +82,13 @@ __decorate([
 ], MutationManufactureResponseDto.prototype, "updatedAt", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        type: String,
+        type: String
     }),
     __metadata("design:type", String)
 ], MutationManufactureResponseDto.prototype, "name", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        type: String,
+        type: String
     }),
     __metadata("design:type", String)
 ], MutationManufactureResponseDto.prototype, "slug", void 0);

@@ -7,9 +7,10 @@ import { FileResponse } from "./file.dto";
 export class FilesService {
 	async saveFiles(
 		files: Express.Multer.File[],
-		folder: string
+		folder: string,
+		itemId: string
 	): Promise<FileResponse[]> {
-		const uploadFolder = `${path}/uploads/${folder}`;
+		const uploadFolder = `${path}/uploads/${folder}/${itemId}`;
 		await ensureDir(uploadFolder);
 		const [res] = await Promise.all([
 			Promise.all(

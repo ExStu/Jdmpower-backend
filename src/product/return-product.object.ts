@@ -13,18 +13,20 @@ export const returnProductObject: Prisma.ProductSelect = {
 	images: true,
 	description: true,
 	discount: true,
+	discountedPrice: true,
+	universal: true,
 	inStock: true,
 	category: { select: returnCategoryObject },
-	manufacture: {select: returnManufactureObject},
-	generation: {select: returnGenerationObject},
+	manufacture: { select: returnManufactureObject },
+	generation: { select: returnGenerationObject },
 	reviews: {
 		select: returnReviewObject,
 		orderBy: {
-			createdAt: 'desc'
+			createdAt: "desc"
 		}
 	}
-}
+};
 
 export const returnProductObjectFullest: Prisma.ProductSelect = {
 	...returnProductObject
-}
+};

@@ -1,23 +1,29 @@
-import { Controller, Get } from '@nestjs/common'
-import { Auth } from 'src/auth/decorators/auth.decorator'
-import { CurrentUser } from 'src/auth/decorators/user.decorator'
-import { OrderService } from './order.service'
+import { Body, Controller, Get, Post } from "@nestjs/common";
+import { Auth } from "src/auth/decorators/auth.decorator";
+import { CurrentUser } from "src/auth/decorators/user.decorator";
+import { OrderService } from "./order.service";
 import { ApiTags } from "@nestjs/swagger";
+import { OrderDto } from "./order.dto";
 
 @ApiTags("Orders")
-@Controller('orders')
+@Controller("orders")
 export class OrderController {
-  constructor(private readonly orderService: OrderService) {}
+	constructor(private readonly orderService: OrderService) {}
 
-  @Get()
-  @Auth('admin')
-  getAll() {
-    return this.orderService.getAll()
-  }
+	@Get()
+	@Auth("admin")
+	async getAll() {
+		return this.orderService.getAll();
+	}
 
-  @Get('by-user')
+	@Get("by-user")
 	@Auth()
-	getByUserId(@CurrentUser('id') userId: number) {
-		return this.orderService.getByUserId(userId)
+	async getByUserId(@CurrentUser("id") userId: number) {
+		return this.orderService.getByUserId(userId);
+	}
+
+	@Post("create-order")
+	async createOrder(@Body() dto: OrderDto) {
+		return this.orderService.createOrder(dto);
 	}
 }

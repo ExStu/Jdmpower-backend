@@ -52,7 +52,6 @@ __decorate([
 ], CurrencyController.prototype, "getAll", null);
 __decorate([
     (0, common_1.HttpCode)(200),
-    (0, auth_decorator_1.Auth)("admin"),
     (0, common_1.Post)("create"),
     (0, swagger_1.ApiOkResponse)({
         description: "OK",

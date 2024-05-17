@@ -1,7 +1,10 @@
-import { PrismaService } from 'src/prisma.service';
+import { PrismaService } from "src/prisma.service";
+import { OrderDto } from "./order.dto";
+import { EmailService } from "../email/email.service";
 export declare class OrderService {
     private prisma;
-    constructor(prisma: PrismaService);
+    private emailService;
+    constructor(prisma: PrismaService, emailService: EmailService);
     getAll(): Promise<({
         items: ({
             product: {
@@ -16,16 +19,16 @@ export declare class OrderService {
                 images: string[];
                 inStock: boolean;
                 discount: number;
+                discountedPrice: number;
+                universal: boolean;
                 categoryId: number;
                 manufactureId: number;
-                generationId: number;
                 userId: number;
                 orderItems: {
                     id: number;
                     createdAt: Date;
                     updatedAt: Date;
                     quantity: number;
-                    price: number;
                     orderId: number;
                     productId: number;
                 }[];
@@ -33,9 +36,24 @@ export declare class OrderService {
                     id: number;
                     createdAt: Date;
                     updatedAt: Date;
+                    rating: number;
                     text: string;
                     userId: number;
                     productId: number;
+                }[];
+                generation: {
+                    id: number;
+                    createdAt: Date;
+                    updatedAt: Date;
+                    name: string;
+                    slug: string;
+                    image: string;
+                    chassis: string;
+                    engine: string;
+                    engineVolume: string;
+                    yearFrom: string;
+                    yearTo: string;
+                    modelId: number;
                 }[];
                 category: {
                     id: number;
@@ -50,20 +68,7 @@ export declare class OrderService {
                     updatedAt: Date;
                     name: string;
                     slug: string;
-                };
-                generation: {
-                    id: number;
-                    createdAt: Date;
-                    updatedAt: Date;
-                    name: string;
-                    slug: string;
                     image: string;
-                    chassis: string;
-                    engine: string;
-                    engineVolume: string;
-                    yearFrom: string;
-                    yearTo: string;
-                    modelId: number;
                 };
                 user: {
                     id: number;
@@ -81,9 +86,9 @@ export declare class OrderService {
                 _count: {
                     orderItems: number;
                     reviews: number;
+                    generation: number;
                     category: number;
                     manufacture: number;
-                    generation: number;
                     user: number;
                 };
             };
@@ -92,7 +97,6 @@ export declare class OrderService {
             createdAt: Date;
             updatedAt: Date;
             quantity: number;
-            price: number;
             orderId: number;
             productId: number;
         })[];
@@ -101,99 +105,31 @@ export declare class OrderService {
         createdAt: Date;
         updatedAt: Date;
         status: import(".prisma/client").$Enums.EnumOrderStatus;
+        total: number;
+        totalWithDiscount: number;
+        email: string;
+        phone: string;
+        firstName: string;
+        lastName: string;
+        middleName: string;
+        deliveryTc: boolean;
+        desiredTc: string;
+        city: string;
+        tcAddress: string;
+        passportSeries: string;
+        passportNumber: string;
+        deliveryToDoor: boolean;
+        address: string;
+        hardWrapRequired: boolean;
+        message: string;
         userId: number;
     })[]>;
     getByUserId(userId: number): Promise<({
-        items: ({
-            product: {
-                id: number;
-                createdAt: Date;
-                updatedAt: Date;
-                name: string;
-                slug: string;
-                sku: string;
-                description: string;
-                price: number;
-                images: string[];
-                inStock: boolean;
-                discount: number;
-                categoryId: number;
-                manufactureId: number;
-                generationId: number;
-                userId: number;
-                orderItems: {
-                    id: number;
-                    createdAt: Date;
-                    updatedAt: Date;
-                    quantity: number;
-                    price: number;
-                    orderId: number;
-                    productId: number;
-                }[];
-                reviews: {
-                    id: number;
-                    createdAt: Date;
-                    updatedAt: Date;
-                    text: string;
-                    userId: number;
-                    productId: number;
-                }[];
-                category: {
-                    id: number;
-                    createdAt: Date;
-                    updatedAt: Date;
-                    name: string;
-                    slug: string;
-                };
-                manufacture: {
-                    id: number;
-                    createdAt: Date;
-                    updatedAt: Date;
-                    name: string;
-                    slug: string;
-                };
-                generation: {
-                    id: number;
-                    createdAt: Date;
-                    updatedAt: Date;
-                    name: string;
-                    slug: string;
-                    image: string;
-                    chassis: string;
-                    engine: string;
-                    engineVolume: string;
-                    yearFrom: string;
-                    yearTo: string;
-                    modelId: number;
-                };
-                user: {
-                    id: number;
-                    createdAt: Date;
-                    updatedAt: Date;
-                    email: string;
-                    phone: string;
-                    password: string;
-                    isAdmin: boolean;
-                    name: string;
-                    surname: string;
-                    middleName: string;
-                    avatarPath: string;
-                };
-                _count: {
-                    orderItems: number;
-                    reviews: number;
-                    category: number;
-                    manufacture: number;
-                    generation: number;
-                    user: number;
-                };
-            };
-        } & {
+        items: ({} & {
             id: number;
             createdAt: Date;
             updatedAt: Date;
             quantity: number;
-            price: number;
             orderId: number;
             productId: number;
         })[];
@@ -202,6 +138,47 @@ export declare class OrderService {
         createdAt: Date;
         updatedAt: Date;
         status: import(".prisma/client").$Enums.EnumOrderStatus;
+        total: number;
+        totalWithDiscount: number;
+        email: string;
+        phone: string;
+        firstName: string;
+        lastName: string;
+        middleName: string;
+        deliveryTc: boolean;
+        desiredTc: string;
+        city: string;
+        tcAddress: string;
+        passportSeries: string;
+        passportNumber: string;
+        deliveryToDoor: boolean;
+        address: string;
+        hardWrapRequired: boolean;
+        message: string;
         userId: number;
     })[]>;
+    createOrder(orderDto: OrderDto): Promise<{
+        id: number;
+        createdAt: Date;
+        updatedAt: Date;
+        status: import(".prisma/client").$Enums.EnumOrderStatus;
+        total: number;
+        totalWithDiscount: number;
+        email: string;
+        phone: string;
+        firstName: string;
+        lastName: string;
+        middleName: string;
+        deliveryTc: boolean;
+        desiredTc: string;
+        city: string;
+        tcAddress: string;
+        passportSeries: string;
+        passportNumber: string;
+        deliveryToDoor: boolean;
+        address: string;
+        hardWrapRequired: boolean;
+        message: string;
+        userId: number;
+    }>;
 }

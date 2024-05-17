@@ -14,6 +14,8 @@ exports.returnProductObject = {
     images: true,
     description: true,
     discount: true,
+    discountedPrice: true,
+    universal: true,
     inStock: true,
     category: { select: return_category_object_1.returnCategoryObject },
     manufacture: { select: return_manufacture_object_1.returnManufactureObject },
@@ -21,7 +23,7 @@ exports.returnProductObject = {
     reviews: {
         select: return_review_object_1.returnReviewObject,
         orderBy: {
-            createdAt: 'desc'
+            createdAt: "desc"
         }
     }
 };

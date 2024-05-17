@@ -32,6 +32,9 @@ let UserController = exports.UserController = class UserController {
     async toggleFavorite(id, productId) {
         return this.userService.toggleFavorite(id, +productId);
     }
+    async addToCart(id, productId) {
+        return this.userService.toggleFavorite(id, +productId);
+    }
 };
 __decorate([
     (0, common_1.Get)("profile"),
@@ -62,6 +65,16 @@ __decorate([
     __metadata("design:paramtypes", [Number, String]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "toggleFavorite", null);
+__decorate([
+    (0, common_1.HttpCode)(200),
+    (0, auth_decorator_1.Auth)(),
+    (0, common_1.Patch)("profile/add-to-cart/:productId"),
+    __param(0, (0, user_decorator_1.CurrentUser)("id")),
+    __param(1, (0, common_1.Param)("productId")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, String]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "addToCart", null);
 exports.UserController = UserController = __decorate([
     (0, swagger_1.ApiTags)("Users"),
     (0, common_1.Controller)("users"),

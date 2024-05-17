@@ -40,7 +40,7 @@ export class CurrencyController {
 	}
 
 	@HttpCode(200)
-	@Auth("admin")
+	// @Auth("admin")
 	@Post("create")
 	@ApiOkResponse({
 		description: "OK",

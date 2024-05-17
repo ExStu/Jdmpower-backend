@@ -26,7 +26,7 @@ let CarService = exports.CarService = class CarService {
             select: return_car_object_1.returnCarObject
         });
         if (!car) {
-            throw new Error('Car not found');
+            throw new Error("Car not found");
         }
         return car;
     }
@@ -38,7 +38,7 @@ let CarService = exports.CarService = class CarService {
             select: return_car_object_1.returnCarObject
         });
         if (!car) {
-            throw new common_1.NotFoundException('Car not found');
+            throw new common_1.NotFoundException("Car not found");
         }
         return car;
     }
@@ -47,15 +47,15 @@ let CarService = exports.CarService = class CarService {
             orderBy: {
                 name: "asc"
             },
-            select: return_car_object_1.returnCarObject,
+            select: return_car_object_1.returnCarObject
         });
     }
-    async create() {
+    async create(dto) {
         return this.prisma.car.create({
             data: {
-                name: "",
-                slug: "",
-                image: ""
+                name: dto.name,
+                slug: (0, generate_slug_1.generateSlug)(dto.name),
+                image: dto.image
             }
         });
     }
@@ -75,7 +75,7 @@ let CarService = exports.CarService = class CarService {
         return this.prisma.car.delete({
             where: {
                 id
-            },
+            }
         });
     }
 };

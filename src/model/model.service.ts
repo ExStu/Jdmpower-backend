@@ -7,10 +7,7 @@ import { CarService } from "src/car/car.service";
 
 @Injectable()
 export class ModelService {
-	constructor (
-		private prisma: PrismaService,
-		private carService: CarService
-	) {}
+	constructor(private prisma: PrismaService, private carService: CarService) {}
 
 	async byId(id: number) {
 		const model = await this.prisma.model.findUnique({
@@ -18,13 +15,13 @@ export class ModelService {
 				id
 			},
 			select: returnModelObject
-		})
+		});
 
 		if (!model) {
-			throw new Error('Model not found')
+			throw new Error("Model not found");
 		}
 
-		return model
+		return model;
 	}
 
 	async bySlug(slug: string) {
@@ -33,19 +30,19 @@ export class ModelService {
 				slug
 			},
 			select: returnModelObject
-		})
+		});
 
 		if (!model) {
-			throw new NotFoundException('Model not found')
+			throw new NotFoundException("Model not found");
 		}
 
-		return model
+		return model;
 	}
 
 	async getAll() {
 		return this.prisma.model.findMany({
 			select: returnModelObject
-		})
+		});
 	}
 
 	async byCar(carSlug: string) {
@@ -56,10 +53,10 @@ export class ModelService {
 				}
 			},
 			select: returnModelObject
-		})
+		});
 
-		if (!models) throw new NotFoundException('Models not found!')
-		return models
+		if (!models) throw new NotFoundException("Models not found!");
+		return models;
 	}
 
 	async create(dto: ModelDto) {
@@ -67,14 +64,18 @@ export class ModelService {
 			data: {
 				name: dto.name,
 				slug: generateSlug(dto.name),
-				image: dto.image
+				image: dto.image,
+				car: {
+					connect: {
+						id: dto.carId
+					}
+				}
 			}
-		})
+		});
 	}
 
 	async update(id: number, dto: ModelDto) {
-
-		await this.carService.byId(dto.carId)
+		await this.carService.byId(dto.carId);
 
 		return this.prisma.model.update({
 			where: {
@@ -91,14 +92,14 @@ export class ModelService {
 					}
 				}
 			}
-		})
+		});
 	}
 
 	async delete(id: number) {
 		return this.prisma.model.delete({
 			where: {
 				id
-			},
-		})
+			}
+		});
 	}
 }

@@ -5,5 +5,6 @@ exports.returnManufactureObject = {
     id: true,
     name: true,
     slug: true,
+    image: true
 };
 //# sourceMappingURL=return-manufacture.object.js.map

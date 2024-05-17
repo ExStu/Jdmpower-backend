@@ -8,6 +8,7 @@ import {
 	Post,
 	Put,
 	Query,
+	Req,
 	UsePipes,
 	ValidationPipe
 } from "@nestjs/common";
@@ -22,13 +23,27 @@ import {
 	ApiBadRequestResponse,
 	ApiNotFoundResponse,
 	ApiOkResponse,
+	ApiProperty,
 	ApiTags
 } from "@nestjs/swagger";
 import {
 	ProductMutationResponseDto,
 	ProductResponseDto
 } from "./dto/responseProduct.dto";
+import { IsOptional } from "class-validator";
 
+class GetSimilarArgDto {
+	@ApiProperty({
+		type: Number
+	})
+	id: number;
+
+	@ApiProperty({
+		type: Number
+	})
+	@IsOptional()
+	chosenGenId?: number;
+}
 @ApiTags("Products")
 @Controller("products")
 export class ProductController {
@@ -38,15 +53,14 @@ export class ProductController {
 	@Get()
 	@ApiOkResponse({
 		description: "OK",
+		isArray: true,
 		type: GetAllProductResponseDto
 	})
 	@ApiNotFoundResponse({
 		description: "Not Found"
 	})
 	@ApiBadRequestResponse({ description: "Bad Request" })
-	async getAll(
-		@Query() queryDto: GetAllProductDto
-	) {
+	async getAll(@Query() queryDto: GetAllProductDto) {
 		return this.productService.getAll(queryDto);
 	}
 
@@ -58,10 +72,11 @@ export class ProductController {
 	})
 	@ApiBadRequestResponse({ description: "Bad Request" })
 	async getProductsBySearch(@Query("searchTerm") searchTerm: string) {
-		return this.productService.getProductsBySearch(searchTerm)
+		return this.productService.getProductsBySearch(searchTerm);
 	}
 
-	@Get("similar/:id")
+	@UsePipes(new ValidationPipe())
+	@Get("similar")
 	@ApiOkResponse({
 		description: "OK",
 		type: ProductResponseDto,
@@ -71,19 +86,19 @@ export class ProductController {
 		description: "Not Found"
 	})
 	@ApiBadRequestResponse({ description: "Bad Request" })
-	async getSimilar(@Param("id") id: string) {
-		return this.productService.getSimilar(+id);
+	async getSimilar(@Query() dto: GetSimilarArgDto) {
+		return this.productService.getSimilar(+dto.id, +dto.chosenGenId);
 	}
 
 	@Get("by-id/:id")
 	@ApiOkResponse({
 		description: "OK",
-		type: ProductResponseDto,
+		type: ProductResponseDto
 	})
 	@ApiNotFoundResponse({
-		description: 'Not Found',
+		description: "Not Found"
 	})
-	@ApiBadRequestResponse({ description: 'Bad Request' })
+	@ApiBadRequestResponse({ description: "Bad Request" })
 	async getProduct(@Param("id") id: string) {
 		return this.productService.byId(+id);
 	}
@@ -147,6 +162,22 @@ export class ProductController {
 	@ApiBadRequestResponse({ description: "Bad Request" })
 	async createProduct(@Body() productDto: ProductDto) {
 		return this.productService.create(productDto);
+	}
+
+	@UsePipes(new ValidationPipe())
+	@HttpCode(200)
+	@Auth("admin")
+	@Post("create-many")
+	@ApiOkResponse({
+		description: "OK",
+		type: ProductMutationResponseDto
+	})
+	@ApiNotFoundResponse({
+		description: "Not Found"
+	})
+	@ApiBadRequestResponse({ description: "Bad Request" })
+	async createManyProducts(@Body() productDto: ProductDto[]) {
+		return this.productService.createMany(productDto);
 	}
 
 	@UsePipes(new ValidationPipe())

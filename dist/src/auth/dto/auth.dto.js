@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AuthDto = void 0;
+exports.RegisterDto = exports.AuthDto = void 0;
 const class_validator_1 = require("class-validator");
 class AuthDto {
 }
@@ -20,9 +20,24 @@ __decorate([
 ], AuthDto.prototype, "email", void 0);
 __decorate([
     (0, class_validator_1.MinLength)(6, {
-        message: 'Password must be at least 6 characters long'
+        message: "Password must be at least 6 characters long"
     }),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], AuthDto.prototype, "password", void 0);
+class RegisterDto extends AuthDto {
+}
+exports.RegisterDto = RegisterDto;
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], RegisterDto.prototype, "name", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], RegisterDto.prototype, "surname", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], RegisterDto.prototype, "middleName", void 0);
 //# sourceMappingURL=auth.dto.js.map

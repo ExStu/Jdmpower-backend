@@ -1,151 +1,163 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { CategoryDto, CategoryResponseDto } from "../../category/category.dto";
-import { ManufactureDto, ManufactureResponseDto } from "../../manufacture/manufacture.dto";
-import { GenerationDto, GenerationResponseDto } from "../../generation/generation.dto";
+import {
+	ManufactureDto,
+	ManufactureResponseDto
+} from "../../manufacture/manufacture.dto";
+import {
+	GenerationDto,
+	GenerationResponseDto
+} from "../../generation/generation.dto";
 import { ReviewDto } from "../../review/review.dto";
-
+import { IsNumber, IsOptional } from "class-validator";
 
 export class ProductResponseDto {
-
 	@ApiProperty({
-		type: Number,
+		type: Number
 	})
-	id: number
-
-	@ApiProperty({
-		type: String,
-	})
-	name: string
-
-	@ApiProperty({
-		type: String,
-	})
-	slug: string
-
-	@ApiProperty({
-		type: String,
-	})
-	sku: string
-
-	@ApiProperty({
-		type: [String]
-	})
-	images: string[]
+	id: number;
 
 	@ApiProperty({
 		type: String
 	})
-	description: string
+	name: string;
 
 	@ApiProperty({
-		type: Number,
+		type: String
 	})
-	price: number
+	slug: string;
 
 	@ApiProperty({
-		type: Number,
+		type: String
 	})
-	discount: number
+	sku: string;
 
 	@ApiProperty({
-		type: Boolean,
+		type: [String]
 	})
-	inStock: boolean
+	images: string[];
 
 	@ApiProperty({
-		type: CategoryDto,
+		type: String
 	})
-	category: CategoryResponseDto
+	description: string;
 
 	@ApiProperty({
-		type: ManufactureDto,
+		type: Number
 	})
-	manufacture: ManufactureResponseDto
+	price: number;
 
 	@ApiProperty({
-		type: GenerationDto,
+		type: Number
 	})
-	generation: GenerationResponseDto
+	discount: number;
 
 	@ApiProperty({
-		type: ReviewDto,
+		type: Number
 	})
-	reviews: ReviewDto
+	@IsOptional()
+	@IsNumber()
+	discountedPrice: number;
+
+	@ApiProperty({
+		type: Boolean
+	})
+	inStock: boolean;
+
+	@ApiProperty({
+		type: CategoryDto
+	})
+	category: CategoryResponseDto;
+
+	@ApiProperty({
+		type: ManufactureDto
+	})
+	manufacture: ManufactureResponseDto;
+
+	@ApiProperty({
+		type: GenerationDto
+	})
+	generation: GenerationResponseDto;
+
+	@ApiProperty({
+		type: ReviewDto
+	})
+	reviews: ReviewDto;
 }
 
 export class ProductMutationResponseDto {
 	@ApiProperty({
-		type: Number,
+		type: Number
 	})
-	id: number
+	id: number;
 
 	@ApiProperty({
-		type: Date,
+		type: Date
 	})
-	createdAt: Date
+	createdAt: Date;
 
 	@ApiProperty({
-		type: Date,
+		type: Date
 	})
-	updatedAt: Date
+	updatedAt: Date;
 
 	@ApiProperty({
 		type: [String]
 	})
-	images: string[]
+	images: string[];
 
 	@ApiProperty({
 		type: String
 	})
-	description: string
+	description: string;
 
 	@ApiProperty({
-		type: String,
+		type: String
 	})
-	name: string
+	name: string;
 
 	@ApiProperty({
-		type: String,
+		type: String
 	})
-	sku: string
+	sku: string;
 
 	@ApiProperty({
-		type: Number,
+		type: Number
 	})
-	price: number
+	price: number;
 
 	@ApiProperty({
-		type: String,
+		type: String
 	})
-	slug: string
+	slug: string;
 
 	@ApiProperty({
-		type: Number,
+		type: Number
 	})
-	discount: number
+	discount: number;
 
 	@ApiProperty({
-		type: Boolean,
+		type: Boolean
 	})
-	inStock: boolean
+	inStock: boolean;
 
 	@ApiProperty({
-		type: CategoryDto,
+		type: CategoryDto
 	})
-	category: CategoryDto
+	category: CategoryDto;
 
 	@ApiProperty({
-		type: ManufactureDto,
+		type: ManufactureDto
 	})
-	manufacture: ManufactureDto
+	manufacture: ManufactureDto;
 
 	@ApiProperty({
-		type: GenerationDto,
+		type: GenerationDto
 	})
-	generation: GenerationDto
+	generation: GenerationDto;
 
 	@ApiProperty({
-		type: ReviewDto,
+		type: ReviewDto
 	})
-	reviews: ReviewDto
+	reviews: ReviewDto;
 }

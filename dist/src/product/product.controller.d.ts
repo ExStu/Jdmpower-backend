@@ -1,6 +1,10 @@
 import { GetAllProductDto } from "./dto/get-all.product.dto";
 import { ProductDto } from "./dto/product.dto";
 import { ProductService } from "./product.service";
+declare class GetSimilarArgDto {
+    id: number;
+    chosenGenId?: number;
+}
 export declare class ProductController {
     private readonly productService;
     constructor(productService: ProductService);
@@ -17,16 +21,16 @@ export declare class ProductController {
             images: string[];
             inStock: boolean;
             discount: number;
+            discountedPrice: number;
+            universal: boolean;
             categoryId: number;
             manufactureId: number;
-            generationId: number;
             userId: number;
             orderItems: {
                 id: number;
                 createdAt: Date;
                 updatedAt: Date;
                 quantity: number;
-                price: number;
                 orderId: number;
                 productId: number;
             }[];
@@ -34,9 +38,24 @@ export declare class ProductController {
                 id: number;
                 createdAt: Date;
                 updatedAt: Date;
+                rating: number;
                 text: string;
                 userId: number;
                 productId: number;
+            }[];
+            generation: {
+                id: number;
+                createdAt: Date;
+                updatedAt: Date;
+                name: string;
+                slug: string;
+                image: string;
+                chassis: string;
+                engine: string;
+                engineVolume: string;
+                yearFrom: string;
+                yearTo: string;
+                modelId: number;
             }[];
             category: {
                 id: number;
@@ -51,20 +70,7 @@ export declare class ProductController {
                 updatedAt: Date;
                 name: string;
                 slug: string;
-            };
-            generation: {
-                id: number;
-                createdAt: Date;
-                updatedAt: Date;
-                name: string;
-                slug: string;
                 image: string;
-                chassis: string;
-                engine: string;
-                engineVolume: string;
-                yearFrom: string;
-                yearTo: string;
-                modelId: number;
             };
             user: {
                 id: number;
@@ -82,9 +88,9 @@ export declare class ProductController {
             _count: {
                 orderItems: number;
                 reviews: number;
+                generation: number;
                 category: number;
                 manufacture: number;
-                generation: number;
                 user: number;
             };
         }[];
@@ -107,16 +113,16 @@ export declare class ProductController {
         images: string[];
         inStock: boolean;
         discount: number;
+        discountedPrice: number;
+        universal: boolean;
         categoryId: number;
         manufactureId: number;
-        generationId: number;
         userId: number;
         orderItems: {
             id: number;
             createdAt: Date;
             updatedAt: Date;
             quantity: number;
-            price: number;
             orderId: number;
             productId: number;
         }[];
@@ -124,9 +130,24 @@ export declare class ProductController {
             id: number;
             createdAt: Date;
             updatedAt: Date;
+            rating: number;
             text: string;
             userId: number;
             productId: number;
+        }[];
+        generation: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+            image: string;
+            chassis: string;
+            engine: string;
+            engineVolume: string;
+            yearFrom: string;
+            yearTo: string;
+            modelId: number;
         }[];
         category: {
             id: number;
@@ -141,20 +162,7 @@ export declare class ProductController {
             updatedAt: Date;
             name: string;
             slug: string;
-        };
-        generation: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            name: string;
-            slug: string;
             image: string;
-            chassis: string;
-            engine: string;
-            engineVolume: string;
-            yearFrom: string;
-            yearTo: string;
-            modelId: number;
         };
         user: {
             id: number;
@@ -172,13 +180,13 @@ export declare class ProductController {
         _count: {
             orderItems: number;
             reviews: number;
+            generation: number;
             category: number;
             manufacture: number;
-            generation: number;
             user: number;
         };
     }[]>;
-    getSimilar(id: string): Promise<{
+    getSimilar(dto: GetSimilarArgDto): Promise<{
         id: number;
         createdAt: Date;
         updatedAt: Date;
@@ -190,16 +198,16 @@ export declare class ProductController {
         images: string[];
         inStock: boolean;
         discount: number;
+        discountedPrice: number;
+        universal: boolean;
         categoryId: number;
         manufactureId: number;
-        generationId: number;
         userId: number;
         orderItems: {
             id: number;
             createdAt: Date;
             updatedAt: Date;
             quantity: number;
-            price: number;
             orderId: number;
             productId: number;
         }[];
@@ -207,9 +215,24 @@ export declare class ProductController {
             id: number;
             createdAt: Date;
             updatedAt: Date;
+            rating: number;
             text: string;
             userId: number;
             productId: number;
+        }[];
+        generation: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+            image: string;
+            chassis: string;
+            engine: string;
+            engineVolume: string;
+            yearFrom: string;
+            yearTo: string;
+            modelId: number;
         }[];
         category: {
             id: number;
@@ -224,20 +247,7 @@ export declare class ProductController {
             updatedAt: Date;
             name: string;
             slug: string;
-        };
-        generation: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            name: string;
-            slug: string;
             image: string;
-            chassis: string;
-            engine: string;
-            engineVolume: string;
-            yearFrom: string;
-            yearTo: string;
-            modelId: number;
         };
         user: {
             id: number;
@@ -255,9 +265,9 @@ export declare class ProductController {
         _count: {
             orderItems: number;
             reviews: number;
+            generation: number;
             category: number;
             manufacture: number;
-            generation: number;
             user: number;
         };
     }[]>;
@@ -273,16 +283,16 @@ export declare class ProductController {
         images: string[];
         inStock: boolean;
         discount: number;
+        discountedPrice: number;
+        universal: boolean;
         categoryId: number;
         manufactureId: number;
-        generationId: number;
         userId: number;
         orderItems: {
             id: number;
             createdAt: Date;
             updatedAt: Date;
             quantity: number;
-            price: number;
             orderId: number;
             productId: number;
         }[];
@@ -290,9 +300,24 @@ export declare class ProductController {
             id: number;
             createdAt: Date;
             updatedAt: Date;
+            rating: number;
             text: string;
             userId: number;
             productId: number;
+        }[];
+        generation: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+            image: string;
+            chassis: string;
+            engine: string;
+            engineVolume: string;
+            yearFrom: string;
+            yearTo: string;
+            modelId: number;
         }[];
         category: {
             id: number;
@@ -307,20 +332,7 @@ export declare class ProductController {
             updatedAt: Date;
             name: string;
             slug: string;
-        };
-        generation: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            name: string;
-            slug: string;
             image: string;
-            chassis: string;
-            engine: string;
-            engineVolume: string;
-            yearFrom: string;
-            yearTo: string;
-            modelId: number;
         };
         user: {
             id: number;
@@ -338,9 +350,9 @@ export declare class ProductController {
         _count: {
             orderItems: number;
             reviews: number;
+            generation: number;
             category: number;
             manufacture: number;
-            generation: number;
             user: number;
         };
     }>;
@@ -356,16 +368,16 @@ export declare class ProductController {
         images: string[];
         inStock: boolean;
         discount: number;
+        discountedPrice: number;
+        universal: boolean;
         categoryId: number;
         manufactureId: number;
-        generationId: number;
         userId: number;
         orderItems: {
             id: number;
             createdAt: Date;
             updatedAt: Date;
             quantity: number;
-            price: number;
             orderId: number;
             productId: number;
         }[];
@@ -373,9 +385,24 @@ export declare class ProductController {
             id: number;
             createdAt: Date;
             updatedAt: Date;
+            rating: number;
             text: string;
             userId: number;
             productId: number;
+        }[];
+        generation: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+            image: string;
+            chassis: string;
+            engine: string;
+            engineVolume: string;
+            yearFrom: string;
+            yearTo: string;
+            modelId: number;
         }[];
         category: {
             id: number;
@@ -390,20 +417,7 @@ export declare class ProductController {
             updatedAt: Date;
             name: string;
             slug: string;
-        };
-        generation: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            name: string;
-            slug: string;
             image: string;
-            chassis: string;
-            engine: string;
-            engineVolume: string;
-            yearFrom: string;
-            yearTo: string;
-            modelId: number;
         };
         user: {
             id: number;
@@ -421,9 +435,9 @@ export declare class ProductController {
         _count: {
             orderItems: number;
             reviews: number;
+            generation: number;
             category: number;
             manufacture: number;
-            generation: number;
             user: number;
         };
     }[]>;
@@ -439,16 +453,16 @@ export declare class ProductController {
         images: string[];
         inStock: boolean;
         discount: number;
+        discountedPrice: number;
+        universal: boolean;
         categoryId: number;
         manufactureId: number;
-        generationId: number;
         userId: number;
         orderItems: {
             id: number;
             createdAt: Date;
             updatedAt: Date;
             quantity: number;
-            price: number;
             orderId: number;
             productId: number;
         }[];
@@ -456,9 +470,24 @@ export declare class ProductController {
             id: number;
             createdAt: Date;
             updatedAt: Date;
+            rating: number;
             text: string;
             userId: number;
             productId: number;
+        }[];
+        generation: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+            image: string;
+            chassis: string;
+            engine: string;
+            engineVolume: string;
+            yearFrom: string;
+            yearTo: string;
+            modelId: number;
         }[];
         category: {
             id: number;
@@ -473,20 +502,7 @@ export declare class ProductController {
             updatedAt: Date;
             name: string;
             slug: string;
-        };
-        generation: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            name: string;
-            slug: string;
             image: string;
-            chassis: string;
-            engine: string;
-            engineVolume: string;
-            yearFrom: string;
-            yearTo: string;
-            modelId: number;
         };
         user: {
             id: number;
@@ -504,9 +520,9 @@ export declare class ProductController {
         _count: {
             orderItems: number;
             reviews: number;
+            generation: number;
             category: number;
             manufacture: number;
-            generation: number;
             user: number;
         };
     }[]>;
@@ -522,16 +538,16 @@ export declare class ProductController {
         images: string[];
         inStock: boolean;
         discount: number;
+        discountedPrice: number;
+        universal: boolean;
         categoryId: number;
         manufactureId: number;
-        generationId: number;
         userId: number;
         orderItems: {
             id: number;
             createdAt: Date;
             updatedAt: Date;
             quantity: number;
-            price: number;
             orderId: number;
             productId: number;
         }[];
@@ -539,9 +555,24 @@ export declare class ProductController {
             id: number;
             createdAt: Date;
             updatedAt: Date;
+            rating: number;
             text: string;
             userId: number;
             productId: number;
+        }[];
+        generation: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+            image: string;
+            chassis: string;
+            engine: string;
+            engineVolume: string;
+            yearFrom: string;
+            yearTo: string;
+            modelId: number;
         }[];
         category: {
             id: number;
@@ -556,20 +587,7 @@ export declare class ProductController {
             updatedAt: Date;
             name: string;
             slug: string;
-        };
-        generation: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            name: string;
-            slug: string;
             image: string;
-            chassis: string;
-            engine: string;
-            engineVolume: string;
-            yearFrom: string;
-            yearTo: string;
-            modelId: number;
         };
         user: {
             id: number;
@@ -587,9 +605,9 @@ export declare class ProductController {
         _count: {
             orderItems: number;
             reviews: number;
+            generation: number;
             category: number;
             manufacture: number;
-            generation: number;
             user: number;
         };
     }[]>;
@@ -605,11 +623,13 @@ export declare class ProductController {
         images: string[];
         inStock: boolean;
         discount: number;
+        discountedPrice: number;
+        universal: boolean;
         categoryId: number;
         manufactureId: number;
-        generationId: number;
         userId: number;
     }>;
+    createManyProducts(productDto: ProductDto[]): Promise<import(".prisma/client").Prisma.BatchPayload>;
     updateProduct(id: string, dto: ProductDto): Promise<{
         id: number;
         createdAt: Date;
@@ -622,9 +642,10 @@ export declare class ProductController {
         images: string[];
         inStock: boolean;
         discount: number;
+        discountedPrice: number;
+        universal: boolean;
         categoryId: number;
         manufactureId: number;
-        generationId: number;
         userId: number;
     }>;
     deleteProduct(id: string): Promise<{
@@ -639,9 +660,11 @@ export declare class ProductController {
         images: string[];
         inStock: boolean;
         discount: number;
+        discountedPrice: number;
+        universal: boolean;
         categoryId: number;
         manufactureId: number;
-        generationId: number;
         userId: number;
     }>;
 }
+export {};

@@ -43,4 +43,14 @@ export class UserController {
 	) {
 		return this.userService.toggleFavorite(id, +productId);
 	}
+
+	@HttpCode(200)
+	@Auth()
+	@Patch("profile/add-to-cart/:productId")
+	async addToCart(
+		@CurrentUser("id") id: number,
+		@Param("productId") productId: string
+	) {
+		return this.userService.toggleFavorite(id, +productId);
+	}
 }

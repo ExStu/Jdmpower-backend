@@ -17,27 +17,28 @@ import { GenerationModule } from "./generation/generation.module";
 import { CarDto } from "./car/car.dto";
 import { ModelModule } from "./model/model.module";
 import { CurrencyModule } from "./currency/currency.module";
+import { EmailModule } from "./email/email.module";
 
 @Module({
-  imports:
-    [
-      ConfigModule.forRoot(),
-      AuthModule,
-      UserModule,
-      ProductModule,
-      ReviewModule,
-      CategoryModule,
-      OrderModule,
-      StatisticsModule,
-      PaginationModule,
-      NewsModule,
-      FilesModule,
-      GenerationModule,
-      CarDto,
-      ModelModule,
-      CurrencyModule
-    ],
-  controllers: [AppController],
-  providers: [AppService, PrismaService],
+	imports: [
+		ConfigModule.forRoot(),
+		AuthModule,
+		UserModule,
+		ProductModule,
+		ReviewModule,
+		CategoryModule,
+		OrderModule,
+		StatisticsModule,
+		PaginationModule,
+		NewsModule,
+		FilesModule,
+		GenerationModule,
+		CarDto,
+		ModelModule,
+		CurrencyModule,
+		EmailModule
+	],
+	controllers: [AppController],
+	providers: [AppService, PrismaService]
 })
 export class AppModule {}

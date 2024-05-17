@@ -18,35 +18,46 @@ const auth_decorator_1 = require("../auth/decorators/auth.decorator");
 const user_decorator_1 = require("../auth/decorators/user.decorator");
 const order_service_1 = require("./order.service");
 const swagger_1 = require("@nestjs/swagger");
+const order_dto_1 = require("./order.dto");
 let OrderController = exports.OrderController = class OrderController {
     constructor(orderService) {
         this.orderService = orderService;
     }
-    getAll() {
+    async getAll() {
         return this.orderService.getAll();
     }
-    getByUserId(userId) {
+    async getByUserId(userId) {
         return this.orderService.getByUserId(userId);
+    }
+    async createOrder(dto) {
+        return this.orderService.createOrder(dto);
     }
 };
 __decorate([
     (0, common_1.Get)(),
-    (0, auth_decorator_1.Auth)('admin'),
+    (0, auth_decorator_1.Auth)("admin"),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], OrderController.prototype, "getAll", null);
 __decorate([
-    (0, common_1.Get)('by-user'),
+    (0, common_1.Get)("by-user"),
     (0, auth_decorator_1.Auth)(),
-    __param(0, (0, user_decorator_1.CurrentUser)('id')),
+    __param(0, (0, user_decorator_1.CurrentUser)("id")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], OrderController.prototype, "getByUserId", null);
+__decorate([
+    (0, common_1.Post)("create-order"),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [order_dto_1.OrderDto]),
+    __metadata("design:returntype", Promise)
+], OrderController.prototype, "createOrder", null);
 exports.OrderController = OrderController = __decorate([
     (0, swagger_1.ApiTags)("Orders"),
-    (0, common_1.Controller)('orders'),
+    (0, common_1.Controller)("orders"),
     __metadata("design:paramtypes", [order_service_1.OrderService])
 ], OrderController);
 //# sourceMappingURL=order.controller.js.map

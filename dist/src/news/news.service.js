@@ -14,9 +14,32 @@ const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../prisma.service");
 const generate_slug_1 = require("../utils/generate-slug");
 const return_news_object_1 = require("./return-news.object");
+const pagination_service_1 = require("../pagination/pagination.service");
 let NewsService = exports.NewsService = class NewsService {
-    constructor(prisma) {
+    constructor(prisma, paginationService) {
         this.prisma = prisma;
+        this.paginationService = paginationService;
+    }
+    async getAll(dto) {
+        const { perPage, skip, page } = this.paginationService.getPagination({
+            page: dto.pageNumber,
+            perPage: "8"
+        });
+        const news = await this.prisma.news.findMany({
+            orderBy: {
+                createdAt: "desc"
+            },
+            skip,
+            take: perPage,
+            select: return_news_object_1.returnNewsObject
+        });
+        const totalLength = await this.prisma.news.count();
+        return {
+            news,
+            totalLength,
+            pageNumber: page,
+            pageSize: perPage
+        };
     }
     async byId(id) {
         const news = await this.prisma.news.findUnique({
@@ -26,22 +49,13 @@ let NewsService = exports.NewsService = class NewsService {
             select: return_news_object_1.returnNewsObject
         });
         if (!news) {
-            throw new Error('Post not found');
+            throw new Error("Post not found");
         }
         return news;
-    }
-    async getAll() {
-        return this.prisma.news.findMany({
-            orderBy: {
-                createdAt: "desc"
-            },
-            select: return_news_object_1.returnNewsObject
-        });
     }
     async create(dto) {
         return this.prisma.news.create({
             data: {
-                updatedAt: new Date(),
                 image: dto.image,
                 title: dto.title,
                 description: dto.description,
@@ -66,12 +80,13 @@ let NewsService = exports.NewsService = class NewsService {
         return this.prisma.news.delete({
             where: {
                 id
-            },
+            }
         });
     }
 };
 exports.NewsService = NewsService = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService,
+        pagination_service_1.PaginationService])
 ], NewsService);
 //# sourceMappingURL=news.service.js.map

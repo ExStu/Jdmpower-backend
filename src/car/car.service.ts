@@ -6,7 +6,7 @@ import { returnCarObject } from "./return-car.object";
 
 @Injectable()
 export class CarService {
-	constructor (private prisma: PrismaService) {}
+	constructor(private prisma: PrismaService) {}
 
 	async byId(id: number) {
 		const car = await this.prisma.car.findUnique({
@@ -14,13 +14,13 @@ export class CarService {
 				id
 			},
 			select: returnCarObject
-		})
+		});
 
 		if (!car) {
-			throw new Error('Car not found')
+			throw new Error("Car not found");
 		}
 
-		return car
+		return car;
 	}
 
 	async bySlug(slug: string) {
@@ -29,13 +29,13 @@ export class CarService {
 				slug
 			},
 			select: returnCarObject
-		})
+		});
 
 		if (!car) {
-			throw new NotFoundException('Car not found')
+			throw new NotFoundException("Car not found");
 		}
 
-		return car
+		return car;
 	}
 
 	async getAll() {
@@ -43,18 +43,18 @@ export class CarService {
 			orderBy: {
 				name: "asc"
 			},
-			select: returnCarObject,
-		})
+			select: returnCarObject
+		});
 	}
 
-	async create() {
+	async create(dto: CarDto) {
 		return this.prisma.car.create({
 			data: {
-				name: "",
-				slug: "",
-				image: ""
+				name: dto.name,
+				slug: generateSlug(dto.name),
+				image: dto.image
 			}
-		})
+		});
 	}
 
 	async update(id: number, dto: CarDto) {
@@ -67,14 +67,14 @@ export class CarService {
 				slug: generateSlug(dto.name),
 				image: dto.image
 			}
-		})
+		});
 	}
 
 	async delete(id: number) {
 		return this.prisma.car.delete({
 			where: {
 				id
-			},
-		})
+			}
+		});
 	}
 }

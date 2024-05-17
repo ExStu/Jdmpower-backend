@@ -1,54 +1,68 @@
-import { IsString } from "class-validator";
+import { IsOptional, IsString } from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
 
 export class ManufactureDto {
 	@ApiProperty({
-		type: String,
+		type: String
 	})
 	@IsString()
-	name: string
+	name: string;
+
+	@ApiProperty({
+		type: String
+	})
+	@IsOptional()
+	@IsString()
+	image?: string;
 }
 
 export class ManufactureResponseDto {
 	@ApiProperty({
-		type: Number,
+		type: Number
 	})
-	id: number
+	id: number;
 
 	@ApiProperty({
-		type: String,
+		type: String
 	})
-	name: string
+	name: string;
 
 	@ApiProperty({
-		type: String,
+		type: String
 	})
-	slug: string
+	slug: string;
+
+	@ApiProperty({
+		type: String
+	})
+	@IsString()
+	@IsOptional()
+	image?: string;
 }
 
 export class MutationManufactureResponseDto {
 	@ApiProperty({
-		type: Number,
+		type: Number
 	})
-	id: number
+	id: number;
 
 	@ApiProperty({
 		type: Date
 	})
-	createdAt: Date
+	createdAt: Date;
 
 	@ApiProperty({
 		type: Date
 	})
-	updatedAt: Date
+	updatedAt: Date;
 
 	@ApiProperty({
-		type: String,
+		type: String
 	})
-	name: string
+	name: string;
 
 	@ApiProperty({
-		type: String,
+		type: String
 	})
-	slug: string
+	slug: string;
 }

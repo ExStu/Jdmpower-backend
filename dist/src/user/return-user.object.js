@@ -10,6 +10,6 @@ exports.returnUserObject = {
     avatarPath: true,
     password: false,
     phone: true,
-    isAdmin: true
+    isAdmin: false
 };
 //# sourceMappingURL=return-user.object.js.map

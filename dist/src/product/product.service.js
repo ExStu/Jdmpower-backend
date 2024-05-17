@@ -11,22 +11,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProductService = void 0;
 const common_1 = require("@nestjs/common");
-const category_service_1 = require("../category/category.service");
 const pagination_service_1 = require("../pagination/pagination.service");
 const prisma_service_1 = require("../prisma.service");
 const convert_to_number_1 = require("../utils/convert-to-number");
 const generate_slug_1 = require("../utils/generate-slug");
 const get_all_product_dto_1 = require("./dto/get-all.product.dto");
 const return_product_object_1 = require("./return-product.object");
-const manufacture_service_1 = require("../manufacture/manufacture.service");
-const generation_service_1 = require("../generation/generation.service");
 let ProductService = exports.ProductService = class ProductService {
-    constructor(prisma, paginationService, categoryService, manufactureService, generationService) {
+    constructor(prisma, paginationService) {
         this.prisma = prisma;
         this.paginationService = paginationService;
-        this.categoryService = categoryService;
-        this.manufactureService = manufactureService;
-        this.generationService = generationService;
     }
     async getAll(queryDto = {}) {
         const { perPage, skip, page } = this.paginationService.getPagination({
@@ -44,14 +38,13 @@ let ProductService = exports.ProductService = class ProductService {
         const totalLength = await this.prisma.product.count({
             where: filters
         });
-        const minPrice = await this.prisma.product.findFirst({
-            orderBy: {
-                price: "asc",
+        const prices = await this.prisma.product.aggregate({
+            where: filters,
+            _min: {
+                price: true
             },
-        });
-        const maxPrice = await this.prisma.product.findFirst({
-            orderBy: {
-                price: "desc"
+            _max: {
+                price: true
             }
         });
         return {
@@ -60,8 +53,8 @@ let ProductService = exports.ProductService = class ProductService {
             orderBy: sortOption,
             pageSize: perPage,
             pageNumber: page,
-            minPrice: minPrice.price,
-            maxPrice: maxPrice.price
+            minPrice: prices._min.price,
+            maxPrice: prices._max.price
         };
     }
     async getProductsBySearch(searchTerm) {
@@ -79,7 +72,7 @@ let ProductService = exports.ProductService = class ProductService {
                             contains: searchTerm,
                             mode: "insensitive"
                         }
-                    },
+                    }
                 ]
             },
             select: return_product_object_1.returnProductObjectFullest
@@ -96,9 +89,9 @@ let ProductService = exports.ProductService = class ProductService {
         if (dto.minPrice || dto.maxPrice)
             filters.push(this.getPriceFilter((0, convert_to_number_1.convertToNumber)(dto.minPrice), (0, convert_to_number_1.convertToNumber)(dto.maxPrice)));
         if (dto.categoryId)
-            filters.push(this.getCategoryFilter(+dto.categoryId));
+            filters.push(this.getCategoryFilter(dto.categoryId));
         if (dto.manufactureId)
-            filters.push(this.getManufactureFilter(+dto.manufactureId));
+            filters.push(this.getManufactureFilter(dto.manufactureId));
         if (dto.generationId)
             filters.push(this.getGenerationFilter(+dto.generationId));
         return filters.length ? { AND: filters } : {};
@@ -106,9 +99,9 @@ let ProductService = exports.ProductService = class ProductService {
     getSortOption(sort) {
         switch (sort) {
             case get_all_product_dto_1.EnumProductSort.LOW_PRICE:
-                return { price: "asc" };
+                return { discountedPrice: "asc" };
             case get_all_product_dto_1.EnumProductSort.HIGH_PRICE:
-                return { price: "desc" };
+                return { discountedPrice: "desc" };
             case get_all_product_dto_1.EnumProductSort.OLDEST:
                 return { createdAt: "asc" };
             default:
@@ -158,18 +151,28 @@ let ProductService = exports.ProductService = class ProductService {
         };
     }
     getCategoryFilter(categoryId) {
+        const categories = categoryId
+            .split(",")
+            .map(item => ({ category: { id: Number(item) } }));
         return {
-            categoryId
+            OR: categories
         };
     }
     getManufactureFilter(manufactureId) {
+        const manufactures = manufactureId
+            .split(",")
+            .map(item => ({ manufacture: { id: Number(item) } }));
         return {
-            manufactureId
+            OR: manufactures
         };
     }
     getGenerationFilter(generationId) {
         return {
-            generationId
+            generation: {
+                some: {
+                    id: generationId
+                }
+            }
         };
     }
     async byId(id) {
@@ -226,7 +229,9 @@ let ProductService = exports.ProductService = class ProductService {
         const products = await this.prisma.product.findMany({
             where: {
                 generation: {
-                    slug: generationSlug
+                    some: {
+                        slug: generationSlug
+                    }
                 }
             },
             select: return_product_object_1.returnProductObjectFullest
@@ -235,14 +240,19 @@ let ProductService = exports.ProductService = class ProductService {
             throw new common_1.NotFoundException("Products not found!");
         return products;
     }
-    async getSimilar(id) {
+    async getSimilar(id, chosenGenId) {
         const currentProduct = await this.byId(id);
+        const generations = currentProduct.generation.map(item => item.id);
         if (!currentProduct)
             throw new common_1.NotFoundException("Current product not found!");
         const products = await this.prisma.product.findMany({
             where: {
-                category: {
-                    name: currentProduct.category.name
+                generation: {
+                    some: {
+                        id: {
+                            in: chosenGenId ? [chosenGenId] : generations
+                        }
+                    }
                 },
                 NOT: {
                     id
@@ -259,6 +269,9 @@ let ProductService = exports.ProductService = class ProductService {
         return products;
     }
     async create(dto) {
+        const generations = dto.generationId.map(item => ({
+            id: item
+        }));
         return this.prisma.product.create({
             data: {
                 description: dto.description,
@@ -267,19 +280,47 @@ let ProductService = exports.ProductService = class ProductService {
                 slug: (0, generate_slug_1.generateSlug)(dto.name),
                 sku: dto.sku,
                 discount: dto.discount,
+                discountedPrice: dto.price * (1 - dto.discount / 100),
                 inStock: dto.inStock,
+                universal: dto.universal,
                 categoryId: dto.categoryId,
                 manufactureId: dto.manufactureId,
-                generationId: dto.generationId,
+                generation: {
+                    connect: generations
+                },
                 images: dto.images
             }
         });
     }
+    async createMany(dto) {
+        const getGenerations = (genIds) => genIds.map(item => ({
+            id: item
+        }));
+        const productsToCreate = dto.map(item => ({
+            description: item.description,
+            name: item.name,
+            price: item.price,
+            slug: (0, generate_slug_1.generateSlug)(item.name),
+            sku: item.sku,
+            discount: item.discount,
+            discountedPrice: item.price * (1 - item.discount / 100),
+            inStock: item.inStock,
+            categoryId: item.categoryId,
+            manufactureId: item.manufactureId,
+            generation: {
+                connect: getGenerations(item.generationId)
+            },
+            images: item.images
+        }));
+        return this.prisma.product.createMany({
+            data: productsToCreate
+        });
+    }
     async update(id, dto) {
         const { description, images, price, name, categoryId, manufactureId, generationId, sku } = dto;
-        await this.categoryService.byId(categoryId);
-        await this.manufactureService.byId(manufactureId);
-        await this.generationService.byId(generationId);
+        const generations = generationId.map(item => ({
+            id: item
+        }));
         return this.prisma.product.update({
             where: {
                 id
@@ -302,9 +343,7 @@ let ProductService = exports.ProductService = class ProductService {
                     }
                 },
                 generation: {
-                    connect: {
-                        id: generationId
-                    }
+                    connect: generations
                 }
             }
         });
@@ -316,9 +355,6 @@ let ProductService = exports.ProductService = class ProductService {
 exports.ProductService = ProductService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [prisma_service_1.PrismaService,
-        pagination_service_1.PaginationService,
-        category_service_1.CategoryService,
-        manufacture_service_1.ManufactureService,
-        generation_service_1.GenerationService])
+        pagination_service_1.PaginationService])
 ], ProductService);
 //# sourceMappingURL=product.service.js.map

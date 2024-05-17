@@ -14,6 +14,7 @@ const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../prisma.service");
 const return_user_object_1 = require("./return-user.object");
 const argon2_1 = require("argon2");
+const return_product_object_1 = require("../product/return-product.object");
 let UserService = exports.UserService = class UserService {
     constructor(prisma) {
         this.prisma = prisma;
@@ -26,38 +27,13 @@ let UserService = exports.UserService = class UserService {
             select: {
                 ...return_user_object_1.returnUserObject,
                 favorites: {
-                    select: {
-                        id: true,
-                        name: true,
-                        sku: true,
-                        price: true,
-                        images: true,
-                        slug: true,
-                        discount: true,
-                        inStock: true,
-                        category: {
-                            select: {
-                                slug: true
-                            }
-                        },
-                        manufacture: {
-                            select: {
-                                slug: true
-                            }
-                        },
-                        generation: {
-                            select: {
-                                slug: true
-                            }
-                        },
-                        reviews: true
-                    }
+                    select: return_product_object_1.returnProductObjectFullest
                 },
                 ...selectObject
             }
         });
         if (!user) {
-            throw new Error('User not found');
+            throw new common_1.NotFoundException("User not found");
         }
         return user;
     }
@@ -66,7 +42,7 @@ let UserService = exports.UserService = class UserService {
             where: { email: dto.email }
         });
         if (isSameUser && id !== isSameUser.id)
-            throw new common_1.BadRequestException('Email already in use');
+            throw new common_1.BadRequestException("Email already in use");
         const user = await this.byId(id);
         return this.prisma.user.update({
             where: {
@@ -84,7 +60,7 @@ let UserService = exports.UserService = class UserService {
     async toggleFavorite(userId, productId) {
         const user = await this.byId(userId);
         if (!user)
-            throw new common_1.NotFoundException('User not found!');
+            throw new common_1.NotFoundException("User not found!");
         const isExists = user.favorites.some(product => product.id === productId);
         await this.prisma.user.update({
             where: {
@@ -92,13 +68,13 @@ let UserService = exports.UserService = class UserService {
             },
             data: {
                 favorites: {
-                    [isExists ? 'disconnect' : 'connect']: {
+                    [isExists ? "disconnect" : "connect"]: {
                         id: productId
                     }
                 }
             }
         });
-        return { message: 'Success' };
+        return { message: "Success" };
     }
 };
 exports.UserService = UserService = __decorate([

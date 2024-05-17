@@ -26,7 +26,6 @@ let AuthService = exports.AuthService = class AuthService {
         const user = await this.validateUser(dto);
         const tokens = await this.issueTokens(user.id);
         return {
-            user: this.returnUserFields(user),
             ...tokens
         };
     }
@@ -39,7 +38,6 @@ let AuthService = exports.AuthService = class AuthService {
         });
         const tokens = await this.issueTokens(user.id);
         return {
-            user: this.returnUserFields(user),
             ...tokens
         };
     }
@@ -54,16 +52,17 @@ let AuthService = exports.AuthService = class AuthService {
         const user = await this.prisma.user.create({
             data: {
                 email: dto.email,
-                name: faker_1.faker.person.firstName(),
+                name: dto.name,
+                surname: dto.surname,
+                middleName: dto.middleName,
                 avatarPath: faker_1.faker.image.avatar(),
-                phone: faker_1.faker.phone.number("+7 (###) ###-##-##"),
+                phone: null,
                 password: await (0, argon2_1.hash)(dto.password),
                 isAdmin: false
             }
         });
         const tokens = await this.issueTokens(user.id);
         return {
-            user: this.returnUserFields(user),
             ...tokens
         };
     }

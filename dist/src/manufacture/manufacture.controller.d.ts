@@ -24,11 +24,13 @@ export declare class ManufactureController {
             images: string[];
             inStock: boolean;
             discount: number;
+            discountedPrice: number;
+            universal: boolean;
             categoryId: number;
             manufactureId: number;
-            generationId: number;
             userId: number;
         }[];
+        image: string;
     }[]>;
     getBySlug(manufactureSlug: string): Promise<{
         id: number;
@@ -51,11 +53,13 @@ export declare class ManufactureController {
             images: string[];
             inStock: boolean;
             discount: number;
+            discountedPrice: number;
+            universal: boolean;
             categoryId: number;
             manufactureId: number;
-            generationId: number;
             userId: number;
         }[];
+        image: string;
     }>;
     getById(manufactureId: string): Promise<{
         id: number;
@@ -78,11 +82,13 @@ export declare class ManufactureController {
             images: string[];
             inStock: boolean;
             discount: number;
+            discountedPrice: number;
+            universal: boolean;
             categoryId: number;
             manufactureId: number;
-            generationId: number;
             userId: number;
         }[];
+        image: string;
     }>;
     create(manufactureDto: ManufactureDto): Promise<{
         id: number;
@@ -90,6 +96,7 @@ export declare class ManufactureController {
         updatedAt: Date;
         name: string;
         slug: string;
+        image: string;
     }>;
     update(manufactureId: string, dto: ManufactureDto): Promise<{
         id: number;
@@ -97,6 +104,7 @@ export declare class ManufactureController {
         updatedAt: Date;
         name: string;
         slug: string;
+        image: string;
     }>;
     delete(id: string): Promise<{
         id: number;
@@ -119,10 +127,12 @@ export declare class ManufactureController {
             images: string[];
             inStock: boolean;
             discount: number;
+            discountedPrice: number;
+            universal: boolean;
             categoryId: number;
             manufactureId: number;
-            generationId: number;
             userId: number;
         }[];
+        image: string;
     }>;
 }

@@ -1,6 +1,8 @@
 import { faker } from "@faker-js/faker";
 import { PrismaClient, Product } from "@prisma/client";
 import * as dotenv from "dotenv";
+import { generateSlug } from "../src/utils/generate-slug";
+import { generationsMap } from "./mocks";
 // import { generateDiscount } from 'src/utils/random-number'
 // import { generateSlug } from 'src/utils/generate-slug'
 // import { getRandomNumber } from 'src/utils/random-number'
@@ -22,29 +24,49 @@ const generateDiscount = () => {
 	return discounts[randomIndex];
 };
 
+const categoryMap = [
+	"Тормоза",
+	"Трансмиссия",
+	"Электроника",
+	"Моторные комплектующие",
+	"Выпускные системы",
+	"Экстерьер и подкапотное",
+	"Подвесочные компоненты",
+	"Охлаждение",
+	"Интерьер и другое"
+];
+const manufactureMap = [
+	"Aem",
+	"Blitz",
+	"Blox",
+	"Garrett",
+	"Invidia",
+	"Tanabe",
+	"Tein",
+	"Defi",
+	"Cusco"
+];
+const carMap = [
+	"Lexus",
+	"Honda",
+	"Mitsubishi",
+	"Subaru",
+	"Toyota",
+	"Nissan",
+	"Mazda",
+	"Infinity"
+];
+
+const models = ["Lancer", "Lancer Evolution", "Eclipse"];
+
 const prisma = new PrismaClient();
 
-const createProducts = async (quantity: number) => {
-	const products: Product[] = [];
-	// const news: News[] = [];
-	//
-	// for (let i = 0; i < quantity; i++) {
-	// 	const newsName = faker.commerce.productName();
-	//
-	// 	const newsPost = await prisma.news.create({
-	// 		data: {
-	// 			image: faker.image.imageUrl(500, 500, "cat", true),
-	// 			title: newsName,
-	// 			description: faker.commerce
-	// 				.productDescription()
-	// 				.concat(faker.commerce.productDescription()),
-	// 			slug: faker.helpers.slugify(newsName).toLowerCase()
-	// 		}
-	// 	});
-	//
-	// 	news.push(newsPost);
-	// }
-
+const seed = async (quantity: number) => {
+	let first = 1;
+	let second = 2;
+	let third = 3;
+	let catId = 1;
+	let manId = 1;
 	for (let i = 0; i < quantity; i++) {
 		const productName = faker.commerce.productName() + i;
 		const categoryName = faker.commerce.department();
@@ -52,24 +74,55 @@ const createProducts = async (quantity: number) => {
 		const carName = faker.vehicle.vehicle();
 		const modelName = faker.vehicle.model();
 		const generationName = faker.vehicle.type();
+		const newsName = faker.commerce.productName();
 		// const brandName = faker.commerce.productMaterial()
+		const generatedPrice = +faker.commerce.price(10, 999, 0);
+		const generatedDiscount = generateDiscount();
+
+		// const newsPost = await prisma.news.create({
+		// 	data: {
+		// 		image: faker.image.imageUrl(500, 500, "cat", true),
+		// 		title: newsName,
+		// 		description: faker.lorem.paragraphs(10, "<br/>\n"),
+		// 		slug: generateSlug(newsName.toLowerCase())
+		// 	}
+		// });
+
+		if (catId === 9) {
+			catId = 1;
+			manId = 1;
+		}
+		if (third === 99) {
+			first = 1;
+			second = 2;
+			third = 3;
+		}
+		if (i % 29 === 0) {
+			first += 3;
+			second += 3;
+			third += 3;
+			catId += 1;
+			manId += 1;
+		}
 
 		const product = await prisma.product.create({
 			data: {
 				name: productName,
-				slug: faker.helpers.slugify(productName).toLowerCase(),
+				slug: generateSlug(productName.toLowerCase()),
 				sku: faker.vehicle.vrm(),
 				description: faker.commerce.productDescription(),
-				price: +faker.commerce.price(10, 999, 0),
+				price: generatedPrice,
 				inStock: faker.datatype.boolean(0.5),
-				discount: generateDiscount(),
+				universal: false,
+				discount: generatedDiscount,
+				discountedPrice: generatedPrice * (1 - generatedDiscount / 100),
 				images: Array.from({
 					length: faker.datatype.number({ min: 2, max: 6 })
 				}).map(() => faker.image.imageUrl(500, 500, "cat", true)),
 				category: {
 					connect: {
-						id: 10
-					},
+						id: catId
+					}
 					// 4, 5, 6, 7, 8, 9, 10
 
 					// create: {
@@ -79,7 +132,7 @@ const createProducts = async (quantity: number) => {
 				},
 				manufacture: {
 					connect: {
-						id: 13
+						id: manId
 					}
 					// 4, 5, 6, 8, 9, 12, 13
 					// create: {
@@ -88,9 +141,7 @@ const createProducts = async (quantity: number) => {
 					// }
 				},
 				generation: {
-					connect: {
-						id: 29
-					},
+					connect: [{ id: first }, { id: second }, { id: third }]
 					// create: {
 					// 	name: generationName,
 					// 	slug: faker.helpers.slugify(generationName).toLowerCase(),
@@ -126,41 +177,98 @@ const createProducts = async (quantity: number) => {
 					// 		}
 					// 	}
 					// }
-				},
-				reviews: {
-					create: [
-						{
-							// rating: faker.datatype.number({ min: 1, max: 5}),
-							text: faker.lorem.paragraph(),
-							user: {
-								connect: {
-									id: 1
-								}
-							}
-						},
-						{
-							// rating: faker.datatype.number({ min: 1, max: 5}),
-							text: faker.lorem.paragraph(),
-							user: {
-								connect: {
-									id: 1
-								}
-							}
-						}
-					]
 				}
+				// reviews: {
+				// 	create: [
+				// 		{
+				// 			// rating: faker.datatype.number({ min: 1, max: 5}),
+				// 			text: faker.lorem.paragraph(),
+				// 			user: {
+				// 				connect: {
+				// 					id: 1
+				// 				}
+				// 			}
+				// 		},
+				// 		{
+				// 			// rating: faker.datatype.number({ min: 1, max: 5}),
+				// 			text: faker.lorem.paragraph(),
+				// 			user: {
+				// 				connect: {
+				// 					id: 1
+				// 				}
+				// 			}
+				// 		}
+				// 	]
+				// }
 			}
 		});
 
-		products.push(product);
+		// const category = await prisma.category.create({
+		// 	data: {
+		// 		name: categoryMap[i],
+		// 		slug: generateSlug(categoryMap[i])
+		// 	}
+		// });
+		//
+		// const manufacture = await prisma.manufacture.create({
+		// 	data: {
+		// 		name: manufactureMap[i],
+		// 		slug: generateSlug(manufactureMap[i]),
+		// 		image: `http://localhost:4200/uploads/manufactures/${manufactureMap[
+		// 			i
+		// 		].toLowerCase()}`
+		// 	}
+		// });
+
+		// const car = await prisma.car.create({
+		// 	data: {
+		// 		name: carMap[i],
+		// 		slug: generateSlug(carMap[i].toLowerCase()),
+		// 		image: faker.image.transport(500, 500, true)
+		// 	}
+		// });
+
+		// const model = await prisma.model.create({
+		// 	data: {
+		// 		name: models[i],
+		// 		slug: generateSlug(models[i].toLowerCase()),
+		// 		image: faker.image.transport(500, 500, true),
+		// 		car: {
+		// 			connect: {
+		// 				id: 3
+		// 			}
+		// 		}
+		// 		// generations: [],
+		// 	}
+		// });
+
+		// const generation = await prisma.generation.create({
+		// 	data: {
+		// 		name: generationName,
+		// 		slug: generateSlug(generationName.toLowerCase()),
+		// 		chassis: faker.vehicle.vin(),
+		// 		engine: faker.vehicle.vrm(),
+		// 		engineVolume: "2.0",
+		// 		yearFrom: "2017",
+		// 		yearTo: "2020",
+		// 		image: faker.image.transport(500, 500, true),
+		// 		model: {
+		// 			connect: {
+		// 				id: 39
+		// 			}
+		// 		}
+		// 	}
+		// });
+
+		// products.push(product);
 	}
 
-	console.log(`Created ${products.length} products`);
+	// console.log(`Created ${products.length} products`);
 };
 
 async function main() {
 	console.log("Started seeding...");
-	await createProducts(10);
+	await seed(6600);
 }
 
 main()

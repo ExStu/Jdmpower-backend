@@ -15,30 +15,31 @@ const category_dto_1 = require("../../category/category.dto");
 const manufacture_dto_1 = require("../../manufacture/manufacture.dto");
 const generation_dto_1 = require("../../generation/generation.dto");
 const review_dto_1 = require("../../review/review.dto");
+const class_validator_1 = require("class-validator");
 class ProductResponseDto {
 }
 exports.ProductResponseDto = ProductResponseDto;
 __decorate([
     (0, swagger_1.ApiProperty)({
-        type: Number,
+        type: Number
     }),
     __metadata("design:type", Number)
 ], ProductResponseDto.prototype, "id", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        type: String,
+        type: String
     }),
     __metadata("design:type", String)
 ], ProductResponseDto.prototype, "name", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        type: String,
+        type: String
     }),
     __metadata("design:type", String)
 ], ProductResponseDto.prototype, "slug", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        type: String,
+        type: String
     }),
     __metadata("design:type", String)
 ], ProductResponseDto.prototype, "sku", void 0);
@@ -56,43 +57,51 @@ __decorate([
 ], ProductResponseDto.prototype, "description", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        type: Number,
+        type: Number
     }),
     __metadata("design:type", Number)
 ], ProductResponseDto.prototype, "price", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        type: Number,
+        type: Number
     }),
     __metadata("design:type", Number)
 ], ProductResponseDto.prototype, "discount", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        type: Boolean,
+        type: Number
+    }),
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsNumber)(),
+    __metadata("design:type", Number)
+], ProductResponseDto.prototype, "discountedPrice", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({
+        type: Boolean
     }),
     __metadata("design:type", Boolean)
 ], ProductResponseDto.prototype, "inStock", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        type: category_dto_1.CategoryDto,
+        type: category_dto_1.CategoryDto
     }),
     __metadata("design:type", category_dto_1.CategoryResponseDto)
 ], ProductResponseDto.prototype, "category", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        type: manufacture_dto_1.ManufactureDto,
+        type: manufacture_dto_1.ManufactureDto
     }),
     __metadata("design:type", manufacture_dto_1.ManufactureResponseDto)
 ], ProductResponseDto.prototype, "manufacture", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        type: generation_dto_1.GenerationDto,
+        type: generation_dto_1.GenerationDto
     }),
     __metadata("design:type", generation_dto_1.GenerationResponseDto)
 ], ProductResponseDto.prototype, "generation", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        type: review_dto_1.ReviewDto,
+        type: review_dto_1.ReviewDto
     }),
     __metadata("design:type", review_dto_1.ReviewDto)
 ], ProductResponseDto.prototype, "reviews", void 0);
@@ -101,19 +110,19 @@ class ProductMutationResponseDto {
 exports.ProductMutationResponseDto = ProductMutationResponseDto;
 __decorate([
     (0, swagger_1.ApiProperty)({
-        type: Number,
+        type: Number
     }),
     __metadata("design:type", Number)
 ], ProductMutationResponseDto.prototype, "id", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        type: Date,
+        type: Date
     }),
     __metadata("design:type", Date)
 ], ProductMutationResponseDto.prototype, "createdAt", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        type: Date,
+        type: Date
     }),
     __metadata("design:type", Date)
 ], ProductMutationResponseDto.prototype, "updatedAt", void 0);
@@ -131,61 +140,61 @@ __decorate([
 ], ProductMutationResponseDto.prototype, "description", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        type: String,
+        type: String
     }),
     __metadata("design:type", String)
 ], ProductMutationResponseDto.prototype, "name", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        type: String,
+        type: String
     }),
     __metadata("design:type", String)
 ], ProductMutationResponseDto.prototype, "sku", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        type: Number,
+        type: Number
     }),
     __metadata("design:type", Number)
 ], ProductMutationResponseDto.prototype, "price", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        type: String,
+        type: String
     }),
     __metadata("design:type", String)
 ], ProductMutationResponseDto.prototype, "slug", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        type: Number,
+        type: Number
     }),
     __metadata("design:type", Number)
 ], ProductMutationResponseDto.prototype, "discount", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        type: Boolean,
+        type: Boolean
     }),
     __metadata("design:type", Boolean)
 ], ProductMutationResponseDto.prototype, "inStock", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        type: category_dto_1.CategoryDto,
+        type: category_dto_1.CategoryDto
     }),
     __metadata("design:type", category_dto_1.CategoryDto)
 ], ProductMutationResponseDto.prototype, "category", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        type: manufacture_dto_1.ManufactureDto,
+        type: manufacture_dto_1.ManufactureDto
     }),
     __metadata("design:type", manufacture_dto_1.ManufactureDto)
 ], ProductMutationResponseDto.prototype, "manufacture", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        type: generation_dto_1.GenerationDto,
+        type: generation_dto_1.GenerationDto
     }),
     __metadata("design:type", generation_dto_1.GenerationDto)
 ], ProductMutationResponseDto.prototype, "generation", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        type: review_dto_1.ReviewDto,
+        type: review_dto_1.ReviewDto
     }),
     __metadata("design:type", review_dto_1.ReviewDto)
 ], ProductMutationResponseDto.prototype, "reviews", void 0);

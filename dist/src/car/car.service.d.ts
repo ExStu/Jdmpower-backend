@@ -63,7 +63,7 @@ export declare class CarService {
             carId: number;
         }[];
     }[]>;
-    create(): Promise<{
+    create(dto: CarDto): Promise<{
         id: number;
         createdAt: Date;
         updatedAt: Date;

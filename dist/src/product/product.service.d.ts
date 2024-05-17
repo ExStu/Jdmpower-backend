@@ -1,18 +1,12 @@
 import { Prisma } from "@prisma/client";
-import { CategoryService } from "src/category/category.service";
 import { PaginationService } from "src/pagination/pagination.service";
 import { PrismaService } from "src/prisma.service";
 import { GetAllProductDto } from "./dto/get-all.product.dto";
 import { ProductDto } from "./dto/product.dto";
-import { ManufactureService } from "src/manufacture/manufacture.service";
-import { GenerationService } from "../generation/generation.service";
 export declare class ProductService {
     private prisma;
     private paginationService;
-    private categoryService;
-    private manufactureService;
-    private generationService;
-    constructor(prisma: PrismaService, paginationService: PaginationService, categoryService: CategoryService, manufactureService: ManufactureService, generationService: GenerationService);
+    constructor(prisma: PrismaService, paginationService: PaginationService);
     getAll(queryDto?: GetAllProductDto): Promise<{
         products: {
             id: number;
@@ -26,16 +20,16 @@ export declare class ProductService {
             images: string[];
             inStock: boolean;
             discount: number;
+            discountedPrice: number;
+            universal: boolean;
             categoryId: number;
             manufactureId: number;
-            generationId: number;
             userId: number;
             orderItems: {
                 id: number;
                 createdAt: Date;
                 updatedAt: Date;
                 quantity: number;
-                price: number;
                 orderId: number;
                 productId: number;
             }[];
@@ -43,9 +37,24 @@ export declare class ProductService {
                 id: number;
                 createdAt: Date;
                 updatedAt: Date;
+                rating: number;
                 text: string;
                 userId: number;
                 productId: number;
+            }[];
+            generation: {
+                id: number;
+                createdAt: Date;
+                updatedAt: Date;
+                name: string;
+                slug: string;
+                image: string;
+                chassis: string;
+                engine: string;
+                engineVolume: string;
+                yearFrom: string;
+                yearTo: string;
+                modelId: number;
             }[];
             category: {
                 id: number;
@@ -60,20 +69,7 @@ export declare class ProductService {
                 updatedAt: Date;
                 name: string;
                 slug: string;
-            };
-            generation: {
-                id: number;
-                createdAt: Date;
-                updatedAt: Date;
-                name: string;
-                slug: string;
                 image: string;
-                chassis: string;
-                engine: string;
-                engineVolume: string;
-                yearFrom: string;
-                yearTo: string;
-                modelId: number;
             };
             user: {
                 id: number;
@@ -91,9 +87,9 @@ export declare class ProductService {
             _count: {
                 orderItems: number;
                 reviews: number;
+                generation: number;
                 category: number;
                 manufacture: number;
-                generation: number;
                 user: number;
             };
         }[];
@@ -116,16 +112,16 @@ export declare class ProductService {
         images: string[];
         inStock: boolean;
         discount: number;
+        discountedPrice: number;
+        universal: boolean;
         categoryId: number;
         manufactureId: number;
-        generationId: number;
         userId: number;
         orderItems: {
             id: number;
             createdAt: Date;
             updatedAt: Date;
             quantity: number;
-            price: number;
             orderId: number;
             productId: number;
         }[];
@@ -133,9 +129,24 @@ export declare class ProductService {
             id: number;
             createdAt: Date;
             updatedAt: Date;
+            rating: number;
             text: string;
             userId: number;
             productId: number;
+        }[];
+        generation: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+            image: string;
+            chassis: string;
+            engine: string;
+            engineVolume: string;
+            yearFrom: string;
+            yearTo: string;
+            modelId: number;
         }[];
         category: {
             id: number;
@@ -150,20 +161,7 @@ export declare class ProductService {
             updatedAt: Date;
             name: string;
             slug: string;
-        };
-        generation: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            name: string;
-            slug: string;
             image: string;
-            chassis: string;
-            engine: string;
-            engineVolume: string;
-            yearFrom: string;
-            yearTo: string;
-            modelId: number;
         };
         user: {
             id: number;
@@ -181,9 +179,9 @@ export declare class ProductService {
         _count: {
             orderItems: number;
             reviews: number;
+            generation: number;
             category: number;
             manufacture: number;
-            generation: number;
             user: number;
         };
     }[]>;
@@ -206,16 +204,16 @@ export declare class ProductService {
         images: string[];
         inStock: boolean;
         discount: number;
+        discountedPrice: number;
+        universal: boolean;
         categoryId: number;
         manufactureId: number;
-        generationId: number;
         userId: number;
         orderItems: {
             id: number;
             createdAt: Date;
             updatedAt: Date;
             quantity: number;
-            price: number;
             orderId: number;
             productId: number;
         }[];
@@ -223,9 +221,24 @@ export declare class ProductService {
             id: number;
             createdAt: Date;
             updatedAt: Date;
+            rating: number;
             text: string;
             userId: number;
             productId: number;
+        }[];
+        generation: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+            image: string;
+            chassis: string;
+            engine: string;
+            engineVolume: string;
+            yearFrom: string;
+            yearTo: string;
+            modelId: number;
         }[];
         category: {
             id: number;
@@ -240,20 +253,7 @@ export declare class ProductService {
             updatedAt: Date;
             name: string;
             slug: string;
-        };
-        generation: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            name: string;
-            slug: string;
             image: string;
-            chassis: string;
-            engine: string;
-            engineVolume: string;
-            yearFrom: string;
-            yearTo: string;
-            modelId: number;
         };
         user: {
             id: number;
@@ -271,9 +271,9 @@ export declare class ProductService {
         _count: {
             orderItems: number;
             reviews: number;
+            generation: number;
             category: number;
             manufacture: number;
-            generation: number;
             user: number;
         };
     }>;
@@ -289,16 +289,16 @@ export declare class ProductService {
         images: string[];
         inStock: boolean;
         discount: number;
+        discountedPrice: number;
+        universal: boolean;
         categoryId: number;
         manufactureId: number;
-        generationId: number;
         userId: number;
         orderItems: {
             id: number;
             createdAt: Date;
             updatedAt: Date;
             quantity: number;
-            price: number;
             orderId: number;
             productId: number;
         }[];
@@ -306,9 +306,24 @@ export declare class ProductService {
             id: number;
             createdAt: Date;
             updatedAt: Date;
+            rating: number;
             text: string;
             userId: number;
             productId: number;
+        }[];
+        generation: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+            image: string;
+            chassis: string;
+            engine: string;
+            engineVolume: string;
+            yearFrom: string;
+            yearTo: string;
+            modelId: number;
         }[];
         category: {
             id: number;
@@ -323,20 +338,7 @@ export declare class ProductService {
             updatedAt: Date;
             name: string;
             slug: string;
-        };
-        generation: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            name: string;
-            slug: string;
             image: string;
-            chassis: string;
-            engine: string;
-            engineVolume: string;
-            yearFrom: string;
-            yearTo: string;
-            modelId: number;
         };
         user: {
             id: number;
@@ -354,9 +356,9 @@ export declare class ProductService {
         _count: {
             orderItems: number;
             reviews: number;
+            generation: number;
             category: number;
             manufacture: number;
-            generation: number;
             user: number;
         };
     }>;
@@ -372,16 +374,16 @@ export declare class ProductService {
         images: string[];
         inStock: boolean;
         discount: number;
+        discountedPrice: number;
+        universal: boolean;
         categoryId: number;
         manufactureId: number;
-        generationId: number;
         userId: number;
         orderItems: {
             id: number;
             createdAt: Date;
             updatedAt: Date;
             quantity: number;
-            price: number;
             orderId: number;
             productId: number;
         }[];
@@ -389,9 +391,24 @@ export declare class ProductService {
             id: number;
             createdAt: Date;
             updatedAt: Date;
+            rating: number;
             text: string;
             userId: number;
             productId: number;
+        }[];
+        generation: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+            image: string;
+            chassis: string;
+            engine: string;
+            engineVolume: string;
+            yearFrom: string;
+            yearTo: string;
+            modelId: number;
         }[];
         category: {
             id: number;
@@ -406,20 +423,7 @@ export declare class ProductService {
             updatedAt: Date;
             name: string;
             slug: string;
-        };
-        generation: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            name: string;
-            slug: string;
             image: string;
-            chassis: string;
-            engine: string;
-            engineVolume: string;
-            yearFrom: string;
-            yearTo: string;
-            modelId: number;
         };
         user: {
             id: number;
@@ -437,9 +441,9 @@ export declare class ProductService {
         _count: {
             orderItems: number;
             reviews: number;
+            generation: number;
             category: number;
             manufacture: number;
-            generation: number;
             user: number;
         };
     }[]>;
@@ -455,16 +459,16 @@ export declare class ProductService {
         images: string[];
         inStock: boolean;
         discount: number;
+        discountedPrice: number;
+        universal: boolean;
         categoryId: number;
         manufactureId: number;
-        generationId: number;
         userId: number;
         orderItems: {
             id: number;
             createdAt: Date;
             updatedAt: Date;
             quantity: number;
-            price: number;
             orderId: number;
             productId: number;
         }[];
@@ -472,9 +476,24 @@ export declare class ProductService {
             id: number;
             createdAt: Date;
             updatedAt: Date;
+            rating: number;
             text: string;
             userId: number;
             productId: number;
+        }[];
+        generation: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+            image: string;
+            chassis: string;
+            engine: string;
+            engineVolume: string;
+            yearFrom: string;
+            yearTo: string;
+            modelId: number;
         }[];
         category: {
             id: number;
@@ -489,20 +508,7 @@ export declare class ProductService {
             updatedAt: Date;
             name: string;
             slug: string;
-        };
-        generation: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            name: string;
-            slug: string;
             image: string;
-            chassis: string;
-            engine: string;
-            engineVolume: string;
-            yearFrom: string;
-            yearTo: string;
-            modelId: number;
         };
         user: {
             id: number;
@@ -520,9 +526,9 @@ export declare class ProductService {
         _count: {
             orderItems: number;
             reviews: number;
+            generation: number;
             category: number;
             manufacture: number;
-            generation: number;
             user: number;
         };
     }[]>;
@@ -538,16 +544,16 @@ export declare class ProductService {
         images: string[];
         inStock: boolean;
         discount: number;
+        discountedPrice: number;
+        universal: boolean;
         categoryId: number;
         manufactureId: number;
-        generationId: number;
         userId: number;
         orderItems: {
             id: number;
             createdAt: Date;
             updatedAt: Date;
             quantity: number;
-            price: number;
             orderId: number;
             productId: number;
         }[];
@@ -555,9 +561,24 @@ export declare class ProductService {
             id: number;
             createdAt: Date;
             updatedAt: Date;
+            rating: number;
             text: string;
             userId: number;
             productId: number;
+        }[];
+        generation: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+            image: string;
+            chassis: string;
+            engine: string;
+            engineVolume: string;
+            yearFrom: string;
+            yearTo: string;
+            modelId: number;
         }[];
         category: {
             id: number;
@@ -572,20 +593,7 @@ export declare class ProductService {
             updatedAt: Date;
             name: string;
             slug: string;
-        };
-        generation: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            name: string;
-            slug: string;
             image: string;
-            chassis: string;
-            engine: string;
-            engineVolume: string;
-            yearFrom: string;
-            yearTo: string;
-            modelId: number;
         };
         user: {
             id: number;
@@ -603,13 +611,13 @@ export declare class ProductService {
         _count: {
             orderItems: number;
             reviews: number;
+            generation: number;
             category: number;
             manufacture: number;
-            generation: number;
             user: number;
         };
     }[]>;
-    getSimilar(id: number): Promise<{
+    getSimilar(id: number, chosenGenId?: number): Promise<{
         id: number;
         createdAt: Date;
         updatedAt: Date;
@@ -621,16 +629,16 @@ export declare class ProductService {
         images: string[];
         inStock: boolean;
         discount: number;
+        discountedPrice: number;
+        universal: boolean;
         categoryId: number;
         manufactureId: number;
-        generationId: number;
         userId: number;
         orderItems: {
             id: number;
             createdAt: Date;
             updatedAt: Date;
             quantity: number;
-            price: number;
             orderId: number;
             productId: number;
         }[];
@@ -638,9 +646,24 @@ export declare class ProductService {
             id: number;
             createdAt: Date;
             updatedAt: Date;
+            rating: number;
             text: string;
             userId: number;
             productId: number;
+        }[];
+        generation: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            name: string;
+            slug: string;
+            image: string;
+            chassis: string;
+            engine: string;
+            engineVolume: string;
+            yearFrom: string;
+            yearTo: string;
+            modelId: number;
         }[];
         category: {
             id: number;
@@ -655,20 +678,7 @@ export declare class ProductService {
             updatedAt: Date;
             name: string;
             slug: string;
-        };
-        generation: {
-            id: number;
-            createdAt: Date;
-            updatedAt: Date;
-            name: string;
-            slug: string;
             image: string;
-            chassis: string;
-            engine: string;
-            engineVolume: string;
-            yearFrom: string;
-            yearTo: string;
-            modelId: number;
         };
         user: {
             id: number;
@@ -686,9 +696,9 @@ export declare class ProductService {
         _count: {
             orderItems: number;
             reviews: number;
+            generation: number;
             category: number;
             manufacture: number;
-            generation: number;
             user: number;
         };
     }[]>;
@@ -704,11 +714,13 @@ export declare class ProductService {
         images: string[];
         inStock: boolean;
         discount: number;
+        discountedPrice: number;
+        universal: boolean;
         categoryId: number;
         manufactureId: number;
-        generationId: number;
         userId: number;
     }>;
+    createMany(dto: ProductDto[]): Promise<Prisma.BatchPayload>;
     update(id: number, dto: ProductDto): Promise<{
         id: number;
         createdAt: Date;
@@ -721,9 +733,10 @@ export declare class ProductService {
         images: string[];
         inStock: boolean;
         discount: number;
+        discountedPrice: number;
+        universal: boolean;
         categoryId: number;
         manufactureId: number;
-        generationId: number;
         userId: number;
     }>;
     delete(id: number): Promise<{
@@ -738,9 +751,10 @@ export declare class ProductService {
         images: string[];
         inStock: boolean;
         discount: number;
+        discountedPrice: number;
+        universal: boolean;
         categoryId: number;
         manufactureId: number;
-        generationId: number;
         userId: number;
     }>;
 }

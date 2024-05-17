@@ -1,75 +1,93 @@
-import { Prisma } from '@prisma/client'
-import { ArrayMinSize, IsBoolean, IsNumber, IsOptional, IsString } from "class-validator";
+import { Prisma } from "@prisma/client";
+import {
+	ArrayMinSize,
+	IsArray,
+	IsBoolean,
+	IsNumber,
+	IsOptional,
+	IsString
+} from "class-validator";
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 
 export class ProductDto implements Prisma.ProductUpdateInput {
 	@ApiProperty({
-		type: String,
+		type: String
 	})
 	@IsString()
-	name: string
+	name: string;
 
 	@ApiProperty({
-		type: String,
+		type: String
 	})
 	@IsString()
-	slug: string
+	slug: string;
 
 	@ApiProperty({
-		type: String,
+		type: String
 	})
 	@IsString()
-	sku: string
+	sku: string;
 
 	@ApiProperty({
-		type: Number,
+		type: Number
 	})
 	@IsNumber()
-	price: number
+	price: number;
 
 	@ApiProperty({
-		type: Boolean,
+		type: Boolean
 	})
 	@IsBoolean()
-	inStock: boolean
+	inStock: boolean;
 
 	@ApiProperty({
-		type: Number,
+		type: Boolean
+	})
+	@IsBoolean()
+	universal: boolean;
+
+	@ApiProperty({
+		type: Number
 	})
 	@IsNumber()
-	discount: number
+	discount: number;
+
+	@ApiProperty({
+		type: Number
+	})
+	@IsOptional()
+	@IsNumber()
+	discountedPrice: number;
 
 	@ApiPropertyOptional({
-		type: String,
+		type: String
 	})
 	@IsOptional()
 	@IsString()
-	description: string
+	description: string;
 
 	@ApiPropertyOptional({
-		type: [String],
-		minItems: 1
+		type: [String]
 	})
 	@IsOptional()
 	@IsString({ each: true })
-	@ArrayMinSize(1)
-	images: string[]
+	images: string[];
 
 	@ApiProperty({
-		type: Number,
+		type: Number
 	})
 	@IsNumber()
-	categoryId: number
+	categoryId: number;
 
 	@ApiProperty({
-		type: Number,
+		type: Number
 	})
 	@IsNumber()
-	manufactureId: number
+	manufactureId: number;
 
 	@ApiProperty({
-		type: Number,
+		type: [Number]
 	})
-	@IsNumber()
-	generationId: number
+	@IsArray()
+	generationId: number[];
 }

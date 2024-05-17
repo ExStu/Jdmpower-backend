@@ -9,9 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.NewsMutationResponseDto = exports.NewsResponseDto = exports.NewsDto = void 0;
+exports.NewsMutationResponseDto = exports.NewsResponseDto = exports.NewsDto = exports.GetNewsDto = void 0;
 const class_validator_1 = require("class-validator");
 const swagger_1 = require("@nestjs/swagger");
+class GetNewsDto {
+}
+exports.GetNewsDto = GetNewsDto;
+__decorate([
+    (0, swagger_1.ApiPropertyOptional)({
+        type: String
+    }),
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], GetNewsDto.prototype, "pageNumber", void 0);
 class NewsDto {
 }
 exports.NewsDto = NewsDto;

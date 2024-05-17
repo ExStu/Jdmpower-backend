@@ -26,7 +26,7 @@ let ManufactureService = exports.ManufactureService = class ManufactureService {
             select: return_manufacture_object_1.returnManufactureObject
         });
         if (!manufacture) {
-            throw new Error('Manufacture not found');
+            throw new Error("Manufacture not found");
         }
         return manufacture;
     }
@@ -38,7 +38,7 @@ let ManufactureService = exports.ManufactureService = class ManufactureService {
             select: return_manufacture_object_1.returnManufactureObject
         });
         if (!manufacture) {
-            throw new common_1.NotFoundException('Manufacture not found');
+            throw new common_1.NotFoundException("Manufacture not found");
         }
         return manufacture;
     }
@@ -54,7 +54,8 @@ let ManufactureService = exports.ManufactureService = class ManufactureService {
         return this.prisma.manufacture.create({
             data: {
                 name: dto.name,
-                slug: (0, generate_slug_1.generateSlug)(dto.name)
+                slug: (0, generate_slug_1.generateSlug)(dto.name),
+                image: dto.image
             }
         });
     }

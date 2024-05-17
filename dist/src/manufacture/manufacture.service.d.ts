@@ -24,11 +24,13 @@ export declare class ManufactureService {
             images: string[];
             inStock: boolean;
             discount: number;
+            discountedPrice: number;
+            universal: boolean;
             categoryId: number;
             manufactureId: number;
-            generationId: number;
             userId: number;
         }[];
+        image: string;
     }>;
     bySlug(slug: string): Promise<{
         id: number;
@@ -51,11 +53,13 @@ export declare class ManufactureService {
             images: string[];
             inStock: boolean;
             discount: number;
+            discountedPrice: number;
+            universal: boolean;
             categoryId: number;
             manufactureId: number;
-            generationId: number;
             userId: number;
         }[];
+        image: string;
     }>;
     getAll(): Promise<{
         id: number;
@@ -78,11 +82,13 @@ export declare class ManufactureService {
             images: string[];
             inStock: boolean;
             discount: number;
+            discountedPrice: number;
+            universal: boolean;
             categoryId: number;
             manufactureId: number;
-            generationId: number;
             userId: number;
         }[];
+        image: string;
     }[]>;
     create(dto: ManufactureDto): Promise<{
         id: number;
@@ -90,6 +96,7 @@ export declare class ManufactureService {
         updatedAt: Date;
         name: string;
         slug: string;
+        image: string;
     }>;
     update(id: number, dto: ManufactureDto): Promise<{
         id: number;
@@ -97,6 +104,7 @@ export declare class ManufactureService {
         updatedAt: Date;
         name: string;
         slug: string;
+        image: string;
     }>;
     delete(id: number): Promise<{
         id: number;
@@ -119,10 +127,12 @@ export declare class ManufactureService {
             images: string[];
             inStock: boolean;
             discount: number;
+            discountedPrice: number;
+            universal: boolean;
             categoryId: number;
             manufactureId: number;
-            generationId: number;
             userId: number;
         }[];
+        image: string;
     }>;
 }

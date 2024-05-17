@@ -11,6 +11,7 @@ export declare class ProductResponseDto {
     description: string;
     price: number;
     discount: number;
+    discountedPrice: number;
     inStock: boolean;
     category: CategoryResponseDto;
     manufacture: ManufactureResponseDto;

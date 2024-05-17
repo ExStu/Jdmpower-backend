@@ -24,9 +24,10 @@ export declare class CategoryService {
             images: string[];
             inStock: boolean;
             discount: number;
+            discountedPrice: number;
+            universal: boolean;
             categoryId: number;
             manufactureId: number;
-            generationId: number;
             userId: number;
         }[];
     }>;
@@ -51,9 +52,10 @@ export declare class CategoryService {
             images: string[];
             inStock: boolean;
             discount: number;
+            discountedPrice: number;
+            universal: boolean;
             categoryId: number;
             manufactureId: number;
-            generationId: number;
             userId: number;
         }[];
     }>;
@@ -78,9 +80,10 @@ export declare class CategoryService {
             images: string[];
             inStock: boolean;
             discount: number;
+            discountedPrice: number;
+            universal: boolean;
             categoryId: number;
             manufactureId: number;
-            generationId: number;
             userId: number;
         }[];
     }[]>;
@@ -119,9 +122,10 @@ export declare class CategoryService {
             images: string[];
             inStock: boolean;
             discount: number;
+            discountedPrice: number;
+            universal: boolean;
             categoryId: number;
             manufactureId: number;
-            generationId: number;
             userId: number;
         }[];
     }>;

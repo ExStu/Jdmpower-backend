@@ -16,9 +16,10 @@ export declare class ReviewController {
             images: string[];
             inStock: boolean;
             discount: number;
+            discountedPrice: number;
+            universal: boolean;
             categoryId: number;
             manufactureId: number;
-            generationId: number;
             userId: number;
         };
         id: number;
@@ -38,6 +39,7 @@ export declare class ReviewController {
             middleName: string;
             avatarPath: string;
         };
+        rating: number;
         text: string;
         productId: number;
     }[]>;
@@ -45,6 +47,7 @@ export declare class ReviewController {
         id: number;
         createdAt: Date;
         updatedAt: Date;
+        rating: number;
         text: string;
         userId: number;
         productId: number;

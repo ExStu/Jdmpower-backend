@@ -27,9 +27,10 @@ export declare class GenerationService {
             images: string[];
             inStock: boolean;
             discount: number;
+            discountedPrice: number;
+            universal: boolean;
             categoryId: number;
             manufactureId: number;
-            generationId: number;
             userId: number;
         }[];
         image: string;
@@ -38,7 +39,6 @@ export declare class GenerationService {
         engineVolume: string;
         yearFrom: string;
         yearTo: string;
-        modelId: number;
         model: {
             id: number;
             createdAt: Date;
@@ -48,6 +48,7 @@ export declare class GenerationService {
             image: string;
             carId: number;
         };
+        modelId: number;
     }>;
     bySlug(slug: string): Promise<{
         id: number;
@@ -71,9 +72,10 @@ export declare class GenerationService {
             images: string[];
             inStock: boolean;
             discount: number;
+            discountedPrice: number;
+            universal: boolean;
             categoryId: number;
             manufactureId: number;
-            generationId: number;
             userId: number;
         }[];
         image: string;
@@ -82,7 +84,6 @@ export declare class GenerationService {
         engineVolume: string;
         yearFrom: string;
         yearTo: string;
-        modelId: number;
         model: {
             id: number;
             createdAt: Date;
@@ -92,6 +93,7 @@ export declare class GenerationService {
             image: string;
             carId: number;
         };
+        modelId: number;
     }>;
     getAll(): Promise<{
         id: number;
@@ -115,9 +117,10 @@ export declare class GenerationService {
             images: string[];
             inStock: boolean;
             discount: number;
+            discountedPrice: number;
+            universal: boolean;
             categoryId: number;
             manufactureId: number;
-            generationId: number;
             userId: number;
         }[];
         image: string;
@@ -126,7 +129,6 @@ export declare class GenerationService {
         engineVolume: string;
         yearFrom: string;
         yearTo: string;
-        modelId: number;
         model: {
             id: number;
             createdAt: Date;
@@ -136,6 +138,7 @@ export declare class GenerationService {
             image: string;
             carId: number;
         };
+        modelId: number;
     }[]>;
     byModel(modelSlug: string): Promise<{
         id: number;
@@ -159,9 +162,10 @@ export declare class GenerationService {
             images: string[];
             inStock: boolean;
             discount: number;
+            discountedPrice: number;
+            universal: boolean;
             categoryId: number;
             manufactureId: number;
-            generationId: number;
             userId: number;
         }[];
         image: string;
@@ -170,7 +174,6 @@ export declare class GenerationService {
         engineVolume: string;
         yearFrom: string;
         yearTo: string;
-        modelId: number;
         model: {
             id: number;
             createdAt: Date;
@@ -180,6 +183,7 @@ export declare class GenerationService {
             image: string;
             carId: number;
         };
+        modelId: number;
     }[]>;
     create(dto: GenerationDto): Promise<{
         id: number;

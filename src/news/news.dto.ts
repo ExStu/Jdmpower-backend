@@ -1,88 +1,95 @@
-import { IsString } from "class-validator";
-import { ApiProperty } from "@nestjs/swagger";
+import { IsOptional, IsString } from "class-validator";
+import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
+
+export class GetNewsDto {
+	@ApiPropertyOptional({
+		type: String
+	})
+	@IsOptional()
+	@IsString()
+	pageNumber?: string;
+}
 
 export class NewsDto {
-  @ApiProperty({
-    type: String
-  })
-  @IsString()
-  image: string
+	@ApiProperty({
+		type: String
+	})
+	@IsString()
+	image: string;
 
-  @ApiProperty({
-    type: String
-  })
-  @IsString()
-  title: string
+	@ApiProperty({
+		type: String
+	})
+	@IsString()
+	title: string;
 
-  @ApiProperty({
-    type: String
-  })
-  @IsString()
-  description: string
-
+	@ApiProperty({
+		type: String
+	})
+	@IsString()
+	description: string;
 }
 
 export class NewsResponseDto {
+	@ApiProperty({
+		type: Number
+	})
+	id: number;
 
-  @ApiProperty({
-    type: Number
-  })
-  id: number
+	@ApiProperty({
+		type: Date
+	})
+	createdAt: Date;
 
-  @ApiProperty({
-    type: Date
-  })
-  createdAt: Date
+	@ApiProperty({
+		type: String
+	})
+	image: string;
 
-  @ApiProperty({
-    type: String
-  })
-  image: string
+	@ApiProperty({
+		type: String
+	})
+	title: string;
 
-  @ApiProperty({
-    type: String
-  })
-  title: string
+	@ApiProperty({
+		type: String
+	})
+	description: string;
 
-  @ApiProperty({
-    type: String
-  })
-  description: string
-
-  @ApiProperty({
-    type: String
-  })
-  slug: string
+	@ApiProperty({
+		type: String
+	})
+	slug: string;
 }
 
 export class NewsMutationResponseDto {
-  @ApiProperty({
-    type: Number
-  })
-  id: number
+	@ApiProperty({
+		type: Number
+	})
+	id: number;
 
-  @ApiProperty({
-    type: Date
-  })
-  updatedAt: Date
+	@ApiProperty({
+		type: Date
+	})
+	updatedAt: Date;
 
-  @ApiProperty({
-    type: String
-  })
-  image: string
+	@ApiProperty({
+		type: String
+	})
+	image: string;
 
-  @ApiProperty({
-    type: String
-  })
-  title: string
+	@ApiProperty({
+		type: String
+	})
+	title: string;
 
-  @ApiProperty({
-    type: String
-  })
-  description: string
+	@ApiProperty({
+		type: String
+	})
+	description: string;
 
-  @ApiProperty({
-    type: String
-  })
-  slug: string
+	@ApiProperty({
+		type: String
+	})
+	slug: string;
 }

@@ -13,6 +13,7 @@ export declare class UserService {
             id: number;
             createdAt: Date;
             updatedAt: Date;
+            rating: number;
             text: string;
             userId: number;
             productId: number;
@@ -34,6 +35,23 @@ export declare class UserService {
             createdAt: Date;
             updatedAt: Date;
             status: import(".prisma/client").$Enums.EnumOrderStatus;
+            total: number;
+            totalWithDiscount: number;
+            email: string;
+            phone: string;
+            firstName: string;
+            lastName: string;
+            middleName: string;
+            deliveryTc: boolean;
+            desiredTc: string;
+            city: string;
+            tcAddress: string;
+            passportSeries: string;
+            passportNumber: string;
+            deliveryToDoor: boolean;
+            address: string;
+            hardWrapRequired: boolean;
+            message: string;
             userId: number;
         }[];
         favorites: {
@@ -48,9 +66,10 @@ export declare class UserService {
             images: string[];
             inStock: boolean;
             discount: number;
+            discountedPrice: number;
+            universal: boolean;
             categoryId: number;
             manufactureId: number;
-            generationId: number;
             userId: number;
         }[];
     }>;

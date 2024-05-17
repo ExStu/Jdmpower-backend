@@ -31,8 +31,8 @@ let CarController = exports.CarController = class CarController {
     async getById(id) {
         return this.carService.byId(+id);
     }
-    async create() {
-        return this.carService.create();
+    async create(dto) {
+        return this.carService.create(dto);
     }
     async update(id, dto) {
         return this.carService.update(+id, dto);
@@ -102,8 +102,9 @@ __decorate([
         description: "Not Found"
     }),
     (0, swagger_1.ApiBadRequestResponse)({ description: "Bad Request" }),
+    __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [car_dto_1.CarDto]),
     __metadata("design:returntype", Promise)
 ], CarController.prototype, "create", null);
 __decorate([

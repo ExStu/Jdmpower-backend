@@ -1,17 +1,22 @@
 import { NewsService } from "./news.service";
-import { NewsDto } from "./news.dto";
+import { GetNewsDto, NewsDto } from "./news.dto";
 export declare class NewsController {
     private readonly newsService;
     constructor(newsService: NewsService);
-    getAll(): Promise<{
-        id: number;
-        createdAt: Date;
-        updatedAt: Date;
-        slug: string;
-        description: string;
-        image: string;
-        title: string;
-    }[]>;
+    getAll(dto: GetNewsDto): Promise<{
+        news: {
+            id: number;
+            createdAt: Date;
+            updatedAt: Date;
+            slug: string;
+            description: string;
+            image: string;
+            title: string;
+        }[];
+        totalLength: number;
+        pageNumber: number;
+        pageSize: number;
+    }>;
     getById(newsId: string): Promise<{
         id: number;
         createdAt: Date;

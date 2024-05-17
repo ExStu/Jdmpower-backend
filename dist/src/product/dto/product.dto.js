@@ -17,49 +17,64 @@ class ProductDto {
 exports.ProductDto = ProductDto;
 __decorate([
     (0, swagger_1.ApiProperty)({
-        type: String,
+        type: String
     }),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], ProductDto.prototype, "name", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        type: String,
+        type: String
     }),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], ProductDto.prototype, "slug", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        type: String,
+        type: String
     }),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], ProductDto.prototype, "sku", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        type: Number,
+        type: Number
     }),
     (0, class_validator_1.IsNumber)(),
     __metadata("design:type", Number)
 ], ProductDto.prototype, "price", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        type: Boolean,
+        type: Boolean
     }),
     (0, class_validator_1.IsBoolean)(),
     __metadata("design:type", Boolean)
 ], ProductDto.prototype, "inStock", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        type: Number,
+        type: Boolean
+    }),
+    (0, class_validator_1.IsBoolean)(),
+    __metadata("design:type", Boolean)
+], ProductDto.prototype, "universal", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({
+        type: Number
     }),
     (0, class_validator_1.IsNumber)(),
     __metadata("design:type", Number)
 ], ProductDto.prototype, "discount", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({
+        type: Number
+    }),
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsNumber)(),
+    __metadata("design:type", Number)
+], ProductDto.prototype, "discountedPrice", void 0);
+__decorate([
     (0, swagger_1.ApiPropertyOptional)({
-        type: String,
+        type: String
     }),
     (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsString)(),
@@ -67,33 +82,31 @@ __decorate([
 ], ProductDto.prototype, "description", void 0);
 __decorate([
     (0, swagger_1.ApiPropertyOptional)({
-        type: [String],
-        minItems: 1
+        type: [String]
     }),
     (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsString)({ each: true }),
-    (0, class_validator_1.ArrayMinSize)(1),
     __metadata("design:type", Array)
 ], ProductDto.prototype, "images", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        type: Number,
+        type: Number
     }),
     (0, class_validator_1.IsNumber)(),
     __metadata("design:type", Number)
 ], ProductDto.prototype, "categoryId", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        type: Number,
+        type: Number
     }),
     (0, class_validator_1.IsNumber)(),
     __metadata("design:type", Number)
 ], ProductDto.prototype, "manufactureId", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({
-        type: Number,
+        type: [Number]
     }),
-    (0, class_validator_1.IsNumber)(),
-    __metadata("design:type", Number)
+    (0, class_validator_1.IsArray)(),
+    __metadata("design:type", Array)
 ], ProductDto.prototype, "generationId", void 0);
 //# sourceMappingURL=product.dto.js.map

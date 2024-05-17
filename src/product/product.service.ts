@@ -1,6 +1,5 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { Prisma } from "@prisma/client";
-import { CategoryService } from "src/category/category.service";
 import { PaginationService } from "src/pagination/pagination.service";
 import { PrismaService } from "src/prisma.service";
 import { convertToNumber } from "src/utils/convert-to-number";
@@ -11,17 +10,13 @@ import {
 	returnProductObject,
 	returnProductObjectFullest
 } from "./return-product.object";
-import { ManufactureService } from "src/manufacture/manufacture.service";
-import { GenerationService } from "../generation/generation.service";
+import { returnReviewObject } from "../review/return-review.object";
 
 @Injectable()
 export class ProductService {
 	constructor(
 		private prisma: PrismaService,
-		private paginationService: PaginationService,
-		private categoryService: CategoryService,
-		private manufactureService: ManufactureService,
-		private generationService: GenerationService
+		private paginationService: PaginationService
 	) {}
 
 	async getAll(queryDto: GetAllProductDto = {}) {
@@ -42,19 +37,17 @@ export class ProductService {
 
 		const totalLength = await this.prisma.product.count({
 			where: filters
-		})
+		});
 
-		const minPrice = await this.prisma.product.findFirst({
-			orderBy: {
-				price: "asc",
+		const prices = await this.prisma.product.aggregate({
+			where: filters,
+			_min: {
+				price: true
 			},
-		})
-
-		const maxPrice = await this.prisma.product.findFirst({
-			orderBy: {
-				price: "desc"
+			_max: {
+				price: true
 			}
-		})
+		});
 
 		return {
 			products,
@@ -62,8 +55,8 @@ export class ProductService {
 			orderBy: sortOption,
 			pageSize: perPage,
 			pageNumber: page,
-			minPrice: minPrice.price,
-			maxPrice: maxPrice.price
+			minPrice: prices._min.price,
+			maxPrice: prices._max.price
 		};
 	}
 
@@ -82,7 +75,7 @@ export class ProductService {
 							contains: searchTerm,
 							mode: "insensitive"
 						}
-					},
+					}
 					// {
 					// 	description: {
 					// 		contains: searchTerm,
@@ -92,7 +85,7 @@ export class ProductService {
 				]
 			},
 			select: returnProductObjectFullest
-		})
+		});
 		if (!products) {
 			throw new NotFoundException("Products not found");
 		}
@@ -118,16 +111,9 @@ export class ProductService {
 				)
 			);
 
-		// if (dto.categoryId) {
-		// 	return {
-		// 		OR: dto.categoryId.map(categoryItem =>
-		// 			filters.push({ category: { id: categoryItem } })
-		// 		)
-		// 	};
-		// }
-		if (dto.categoryId) filters.push(this.getCategoryFilter(+dto.categoryId));
+		if (dto.categoryId) filters.push(this.getCategoryFilter(dto.categoryId));
 		if (dto.manufactureId)
-			filters.push(this.getManufactureFilter(+dto.manufactureId));
+			filters.push(this.getManufactureFilter(dto.manufactureId));
 		if (dto.generationId)
 			filters.push(this.getGenerationFilter(+dto.generationId));
 
@@ -139,9 +125,9 @@ export class ProductService {
 	): Prisma.ProductOrderByWithRelationInput {
 		switch (sort) {
 			case EnumProductSort.LOW_PRICE:
-				return { price: "asc" };
+				return { discountedPrice: "asc" };
 			case EnumProductSort.HIGH_PRICE:
-				return { price: "desc" };
+				return { discountedPrice: "desc" };
 			case EnumProductSort.OLDEST:
 				return { createdAt: "asc" };
 			default:
@@ -211,23 +197,33 @@ export class ProductService {
 		};
 	}
 
-	private getCategoryFilter(categoryId: number): Prisma.ProductWhereInput {
+	private getCategoryFilter(categoryId: string) {
+		const categories = categoryId
+			.split(",")
+			.map(item => ({ category: { id: Number(item) } }));
 		return {
-			categoryId
+			OR: categories
 		};
 	}
 
 	private getManufactureFilter(
-		manufactureId: number
+		manufactureId: string
 	): Prisma.ProductWhereInput {
+		const manufactures = manufactureId
+			.split(",")
+			.map(item => ({ manufacture: { id: Number(item) } }));
 		return {
-			manufactureId
+			OR: manufactures
 		};
 	}
 
-	private getGenerationFilter(generationId: number): Prisma.ProductWhereInput {
+	private getGenerationFilter(generationId: number) {
 		return {
-			generationId
+			generation: {
+				some: {
+					id: generationId
+				}
+			}
 		};
 	}
 
@@ -293,7 +289,9 @@ export class ProductService {
 		const products = await this.prisma.product.findMany({
 			where: {
 				generation: {
-					slug: generationSlug
+					some: {
+						slug: generationSlug
+					}
 				}
 			},
 			select: returnProductObjectFullest
@@ -303,16 +301,21 @@ export class ProductService {
 		return products;
 	}
 
-	async getSimilar(id: number) {
+	async getSimilar(id: number, chosenGenId?: number) {
 		const currentProduct = await this.byId(id);
+		const generations = currentProduct.generation.map(item => item.id);
 
 		if (!currentProduct)
 			throw new NotFoundException("Current product not found!");
 
 		const products = await this.prisma.product.findMany({
 			where: {
-				category: {
-					name: currentProduct.category.name
+				generation: {
+					some: {
+						id: {
+							in: chosenGenId ? [chosenGenId] : generations
+						}
+					}
 				},
 				NOT: {
 					id
@@ -325,13 +328,16 @@ export class ProductService {
 		});
 
 		if (!products) {
-			throw new NotFoundException("Similar products not found")
+			throw new NotFoundException("Similar products not found");
 		}
 
-		return products
+		return products;
 	}
 
 	async create(dto: ProductDto) {
+		const generations = dto.generationId.map(item => ({
+			id: item
+		}));
 		return this.prisma.product.create({
 			data: {
 				description: dto.description,
@@ -340,12 +346,42 @@ export class ProductService {
 				slug: generateSlug(dto.name),
 				sku: dto.sku,
 				discount: dto.discount,
+				discountedPrice: dto.price * (1 - dto.discount / 100),
 				inStock: dto.inStock,
+				universal: dto.universal,
 				categoryId: dto.categoryId,
 				manufactureId: dto.manufactureId,
-				generationId: dto.generationId,
+				generation: {
+					connect: generations
+				},
 				images: dto.images
 			}
+		});
+	}
+
+	async createMany(dto: ProductDto[]) {
+		const getGenerations = (genIds: number[]) =>
+			genIds.map(item => ({
+				id: item
+			}));
+		const productsToCreate = dto.map(item => ({
+			description: item.description,
+			name: item.name,
+			price: item.price,
+			slug: generateSlug(item.name),
+			sku: item.sku,
+			discount: item.discount,
+			discountedPrice: item.price * (1 - item.discount / 100),
+			inStock: item.inStock,
+			categoryId: item.categoryId,
+			manufactureId: item.manufactureId,
+			generation: {
+				connect: getGenerations(item.generationId)
+			},
+			images: item.images
+		}));
+		return this.prisma.product.createMany({
+			data: productsToCreate
 		});
 	}
 
@@ -361,9 +397,9 @@ export class ProductService {
 			sku
 		} = dto;
 
-		await this.categoryService.byId(categoryId);
-		await this.manufactureService.byId(manufactureId);
-		await this.generationService.byId(generationId);
+		const generations = generationId.map(item => ({
+			id: item
+		}));
 
 		return this.prisma.product.update({
 			where: {
@@ -387,9 +423,7 @@ export class ProductService {
 					}
 				},
 				generation: {
-					connect: {
-						id: generationId
-					}
+					connect: generations
 				}
 			}
 		});

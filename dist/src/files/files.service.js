@@ -11,8 +11,8 @@ const common_1 = require("@nestjs/common");
 const app_root_path_1 = require("app-root-path");
 const fs_extra_1 = require("fs-extra");
 let FilesService = exports.FilesService = class FilesService {
-    async saveFiles(files, folder) {
-        const uploadFolder = `${app_root_path_1.path}/uploads/${folder}`;
+    async saveFiles(files, folder, itemId) {
+        const uploadFolder = `${app_root_path_1.path}/uploads/${folder}/${itemId}`;
         await (0, fs_extra_1.ensureDir)(uploadFolder);
         const [res] = await Promise.all([
             Promise.all(files.map(async (file) => {

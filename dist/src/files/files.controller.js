@@ -22,24 +22,25 @@ let FilesController = exports.FilesController = class FilesController {
     constructor(filesService) {
         this.filesService = filesService;
     }
-    async uploadFile(file, folder) {
-        return this.filesService.saveFiles([file], folder);
+    async uploadFile(file, folder, itemId) {
+        return this.filesService.saveFiles([file], folder, itemId);
     }
 };
 __decorate([
     (0, common_1.Post)(),
     (0, common_1.HttpCode)(200),
-    (0, auth_decorator_1.Auth)('admin'),
-    (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('image')),
+    (0, auth_decorator_1.Auth)("admin"),
+    (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)("image")),
     __param(0, (0, common_1.UploadedFile)()),
-    __param(1, (0, common_1.Query)('folder')),
+    __param(1, (0, common_1.Query)("folder")),
+    __param(2, (0, common_1.Query)("itemId")),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:paramtypes", [Object, String, String]),
     __metadata("design:returntype", Promise)
 ], FilesController.prototype, "uploadFile", null);
 exports.FilesController = FilesController = __decorate([
     (0, swagger_1.ApiTags)("Files"),
-    (0, common_1.Controller)('files'),
+    (0, common_1.Controller)("files"),
     __metadata("design:paramtypes", [files_service_1.FilesService])
 ], FilesController);
 //# sourceMappingURL=files.controller.js.map

@@ -12,6 +12,7 @@ export declare class UserController {
             id: number;
             createdAt: Date;
             updatedAt: Date;
+            rating: number;
             text: string;
             userId: number;
             productId: number;
@@ -33,6 +34,23 @@ export declare class UserController {
             createdAt: Date;
             updatedAt: Date;
             status: import(".prisma/client").$Enums.EnumOrderStatus;
+            total: number;
+            totalWithDiscount: number;
+            email: string;
+            phone: string;
+            firstName: string;
+            lastName: string;
+            middleName: string;
+            deliveryTc: boolean;
+            desiredTc: string;
+            city: string;
+            tcAddress: string;
+            passportSeries: string;
+            passportNumber: string;
+            deliveryToDoor: boolean;
+            address: string;
+            hardWrapRequired: boolean;
+            message: string;
             userId: number;
         }[];
         favorites: {
@@ -47,9 +65,10 @@ export declare class UserController {
             images: string[];
             inStock: boolean;
             discount: number;
+            discountedPrice: number;
+            universal: boolean;
             categoryId: number;
             manufactureId: number;
-            generationId: number;
             userId: number;
         }[];
     }>;
@@ -67,6 +86,9 @@ export declare class UserController {
         avatarPath: string;
     }>;
     toggleFavorite(id: number, productId: string): Promise<{
+        message: string;
+    }>;
+    addToCart(id: number, productId: string): Promise<{
         message: string;
     }>;
 }

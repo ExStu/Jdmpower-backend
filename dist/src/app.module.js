@@ -26,6 +26,7 @@ const generation_module_1 = require("./generation/generation.module");
 const car_dto_1 = require("./car/car.dto");
 const model_module_1 = require("./model/model.module");
 const currency_module_1 = require("./currency/currency.module");
+const email_module_1 = require("./email/email.module");
 let AppModule = exports.AppModule = class AppModule {
 };
 exports.AppModule = AppModule = __decorate([
@@ -45,10 +46,11 @@ exports.AppModule = AppModule = __decorate([
             generation_module_1.GenerationModule,
             car_dto_1.CarDto,
             model_module_1.ModelModule,
-            currency_module_1.CurrencyModule
+            currency_module_1.CurrencyModule,
+            email_module_1.EmailModule
         ],
         controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService, prisma_service_1.PrismaService],
+        providers: [app_service_1.AppService, prisma_service_1.PrismaService]
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map
