@@ -43,6 +43,12 @@ class GetSimilarArgDto {
 	})
 	@IsOptional()
 	chosenGenId?: number;
+
+	@ApiProperty({
+		type: Number
+	})
+	@IsOptional()
+	pageNumber?: string;
 }
 @ApiTags("Products")
 @Controller("products")
@@ -87,7 +93,11 @@ export class ProductController {
 	})
 	@ApiBadRequestResponse({ description: "Bad Request" })
 	async getSimilar(@Query() dto: GetSimilarArgDto) {
-		return this.productService.getSimilar(+dto.id, +dto.chosenGenId);
+		return this.productService.getSimilar(
+			+dto.id,
+			+dto.chosenGenId,
+			dto.pageNumber
+		);
 	}
 
 	@Get("by-id/:id")

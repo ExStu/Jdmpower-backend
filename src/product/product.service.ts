@@ -300,9 +300,13 @@ export class ProductService {
 		return products;
 	}
 
-	async getSimilar(id: number, chosenGenId?: number) {
+	async getSimilar(id: number, chosenGenId?: number, pageNumber?: string) {
 		const currentProduct = await this.byId(id);
 		const generations = currentProduct.generation.map(item => item.id);
+		const { perPage, skip, page } = this.paginationService.getPagination({
+			page: pageNumber,
+			perPage: "16"
+		});
 
 		if (!currentProduct)
 			throw new NotFoundException("Current product not found!");
@@ -323,6 +327,8 @@ export class ProductService {
 			orderBy: {
 				createdAt: "desc"
 			},
+			skip,
+			take: perPage,
 			select: returnProductObject
 		});
 
