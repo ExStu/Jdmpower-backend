@@ -1,1 +1,0 @@
-{"version":3,"file":"mocks.js","sourceRoot":"","sources":["../../seeder/mocks.ts"],"names":[],"mappings":";;;AAAa,QAAA,cAAc,GAAG;IAC7B;QACC,IAAI,EAAE,KAAK;QACX,IAAI,EAAE,EAAE;QACR,KAAK,EAAE,EAAE;QACT,OAAO,EAAE,eAAe;QACxB,MAAM,EAAE,gBAAgB;QACxB,YAAY,EAAE,aAAa;QAC3B,QAAQ,EAAE,MAAM;QAChB,MAAM,EAAE,SAAS;KACjB;CAqBD,CAAC"}
