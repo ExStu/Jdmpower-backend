@@ -18,8 +18,9 @@ export class OrderDto {
 	@ApiProperty({
 		type: String
 	})
+	@IsOptional()
 	@IsString()
-	phone: string;
+	phone?: string;
 
 	@ApiProperty({
 		type: String

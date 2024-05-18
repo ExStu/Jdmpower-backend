@@ -46,7 +46,7 @@ model Product {
   slug            String
   sku             String?  @unique
   description     String?
-  price           Int?
+  price           Float?
   images          String[]
   inStock         Boolean?
   discount        Int?
@@ -99,8 +99,8 @@ model Generation {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  name         String
-  slug         String
+  name         String?
+  slug         String?
   image        String?
   chassis      String?
   engine       String?
@@ -174,7 +174,7 @@ model Order {
   total             Int
   totalWithDiscount Int?
   email             String
-  phone             String
+  phone             String?
   firstName         String
   lastName          String
   middleName        String?

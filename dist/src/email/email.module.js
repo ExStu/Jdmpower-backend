@@ -24,8 +24,8 @@ exports.EmailModule = EmailModule = __decorate([
                     secure: true,
                     port: 465,
                     auth: {
-                        user: "exstu1@yandex.ru",
-                        pass: "chnlupdoqgxynmvr"
+                        user: "sales@jdmpower.ru",
+                        pass: process.env.SMTP_PASS
                     }
                 }
             })

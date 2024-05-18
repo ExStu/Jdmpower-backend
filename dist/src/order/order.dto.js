@@ -33,6 +33,7 @@ __decorate([
     (0, swagger_1.ApiProperty)({
         type: String
     }),
+    (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], OrderDto.prototype, "phone", void 0);

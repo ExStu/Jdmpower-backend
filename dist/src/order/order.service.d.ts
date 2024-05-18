@@ -11,6 +11,28 @@ export declare class OrderService {
                 id: number;
                 createdAt: Date;
                 updatedAt: Date;
+                userId: number;
+                user: {
+                    id: number;
+                    createdAt: Date;
+                    updatedAt: Date;
+                    email: string;
+                    phone: string;
+                    password: string;
+                    isAdmin: boolean;
+                    name: string;
+                    surname: string;
+                    middleName: string;
+                    avatarPath: string;
+                };
+                _count: {
+                    orderItems: number;
+                    reviews: number;
+                    generation: number;
+                    category: number;
+                    manufacture: number;
+                    user: number;
+                };
                 name: string;
                 slug: string;
                 sku: string;
@@ -23,7 +45,6 @@ export declare class OrderService {
                 universal: boolean;
                 categoryId: number;
                 manufactureId: number;
-                userId: number;
                 orderItems: {
                     id: number;
                     createdAt: Date;
@@ -69,27 +90,6 @@ export declare class OrderService {
                     name: string;
                     slug: string;
                     image: string;
-                };
-                user: {
-                    id: number;
-                    createdAt: Date;
-                    updatedAt: Date;
-                    email: string;
-                    phone: string;
-                    password: string;
-                    isAdmin: boolean;
-                    name: string;
-                    surname: string;
-                    middleName: string;
-                    avatarPath: string;
-                };
-                _count: {
-                    orderItems: number;
-                    reviews: number;
-                    generation: number;
-                    category: number;
-                    manufacture: number;
-                    user: number;
                 };
             };
         } & {

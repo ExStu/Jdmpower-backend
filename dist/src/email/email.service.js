@@ -20,7 +20,7 @@ let EmailService = class EmailService {
     }
     async sendOrderSuccess(emailDto) {
         await this.mailerService.sendMail({
-            from: "exstu1@yandex.ru",
+            from: "sales@jdmpower.ru",
             to: emailDto.to,
             subject: emailDto.subject,
             text: emailDto.text
@@ -28,7 +28,7 @@ let EmailService = class EmailService {
     }
     async sendOrderStatusUpdate(emailDto) {
         await this.mailerService.sendMail({
-            from: "exstu1@yandex.ru",
+            from: "sales@jdmpower.ru",
             to: emailDto.to,
             subject: emailDto.subject,
             text: emailDto.text
@@ -36,8 +36,8 @@ let EmailService = class EmailService {
     }
     async sendContactRequest(emailDto) {
         await this.mailerService.sendMail({
-            from: "exstu1@yandex.ru",
-            to: "exstu1@yandex.ru",
+            from: "sales@jdmpower.ru",
+            to: "sales@jdmpower.ru",
             subject: emailDto.subject,
             text: `${emailDto.name} хочет связаться:\nПочта для связи:\n${emailDto.email}\nСообщение: ${emailDto.message}`
         });

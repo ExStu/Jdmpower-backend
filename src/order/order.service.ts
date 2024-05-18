@@ -97,47 +97,53 @@ export class OrderService {
 		});
 
 		if (order) {
+			const text =
+				"Детали заказа\n" +
+				"\n" +
+				`Номер заказа: ${order.id}\n` +
+				`Кому: ${orderDto.firstName} ${orderDto.lastName} ${orderDto.middleName}\n` +
+				`Данные для связи:\n${orderDto.email}\n${orderDto.phone}\n` +
+				"\n" +
+				`Нужна доставка Транспортной компанией: ${
+					orderDto.deliveryTc ? "да" : "нет"
+				}\n` +
+				`${
+					orderDto.deliveryTc
+						? `Предпочитаемая Транспортная компания: ${orderDto.desiredTc}\n` +
+						  `Город: ${orderDto.city}\n` +
+						  `Требуется доставка до двери: ${
+								orderDto.deliveryToDoor ? "да" : "нет"
+						  }\n` +
+						  `${
+								orderDto.deliveryToDoor
+									? `Адрес: ${orderDto.address}\n`
+									: `Адрес Точки ТК: ${orderDto.tcAddress}\n`
+						  }`
+						: ""
+				}` +
+				`Требуется жесткая упаковка: ${
+					orderDto.hardWrapRequired ? "да" : "нет"
+				}\n` +
+				`${orderDto.message && `Комментарий: ${orderDto.message}\n`}` +
+				`Список товаров:\n` +
+				"\n" +
+				orderDto.items.map(
+					item =>
+						`Название: ${item.product.name}\n` +
+						`Артикул: ${item.product.sku}\n` +
+						`Количество: ${item.quantity}\n` +
+						`_______________________________\n`
+				) +
+				"\n" +
+				`Общая сумма заказа: ${totalOrderPrice.toFixed(2).toString()} $\n` +
+				`Общая сумма со скидкой: ${totalOrderDiscounted
+					.toFixed(2)
+					.toString()} $`;
+
 			await this.emailService.sendOrderSuccess({
 				to: orderDto.email,
 				subject: "Заказ оформлен успешно",
-				text: `Детали заказа\nКому: ${
-					orderDto.firstName +
-					" " +
-					orderDto.lastName +
-					" " +
-					orderDto.middleName
-				}\nДанные для связи:\n${orderDto.email}\n${
-					orderDto.phone
-				}\nНужна доставка ТК: ${orderDto.deliveryTc ? "да" : "нет"}\n
-				${
-					orderDto.deliveryTc
-						? `Предпочитаемая ТК: \n${orderDto.desiredTc}\n 
-							Город: ${orderDto.city}\n 
-							Адрес ТК: ${orderDto.tcAddress}\n 
-							Серия и номер: ${orderDto.passportNumber} ${orderDto.passportSeries}\n
-							${
-								orderDto.deliveryToDoor
-									? `Требуется доставка до двери\n Адрес: ${orderDto.address}\n`
-									: ""
-							}
-							Требуется жесткая упаковка: ${orderDto.hardWrapRequired ? "да" : "нет"}\n
-							Комментарий: ${orderDto.message}
-							`
-						: ""
-				} 
-				Список товаров:\n
-				__________________
-				${orderDto.items.map(
-					item =>
-						`Название: ${item.product.name}\n
-						Артикул: ${item.product.sku}\n
-						Количество: ${item.quantity}\n
-						_______________________________\n
-					`
-				)}
-				Общая сумма заказа: ${totalOrderPrice.toString()}\n
-				Общая сумма со скидкой: ${totalOrderDiscounted.toString()}
-				`,
+				text,
 				firstName: orderDto.firstName,
 				lastName: orderDto.lastName,
 				items: orderDto.items,
@@ -151,6 +157,24 @@ export class OrderService {
 				hardWrapRequired: orderDto.hardWrapRequired,
 				message: orderDto.message
 			});
+
+			// await this.emailService.sendOrderSuccess({
+			// 	to: "exstu1@yandex.ru",
+			// 	subject: "Заказ оформлен успешно",
+			// 	text,
+			// 	firstName: orderDto.firstName,
+			// 	lastName: orderDto.lastName,
+			// 	items: orderDto.items,
+			// 	middleName: orderDto.middleName,
+			// 	deliveryTc: orderDto.deliveryTc,
+			// 	desiredTc: orderDto.desiredTc,
+			// 	city: orderDto.city,
+			// 	tcAddress: orderDto.tcAddress,
+			// 	deliveryToDoor: orderDto.deliveryToDoor,
+			// 	address: orderDto.address,
+			// 	hardWrapRequired: orderDto.hardWrapRequired,
+			// 	message: orderDto.message
+			// });
 		}
 
 		return order;

@@ -2,7 +2,7 @@ import { ICartItem } from "../email/email.dto";
 export declare class OrderDto {
     items: ICartItem[];
     email: string;
-    phone: string;
+    phone?: string;
     firstName: string;
     lastName: string;
     middleName?: string;

@@ -39,9 +39,9 @@ export declare class ReviewController {
             middleName: string;
             avatarPath: string;
         };
-        productId: number;
         rating: number;
         text: string;
+        productId: number;
     }[]>;
     leaveReview(id: number, dto: ReviewDto, productId: string): Promise<{
         id: number;

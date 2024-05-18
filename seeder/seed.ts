@@ -62,11 +62,11 @@ const models = ["Lancer", "Lancer Evolution", "Eclipse"];
 const prisma = new PrismaClient();
 
 const seed = async (quantity: number) => {
-	let first = 1;
-	let second = 2;
-	let third = 3;
-	let catId = 1;
-	let manId = 1;
+	// let first = 1;
+	// let second = 2;
+	// let third = 3;
+	// let catId = 1;
+	// let manId = 1;
 	for (let i = 0; i < quantity; i++) {
 		const productName = faker.commerce.productName() + i;
 		const categoryName = faker.commerce.department();
@@ -78,6 +78,11 @@ const seed = async (quantity: number) => {
 		// const brandName = faker.commerce.productMaterial()
 		const generatedPrice = +faker.commerce.price(10, 999, 0);
 		const generatedDiscount = generateDiscount();
+		const manId = getRandomInteger(1, 9);
+		const catId = getRandomInteger(1, 9);
+		const genId1 = getRandomInteger(1, 99);
+		const genId2 = getRandomInteger(1, 99);
+		const genId3 = getRandomInteger(1, 99);
 
 		// const newsPost = await prisma.news.create({
 		// 	data: {
@@ -88,22 +93,22 @@ const seed = async (quantity: number) => {
 		// 	}
 		// });
 
-		if (catId === 9) {
-			catId = 1;
-			manId = 1;
-		}
-		if (third === 99) {
-			first = 1;
-			second = 2;
-			third = 3;
-		}
-		if (i % 29 === 0) {
-			first += 3;
-			second += 3;
-			third += 3;
-			catId += 1;
-			manId += 1;
-		}
+		// if (catId === 9) {
+		// 	catId = 1;
+		// 	manId = 1;
+		// }
+		// if (third === 99) {
+		// 	first = 1;
+		// 	second = 2;
+		// 	third = 3;
+		// }
+		// if (i % 29 === 0) {
+		// 	first += 3;
+		// 	second += 3;
+		// 	third += 3;
+		// 	catId += 1;
+		// 	manId += 1;
+		// }
 
 		const product = await prisma.product.create({
 			data: {
@@ -141,7 +146,7 @@ const seed = async (quantity: number) => {
 					// }
 				},
 				generation: {
-					connect: [{ id: first }, { id: second }, { id: third }]
+					connect: [{ id: genId1 }, { id: genId2 }, { id: genId3 }]
 					// create: {
 					// 	name: generationName,
 					// 	slug: faker.helpers.slugify(generationName).toLowerCase(),
@@ -268,7 +273,7 @@ const seed = async (quantity: number) => {
 
 async function main() {
 	console.log("Started seeding...");
-	await seed(6600);
+	await seed(1000);
 }
 
 main()
